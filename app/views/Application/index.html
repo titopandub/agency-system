@@ -1,0 +1,10 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<div class="agent">
+#{list items:listagents, as:'operation'}
+	${operation.bNo} <br/>
+	${operation.bstatus} <br/>
+	${operation.vessel} <br/>
+#{/list}
+</div>

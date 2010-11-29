@@ -1,0 +1,23 @@
+#{extends 'CRUD/layout.html' /}
+
+<div id="crudList">
+	
+	<h1>Final Charge</h1>
+	<table id="crudList">
+		<thead>
+			<th>Booking Number</th>
+			<th>Vessel</th>
+			<th>Voyage</th>
+			<th>Customer</th>
+		</thead>
+		#{list items:finalcharges, as:'finalcharge'}
+		    <tr>
+		        <td><a href="@{FinalCharges.form(finalcharge.id)}">${finalcharge.id}</a></td>
+		        <td><a href="@{FinalCharges.form(finalcharge.id)}">${finalcharge.vessel.name}</a></td>
+		        <td><a href="@{FinalCharges.form(finalcharge.id)}">${finalcharge.voyage}</a></td>
+		        <td><a href="@{FinalCharges.form(finalcharge.id)}">${finalcharge.customer.name}</a></td>
+		    </tr>
+		#{/list}
+	</table>
+
+</div>

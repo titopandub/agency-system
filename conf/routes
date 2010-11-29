@@ -1,0 +1,54 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                                       Reports.upcoming
+
+# Operational
+GET		/ops									Operationals.index
+
+# Booking
+GET		/ops/bookings/?							Bookings.index
+GET		/ops/bookings/{id}						Bookings.form
+POST	/ops/bookings/{id}						Bookings.save
+GET		/ops/bookings/new						Bookings.form
+POST	/ops/bookings/new						Bookings.save
+
+# Berthing
+GET		/ops/berthings/?						Berthings.index
+GET		/ops/berthings/{id}						Berthings.form
+POST	/ops/berthings/{id}						Berthings.save
+GET		/ops/berthings/new						Berthings.form
+POST	/ops/berthings/new						Berthings.save
+
+# Departure
+GET		/ops/departures/?						Departures.index
+GET		/ops/departures/{id}					Departures.form
+POST	/ops/departures/{id}					Departures.save
+GET		/ops/departures/new						Departures.form
+POST	/ops/departures/new						Departures.save
+
+# Departure
+GET		/ops/finals/?							FinalCharges.index
+GET		/ops/finals/{id}						FinalCharges.form
+POST	/ops/finals/{id}						FinalCharges.save
+GET		/ops/finals/new							FinalCharges.form
+POST	/ops/finals/new							FinalCharges.save
+
+# Port CRUD
+GET		/crud/ports/?							Ports.list
+GET		/crud/ports/{id}						Ports.form
+POST	/crud/ports/{id}						Ports.save
+GET		/crud/ports/new							Ports.form
+POST	/crud/ports/new							Ports.save
+
+# Import CRUD routes
+*		/crud									module:crud
+
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}

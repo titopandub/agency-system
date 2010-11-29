@@ -1,0 +1,52 @@
+package models;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import com.google.code.morphia.annotations.Embedded;
+
+import play.modules.morphia.Model;
+
+@Embedded
+public class Berthing extends Model {
+	
+	public Date ata;
+	
+	public Date etd;
+	
+	public Double berthTugIn;
+	
+	public String cargo;
+	
+	public int cargoWeight;
+	
+	@Embedded
+	public List<Additional> additional;
+	
+	//Calculation
+	public Double harbor;
+	public Double queue;
+	public Double pilot;
+	public Double light;
+	public Double tug;
+	public Double gnt;
+	
+	public Berthing(Date ata, Date etd, Double berthTugIn,
+			String cargo, int cargoWeight) {
+		this.ata = ata;
+		this.etd = etd;
+		this.berthTugIn = berthTugIn;
+		this.cargo = cargo;
+		this.cargoWeight = cargoWeight;
+		this.additional = new ArrayList();
+	}
+	
+	public Berthing addAdditional(String name, Date date, 
+			Double cost) {
+		Additional newAdd = new Additional(name, date, cost);
+        this.additional.add(newAdd);
+        return this;
+	}
+
+}

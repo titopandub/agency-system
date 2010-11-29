@@ -1,0 +1,157 @@
+#{extends 'layout.html' /}
+
+<div class="objectForm">
+#{form @save(booking?.id)}
+
+	<p>
+        #{field 'vessel'}
+        <label>Vessel:</label>
+		#{select 'vesselId', items:vessels, valueProperty:'id', labelProperty:'name', value:booking?.vessel?._id /}
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'voyage'}
+        <label>Name:</label>
+        <input type="text" name="${field.name}" 
+            value="${booking?.voyage}" class="${field.errorClass}" />
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'port'}
+        <label>Port:</label>
+		#{select 'portId', items:ports, valueProperty:'id', labelProperty:'name', value:booking?.port?._id /}
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'customer'}
+        <label>Customer:</label>
+		#{select 'customerId', items:customers, valueProperty:'id', labelProperty:'name', value:booking?.customer?._id /}
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'agent'}
+        <label>Agent:</label>
+		#{select 'agentId', items:agents, valueProperty:'id', labelProperty:'name', value:booking?.agent?._id /}
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'statusAgent'}
+        <label>Agent Status:</label>
+        <input type="text" name="${field.name}" 
+            value="${booking?.statusAgent}" class="${field.errorClass}" />
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'subAgent'}
+        <label>Agent:</label>
+		#{select 'subAgentId', items:agents, valueProperty:'id', labelProperty:'name', value:booking?.subAgent?._id /}
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'eta'}
+        <label>Estimate Time Arrival:</label>
+        <input type="text" name="${field.name}" 
+            value="${booking?.booking?.eta?.format('yyyy-MM-dd')}" class="${field.errorClass}" />
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'etd'}
+        <label>Estimate Time Departure:</label>
+        <input type="text" name="${field.name}" 
+            value="${booking?.booking?.etd?.format('yyyy-MM-dd')}" class="${field.errorClass}" />
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'bookTugIn'}
+        <label>Estimate Tug in duration:</label>
+        <input type="text" name="${field.name}" 
+            value="${booking?.booking?.bookTugIn}" class="${field.errorClass}" />
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'bookTugOut'}
+        <label>Estimate Tug out duration:</label>
+        <input type="text" name="${field.name}" 
+            value="${booking?.booking?.bookTugOut}" class="${field.errorClass}" />
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'cargo'}
+        <label>Cargo Name:</label>
+        <input type="text" name="${field.name}" 
+            value="${booking?.booking?.cargo}" class="${field.errorClass}" />
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'cargoWeight'}
+        <label>Cargo Weight:</label>
+        <input type="text" name="${field.name}" 
+            value="${booking?.booking?.cargoWeight}" class="${field.errorClass}" />
+        #{/field}
+    </p>
+		
+	<p>
+		#{field 'harbor'}
+		<label>Harbor dues : ${booking?.booking?.harbor}</label>
+		<br/>
+		#{/field}
+	</p>
+	
+	<p>
+		#{field 'queue'}
+		<label>Queue dues : ${booking?.booking?.queue}</label>
+		<br/>
+		#{/field}
+	</p>
+	
+	<p>
+		#{field 'pilot'}
+		<label>Pilot dues : ${booking?.booking?.pilot}</label>
+		<br/>
+		#{/field}
+	</p>
+	
+	<p>
+		#{field 'tug'}
+		<label>Tug dues : ${booking?.booking?.tug}</label>
+		<br/>
+		#{/field}
+	</p>
+	
+	<p>
+		#{field 'light'}
+		<label>Light dues : ${booking?.booking?.light}</label>
+		<br/>
+		#{/field}
+	</p>
+	
+	<p>
+		#{field 'gnt'}
+		<label>Government Tax : ${booking?.booking?.gnt}</label>
+		<br/>
+		#{/field}
+	</p>
+    
+	<p class="crudButtons">
+        <input type="submit" name="calculate" value="Calculate" />
+		<input type="submit" name="save" value="Save" />
+    </p>
+
+#{/form}
+</div>
+
+
+
+

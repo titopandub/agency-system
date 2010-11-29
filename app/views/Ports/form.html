@@ -1,0 +1,125 @@
+#{extends 'CRUD/layout.html' /}
+<script src="@{'/public/javascripts/addtablerow.js'}" type="text/javascript" charset="utf-8"></script>
+
+<div class="objectForm">
+#{form @save(port?.id)}
+
+	#{field 'code'}
+	<p class="crudField crud_${field.type}">  
+        <label>Code:</label>
+        <input type="text" name="${field.name}" 
+            value="${port?.code}" class="${field.errorClass}" /> 
+    </p>
+    #{/field}
+	
+	#{field 'name'}
+	<p class="crudField crud_${field.type}">
+        <label>Name:</label>
+        <input type="text" name="${field.name}" 
+            value="${port?.name}" class="${field.errorClass}" />
+    </p>
+    #{/field}
+    
+	#{field 'type'}
+	<p class="crudField crud_${field.type}">
+        <label>Type:</label>
+        <input type="text" name="${field.name}" 
+            value="${port?.costtariff?.type}" class="${field.errorClass}" />
+    </p>
+    #{/field}
+	
+	#{field 'harbor'}
+	<p class="crudField crud_${field.type}">
+        
+        <label>Harbor Tariff:</label>
+        <input type="text" name="${field.name}" 
+            value="${port?.costtariff?.harbor}" class="${field.errorClass}" />
+    </p>
+    #{/field}
+	
+	#{field 'queue'}
+	<p class="crudField crud_${field.type}">    
+        <label>Queue Tariff:</label>
+        <input type="text" name="${field.name}" 
+            value="${port?.costtariff?.queue}" class="${field.errorClass}" />        
+    </p>
+    #{/field}
+	
+	#{field 'pilotfix'}
+	<p class="crudField crud_${field.type}"> 
+        <label>Pilot Fix Tariff:</label>
+        <input type="text" name="${field.name}" 
+            value="${port?.costtariff?.pilotfix}" class="${field.errorClass}" />
+    </p>
+    #{/field}
+	
+	#{field 'pilotvar'}
+	<p class="crudField crud_${field.type}">
+        <label>Pilot Var Tariff:</label>
+        <input type="text" name="${field.name}" 
+            value="${port?.costtariff?.pilotvar}" class="${field.errorClass}" />
+    </p>
+    #{/field}
+	
+	#{field 'light'}
+	<p class="crudField crud_${field.type}">
+        <label>Light Tariff:</label>
+        <input type="text" name="${field.name}" 
+            value="${port?.costtariff?.light}" class="${field.errorClass}" />
+    </p>
+    #{/field}
+    
+	#{field 'gnt'}
+	<p class="crudField crud_${field.type}">
+        <label>G/T Tariff:</label>
+        <input type="text" name="${field.name}" 
+            value="${port?.costtariff?.gnt}" class="${field.errorClass}" />
+    </p>
+    #{/field}
+    
+    <p>
+        #{field 'tug'}
+        <label>Tug Tariff:</label>
+        <input type="button" value="Add Row" onclick="addRow('dataTable')" />
+		<input type="button" value="Delete Row" onclick="deleteRow('dataTable')" /><br />
+        <table id="dataTable" border="0">
+			<tr>
+			  <td>Minimum</td>
+			  <td>Maximum</td>
+			  <td>Fix</td>
+			  <td>Var</td>
+			</tr>
+	        #{list items:port?.costtariff?.tug, as:'tug'}
+			<tr>
+				<td><input type="text" name='tug[${tug_index - 1}].minimum' value="${tug?.minimum}" class="${field.errorClass}" /></td>
+				<td><input type="text" name='tug[${tug_index - 1}].maximum' value="${tug?.maximum}" class="${field.errorClass}" /></td>
+				<td><input type="text" name='tug[${tug_index - 1}].fixed' value="${tug?.fixed}" class="${field.errorClass}" /></td>
+				<td><input type="text" name='tug[${tug_index - 1}].var' value="${tug?.var}" class="${field.errorClass}" /></td>
+				<td><input type="checkbox" name='chkbox' value="" class="${field.errorClass}" /></td>
+			</tr>
+	        #{/list}
+			#{else}
+				#{list items:0..2, as:'i'}
+				<tr>
+					<td><input type="text" name='tug[${i}].minimum' value="${tug?.minimum}" class="${field.errorClass}" /></td>
+					<td><input type="text" name='tug[${i}].maximum' value="${tug?.maximum}" class="${field.errorClass}" /></td>
+					<td><input type="text" name='tug[${i}].fixed' value="${tug?.fixed}" class="${field.errorClass}" /></td>
+					<td><input type="text" name='tug[${i}].var' value="${tug?.var}" class="${field.errorClass}" /></td>
+					<td><input type="checkbox" name='chkbox' value="" class="${field.errorClass}" /></td>
+				</tr>
+				#{/list}
+			#{/else}
+		</table>
+        #{/field} 
+    </p>
+    
+	<p class="crudButtons">
+        <input type="submit" value="Save" />
+    </p>
+
+#{/form}
+</div>
+
+
+
+

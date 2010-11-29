@@ -1,0 +1,45 @@
+# you describe your data using the YAML notation here
+# and then load them using Fixtures.load("data.yml")
+
+User(tito):
+    username: tito
+    password: secret
+    email:    yamatokusanagi@gmail.com
+
+Owner(coscon):
+    name:    COSCON
+    address: Shanghai
+    email:   shanghai@cosco-ogs.com
+
+Agent(ogs):
+    name:    OCEAN GLOBAL SHIPPING
+    address: Jakarta
+    email:   mgt@cosco-ogs.com
+
+Customer(ogstpk):
+    name:    OGS TPK
+    address: Jakarta
+    email:   ogstpk@cosco-ogs.com
+
+Vessel(yjh):
+    code:  YJH
+    name:  Yang Jiang He
+    grt:   10000
+    owner: coscon
+
+#Tariff(idjak):
+#    type: A
+#    harbor: 0.11
+#    queue: 0.12
+#    pilotfix: 0.13
+#    pilotvar: 0.14
+#    light: 0.15
+#    gnt: 0.16
+#
+#Port(jkt):
+#    code: IDJAK
+#    name: Jakarta
+#    costtariff: idjak
+        
+
+            
