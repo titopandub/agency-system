@@ -182,41 +182,6 @@ public class Operational extends Model {
 		
 	}
 	
-	public List<Operational> listBooking() {
-		Query q = Operational.createQuery(); // create a Query
-	    OrBuilder or = q.or(); // get Or query builder
-	    or.add().field("bstatus").contains("New"); // select bstatus contains "New"
-	    or.add().field("bstatus").contains("Booking Rejected"); // or bstatus contains "Booking Rejected"
-	    return q.asList();
-	}
-	
-	public List<Operational> listBerthing() {
-		Query q = Operational.createQuery();
-	    OrBuilder or = q.or();
-	    or.add().field("bstatus").contains("Berthing");
-	    or.add().field("bstatus").contains("Booking Approved");
-	    or.add().field("bstatus").contains("Berthing Rejected");
-	    return q.asList();
-	}
-	
-	public List<Operational> listDeparture() {
-		Query q = Operational.createQuery();
-	    OrBuilder or = q.or();
-	    or.add().field("bstatus").contains("Departure");
-	    or.add().field("bstatus").contains("Berthing Approved");
-	    or.add().field("bstatus").contains("Departure Rejected");
-	    return q.asList();
-	}
-	
-	public List<Operational> listFinal() {
-		Query q = Operational.createQuery();
-	    OrBuilder or = q.or();
-	    or.add().field("bstatus").contains("Final");
-	    or.add().field("bstatus").contains("Departure Approved");
-	    or.add().field("bstatus").contains("Final Rejected");
-	    return q.asList();
-	}
-	
 	public void approvalBooking(Boolean approve) {
 		if(approve) {
 			this.bstatus = "Booking Approved";
