@@ -6,6 +6,28 @@
 		<a href="@{Bookings.form()}">Add Booking</a>
 	</p>
 	
+	<h1>Booking Vessel</h1>
+	<table id="crudList">
+		<thead>
+			<th>Booking Number</th>
+			<th>Vessel</th>
+			<th>Voyage</th>
+			<th>Customer</th>
+			<th>ETA</th>
+			<th>ETD</th>
+		</thead>
+		#{list items:bookings, as:'booking'}
+		    <tr>
+		        <td><a href="@{Bookings.form(booking.id)}">${booking.id}</a></td>
+		        <td><a href="@{Bookings.form(booking.id)}">${booking.vessel.name}</a></td>
+		        <td><a href="@{Bookings.form(booking.id)}">${booking.voyage}</a></td>
+		        <td><a href="@{Bookings.form(booking.id)}">${booking.customer.name}</a></td>
+		        <td>${booking.booking.eta.format('yyyy-MM-dd')}</td>
+		        <td>${booking.booking.etd.format('yyyy-MM-dd')}</td>
+		    </tr>
+		#{/list}
+	</table>
+	
 	<h1>Upcoming Vessel</h1>
 	<table id="crudList">
 		<thead>
@@ -44,7 +66,7 @@
 		        <td><a href="@{Departures.form(departure.id)}">${departure.vessel.name}</a></td>
 		        <td><a href="@{Departures.form(departure.id)}">${departure.voyage}</a></td>
 		        <td><a href="@{Departures.form(departure.id)}">${departure.customer.name}</a></td>
-		        <td>${departure.berthing.ata.format('yyyy-MM-dd')}</td>
+		        <td></td>
 		        <td>${departure.booking.etd.format('yyyy-MM-dd')}</td>
 		    </tr>
 		#{/list}
