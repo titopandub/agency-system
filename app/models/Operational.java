@@ -2,6 +2,7 @@ package models;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.joda.time.DateTime;
 import org.joda.time.Period;
@@ -11,6 +12,8 @@ import play.modules.morphia.Model;
 import com.google.code.morphia.annotations.Embedded;
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Reference;
+import com.google.code.morphia.query.OrBuilder;
+import com.google.code.morphia.query.Query;
 
 @Entity
 public class Operational extends Model {
@@ -54,6 +57,10 @@ public class Operational extends Model {
 	public Double tugfix;
 	public Double tugvar;
 	
+	public Operational() {
+		
+	}
+	
 	public Operational(Vessel vessel, String voyage, Port port,
 			Customer customer, Agent agent, String statusAgent, 
 			Agent subAgent) {
@@ -64,7 +71,7 @@ public class Operational extends Model {
 		this.agent = agent;
 		this.statusAgent = statusAgent;
 		this.subAgent = subAgent;
-		this.bstatus = "Booking";
+		this.bstatus = "New";
 		this.tugPtr = this.searchIntegerArray(port.getTugTariff(), vessel.grt);
 		this.tugfix = port.costtariff.tug.get(this.tugPtr).fixed;
 		this.tugvar = port.costtariff.tug.get(this.tugPtr).var;
@@ -73,7 +80,7 @@ public class Operational extends Model {
 	public void oBooking(Date eta, Date etd, Double bookTugIn, 
 			Double bookTugOut, String cargo, int cargoWeight) {
 		this.booking = new Booking(eta, etd, bookTugIn, bookTugOut, cargo, cargoWeight);
-		this.bstatus = "Booking";
+		this.bstatus = "New";
 		this.booking.additional = new ArrayList();
 		eBookingExpenses();
 	}
@@ -173,6 +180,73 @@ public class Operational extends Model {
 		this.finalCharge.gnt = (this.finalCharge.harbor + this.finalCharge.queue + 
 				this.finalCharge.pilot + this.finalCharge.tug) * 10 / 100;
 		
+	}
+	
+	public List<Operational> listBooking() {
+		Query q = Operational.createQuery(); // create a Query
+	    OrBuilder or = q.or(); // get Or query builder
+	    or.add().field("bstatus").contains("New"); // select bstatus contains "New"
+	    or.add().field("bstatus").contains("Booking Rejected"); // or bstatus contains "Booking Rejected"
+	    return q.asList();
+	}
+	
+	public List<Operational> listBerthing() {
+		Query q = Operational.createQuery();
+	    OrBuilder or = q.or();
+	    or.add().field("bstatus").contains("Berthing");
+	    or.add().field("bstatus").contains("Booking Approved");
+	    or.add().field("bstatus").contains("Berthing Rejected");
+	    return q.asList();
+	}
+	
+	public List<Operational> listDeparture() {
+		Query q = Operational.createQuery();
+	    OrBuilder or = q.or();
+	    or.add().field("bstatus").contains("Departure");
+	    or.add().field("bstatus").contains("Berthing Approved");
+	    or.add().field("bstatus").contains("Departure Rejected");
+	    return q.asList();
+	}
+	
+	public List<Operational> listFinal() {
+		Query q = Operational.createQuery();
+	    OrBuilder or = q.or();
+	    or.add().field("bstatus").contains("Final");
+	    or.add().field("bstatus").contains("Departure Approved");
+	    or.add().field("bstatus").contains("Final Rejected");
+	    return q.asList();
+	}
+	
+	public void approvalBooking(Boolean approve) {
+		if(approve) {
+			this.bstatus = "Booking Approved";
+		} else {
+			this.bstatus = "Booking Rejected";
+		}
+	}
+	
+	public void approvalBerthing(Boolean approve) {
+		if(approve) {
+			this.bstatus = "Berthing Approved";
+		} else {
+			this.bstatus = "Berthing Rejected";
+		}
+	}
+	
+	public void approvalDeparture(Boolean approve) {
+		if(approve) {
+			this.bstatus = "Departure Approved";
+		} else {
+			this.bstatus = "Berthing Rejected";
+		}
+	}
+	
+	public void approvalFinal(Boolean approve) {
+		if(approve) {
+			this.bstatus = "Final Approved";
+		} else {
+			this.bstatus = "Final Reject";
+		}
 	}
 	
 	public Integer searchIntegerArray(Integer[] minimum, Integer grt) {
