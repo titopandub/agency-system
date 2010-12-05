@@ -1,7 +1,7 @@
 #{extends 'layout.html' /}
 
 <div class="objectForm">
-#{form @save(berthing?.id)}
+#{form @approval(berthing?.id)}
 	
 	<p>
 		#{field 'vessel'}
@@ -38,40 +38,35 @@
 	<p>
         #{field 'ata'}
         <label>Actual Time Arrival :</label>
-        <input type="text" name="${field.name}" 
-            value="${berthing?.berthing?.ata?.format('yyyy-MM-dd')}" class="${field.errorClass}" />
+        <label>${berthing?.berthing?.ata?.format('yyyy-MM-dd')}</label>
         #{/field}
     </p>
 	
 	<p>
         #{field 'etd'}
         <label>Estimate Time Departure :</label>
-        <input type="text" name="${field.name}" 
-            value="${berthing?.berthing?.etd?.format('yyyy-MM-dd')}" class="${field.errorClass}" />
+        <label>${berthing?.berthing?.etd?.format('yyyy-MM-dd')}</label>
         #{/field}
     </p>
 	
 	<p>
         #{field 'berthTugIn'}
         <label>Estimate Tug in duration :</label>
-        <input type="text" name="${field.name}" 
-            value="${berthing?.berthing?.berthTugIn}" class="${field.errorClass}" />
+        <label>${berthing?.berthing?.berthTugIn}</label>
         #{/field}
     </p>
 	
 	<p>
         #{field 'cargo'}
         <label>Cargo Name :</label>
-        <input type="text" name="${field.name}" 
-            value="${berthing?.berthing?.cargo}" class="${field.errorClass}" />
+        <label>${berthing?.berthing?.cargo}</label>
         #{/field}
     </p>
 	
 	<p>
         #{field 'cargoWeight'}
         <label>Cargo Weight :</label>
-        <input type="text" name="${field.name}" 
-            value="${berthing?.berthing?.cargoWeight}" class="${field.errorClass}" />
+        <label>${berthing?.berthing?.cargoWeight}</label>
         #{/field}
     </p>
 		
@@ -122,10 +117,14 @@
 		<br/>
 		#{/field}
 	</p>
+	
+	<p>
+    	<input type="hidden" name="status" value="${berthing.status}">
+    </p>
     
 	<p class="crudButtons">
-        <input type="submit" name="calculate" value="Calculate" />
-		<input type="submit" name="save" value="Save" />
+        <input type="submit" name="approve" value="Approve" />
+		<input type="submit" name="reject" value="Reject" />
     </p>
 
 #{/form}

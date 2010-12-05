@@ -1,7 +1,7 @@
 #{extends 'layout.html' /}
 
 <div class="objectForm">
-#{form @save(finalcharge?.id)}
+#{form @approval(finalcharge?.id)}
 	
 	<p>
 		#{field 'vessel'}
@@ -54,32 +54,28 @@
 	<p>
         #{field 'actualTugIn'}
         <label>Actual Tug in duration :</label>
-        <input type="text" name="${field.name}" 
-            value="${finalcharge?.finalCharge?.actualTugIn}" class="${field.errorClass}" />
+        <label>${finalcharge?.finalCharge?.actualTugIn}</label>
         #{/field}
     </p>
     
     <p>
         #{field 'actualTugOut'}
         <label>Actual Tug out duration :</label>
-        <input type="text" name="${field.name}" 
-            value="${finalcharge?.finalCharge?.actualTugOut}" class="${field.errorClass}" />
+        <label>${finalcharge?.finalCharge?.actualTugOut}</label>
         #{/field}
     </p>
 	
 	<p>
         #{field 'cargo'}
         <label>Cargo Name :</label>
-        <input type="text" name="${field.name}" 
-            value="${finalcharge?.finalCharge?.cargo}" class="${field.errorClass}" />
+        <label>${finalcharge?.finalCharge?.cargo}</label>
         #{/field}
     </p>
 	
 	<p>
         #{field 'cargoWeight'}
         <label>Cargo Weight :</label>
-        <input type="text" name="${field.name}" 
-            value="${finalcharge?.finalCharge?.cargoWeight}" class="${field.errorClass}" />
+        <label>${finalcharge?.finalCharge?.cargoWeight}</label>
         #{/field}
     </p>
 		
@@ -131,9 +127,13 @@
 		#{/field}
 	</p>
     
+	<p>
+    	<input type="hidden" name="status" value="${finalcharge.status}">
+    </p>
+    
 	<p class="crudButtons">
-        <input type="submit" name="calculate" value="Calculate" />
-		<input type="submit" name="save" value="Save" />
+        <input type="submit" name="approve" value="Approve" />
+		<input type="submit" name="reject" value="Reject" />
     </p>
 
 #{/form}

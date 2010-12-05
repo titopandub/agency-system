@@ -94,7 +94,7 @@ public class Operational extends Model {
 			String cargo, int cargoWeight) {
 		this.berthing = new Berthing(ata, etd, berthTugIn, cargo, cargoWeight);
 		this.status = "Berthing";
-		this.berthing.additional = new ArrayList();
+		this.booking.additional = new ArrayList();
 		eBerthingExpenses();
 	}
 	
@@ -102,7 +102,7 @@ public class Operational extends Model {
 			String cargo, int cargoWeight) {
 		this.departure = new Departure(atd, departTugOut, cargo, cargoWeight);
 		this.status = "Departure";
-		this.departure.additional = new ArrayList();
+		this.booking.additional = new ArrayList();
 		eDepartureExpenses();
 	}
 	
@@ -111,7 +111,7 @@ public class Operational extends Model {
 		this.finalCharge = new FinalCharge(actualTugIn, actualTugOut, cargo, 
 				cargoWeight);
 		this.status = "Final";
-		this.finalCharge.additional = new ArrayList();
+		this.booking.additional = new ArrayList();
 		aFinalCharges();
 	}
 	

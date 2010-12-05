@@ -1,7 +1,7 @@
 #{extends 'layout.html' /}
 
 <div class="objectForm">
-#{form @save(departure?.id)}
+#{form @approval(departure?.id)}
 	
 	<p>
 		#{field 'vessel'}
@@ -46,32 +46,28 @@
 	<p>
         #{field 'atd'}
         <label>Actual Time Departure :</label>
-        <input type="text" name="${field.name}" 
-            value="${departure?.departure?.atd?.format('yyyy-MM-dd')}" class="${field.errorClass}" />
+        <label>${departure?.departure?.atd?.format('yyyy-MM-dd')}</label>
         #{/field}
     </p>
 	
 	<p>
         #{field 'departTugOut'}
         <label>Estimate Tug out duration :</label>
-        <input type="text" name="${field.name}" 
-            value="${departure?.departure?.departTugOut}" class="${field.errorClass}" />
+        <label>${departure?.departure?.departTugOut}</label>
         #{/field}
     </p>
 	
 	<p>
         #{field 'cargo'}
         <label>Cargo Name :</label>
-        <input type="text" name="${field.name}" 
-            value="${departure?.departure?.cargo}" class="${field.errorClass}" />
+        <label>${departure?.departure?.cargo}</label>
         #{/field}
     </p>
 	
 	<p>
         #{field 'cargoWeight'}
         <label>Cargo Weight :</label>
-        <input type="text" name="${field.name}" 
-            value="${departure?.departure?.cargoWeight}" class="${field.errorClass}" />
+        <label>${departure?.departure?.cargoWeight}</label>
         #{/field}
     </p>
 		
@@ -123,9 +119,13 @@
 		#{/field}
 	</p>
     
+	<p>
+    	<input type="hidden" name="status" value="${departure.status}">
+    </p>
+    
 	<p class="crudButtons">
-        <input type="submit" name="calculate" value="Calculate" />
-		<input type="submit" name="save" value="Save" />
+        <input type="submit" name="approve" value="Approve" />
+		<input type="submit" name="reject" value="Reject" />
     </p>
 
 #{/form}

@@ -78,7 +78,7 @@
 			<th>ATA</th>
 			<th>ATD</th>
 		</thead>
-		#{list items:finalcharges, as:'finalcharge'}
+		#{list items:finals, as:'finalcharge'}
 		    <tr>
 		        <td><a href="@{Approvals.formFinal(finalcharge.id)}">${finalcharge.id}</a></td>
 		        <td>${finalcharge.vessel.name}</a></td>

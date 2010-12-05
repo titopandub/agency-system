@@ -56,16 +56,22 @@ public class Bootstrap extends Job {
     	agc001.booking.addAdditional("What else", eta, 20000.0);
     	agc001.save();
     	
-//    	Date ata = df.parse("14/11/2010");
-//    	etd = df.parse("21/11/2010");
-//    	
-//    	agc001.oBerthing(ata, etd, 2.0, "Bauxite", 20000);
-//    	agc001.save();
-//    	
-//    	Date atd = df.parse("21/11/2010");
-//    	
-//    	agc001.oDeparture(atd, 2.0, "Bauxite", 25000);
-//    	agc001.save();
+    	Date ata = df.parse("14/11/2010");
+    	etd = df.parse("21/11/2010");
+    	
+    	agc001.oBerthing(ata, etd, 2.0, "Bauxite", 20000);
+    	agc001.booking.addAdditional("Entertain", eta, 20000.0);
+    	agc001.booking.addAdditional("Other", eta, 20000.0);
+    	agc001.booking.addAdditional("What else", eta, 20000.0);
+    	agc001.save();
+    	
+    	Date atd = df.parse("21/11/2010");
+    	
+    	agc001.oDeparture(atd, 2.0, "Bauxite", 25000);
+    	agc001.booking.addAdditional("Entertain", eta, 20000.0);
+    	agc001.booking.addAdditional("Other", eta, 20000.0);
+    	agc001.booking.addAdditional("What else", eta, 20000.0);
+    	agc001.save();
 //    	agc001.oFinalCharge(2.0, 2.0, "Bauxite", 21000);
 //    	agc001.save();
 	}

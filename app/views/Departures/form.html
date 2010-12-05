@@ -134,7 +134,7 @@
 			  <td>Date</td>
 			  <td>Cost</td>
 			</tr>
-	        #{list items:departure?.departure?.additional, as:'additional'}
+	        #{list items:departure?.booking?.additional, as:'additional'}
 			<tr>
 				<td><input type="text" name='additional[${additional_index - 1}].name' value="${additional?.name}" class="${field.errorClass}" /></td>
 				<td><input type="text" name='additional[${additional_index - 1}].date' value="${additional?.date?.format('yyyy-MM-dd')}" class="${field.errorClass}" /></td>

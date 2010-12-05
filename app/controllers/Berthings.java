@@ -46,7 +46,6 @@ public class Berthings extends Controller {
 		if(params.get("calculate") != null) {
 			berthing = Operational.findById(id);
 			berthing.oBerthing(ata, etd, berthTugIn, cargo, cargoWeight);
-			berthing.berthing.additional = new ArrayList<Additional>();
 			int i = 0;
 			while(i < additional.size()) {
 				berthing.booking.addAdditional(additional.get(i).name, 
@@ -58,7 +57,6 @@ public class Berthings extends Controller {
 		} else if(params.get("save") !=null) {
 			berthing = Operational.findById(id);
 			berthing.oBerthing(ata, etd, berthTugIn, cargo, cargoWeight);
-			berthing.berthing.additional = new ArrayList<Additional>();
 			int i = 0;
 			while(i < additional.size()) {
 				berthing.booking.addAdditional(additional.get(i).name, 
