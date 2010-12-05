@@ -19,7 +19,7 @@ public class Reports extends Controller {
 	
 	public static void monthly() {
 		List<Operational> monthly = (List<Operational>) Operational.filter("status =", 
-				"Departure").filter("status =", "Final").filter("departure.atd >", date).asList();
+				"Departure").filter("status =", "Final Approved").asList();
 		render(monthly);
 	}
 

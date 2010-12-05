@@ -4,6 +4,7 @@
 
 # Home page
 GET     /                                       Reports.upcoming
+GET     /monthly                                Reports.monthly
 
 # Approval
 GET		/approvals								Approvals.index

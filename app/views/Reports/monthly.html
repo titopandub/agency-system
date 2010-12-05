@@ -1,0 +1,25 @@
+#{extends 'layout.html' /}
+
+<div id="crudList">
+		<h1>Upcoming Vessel</h1>
+		<table id="crudList">
+			<thead>
+				<th>Booking Number</th>
+				<th>Vessel</th>
+				<th>Voyage</th>
+				<th>Customer</th>
+				<th>ETA</th>
+				<th>ETD</th>
+			</thead>
+			#{list items:monthly, as:'month'}
+			    <tr>
+			        <td>${month.id}</a></td>
+			        <td>${month.vessel.name}</a></td>
+			        <td>${month.voyage}</a></td>
+			        <td>${month.customer.name}</a></td>
+			        <td>${month.booking.eta.format('yyyy-MM-dd')}</td>
+			        <td>${month.booking.etd.format('yyyy-MM-dd')}</td>
+			    </tr>
+			#{/list}
+		</table>
+</div>
