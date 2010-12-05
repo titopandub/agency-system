@@ -1,0 +1,93 @@
+#{extends 'layout.html' /}
+
+<div id="crudList">
+	
+	<h1>Booking Vessel</h1>
+	<table id="crudList">
+		<thead>
+			<th>Booking Number</th>
+			<th>Vessel</th>
+			<th>Voyage</th>
+			<th>Customer</th>
+			<th>ETA</th>
+			<th>ETD</th>
+		</thead>
+		#{list items:bookings, as:'booking'}
+		    <tr>
+		        <td><a href="@{Approvals.formBooking(booking.id)}">${booking.id}</a></td>
+		        <td>${booking.vessel.name}</a></td>
+		        <td>${booking.voyage}</a></td>
+		        <td>${booking.customer.name}</a></td>
+		        <td>${booking.booking.eta.format('yyyy-MM-dd')}</td>
+		        <td>${booking.booking.etd.format('yyyy-MM-dd')}</td>
+		    </tr>
+		#{/list}
+	</table>
+	
+	<h1>Upcoming Vessel</h1>
+	<table id="crudList">
+		<thead>
+			<th>Booking Number</th>
+			<th>Vessel</th>
+			<th>Voyage</th>
+			<th>Customer</th>
+			<th>ETA</th>
+			<th>ETD</th>
+		</thead>
+		#{list items:berthings, as:'berthing'}
+		    <tr>
+		        <td><a href="@{Approvals.formBerthing(berthing.id)}">${berthing.id}</a></td>
+		        <td>${berthing.vessel.name}</a></td>
+		        <td>${berthing.voyage}</a></td>
+		        <td>${berthing.customer.name}</a></td>
+		        <td>${berthing.booking.eta.format('yyyy-MM-dd')}</td>
+		        <td>${berthing.booking.etd.format('yyyy-MM-dd')}</td>
+		    </tr>
+		#{/list}
+	</table>
+	
+	<h1>Berthing Vessel</h1>
+	<table id="crudList">
+		<thead>
+			<th>Booking Number</th>
+			<th>Vessel</th>
+			<th>Voyage</th>
+			<th>Customer</th>
+			<th>ATA</th>
+			<th>ETD</th>
+		</thead>
+		#{list items:departures, as:'departure'}
+		    <tr>
+		        <td><a href="@{Approvals.formDeparture(departure.id)}">${departure.id}</a></td>
+		        <td>${departure.vessel.name}</a></td>
+		        <td>${departure.voyage}</a></td>
+		        <td>${departure.customer.name}</a></td>
+		        <td>${departure.berthing.ata.format('yyyy-MM-dd')}</td>
+		        <td>${departure.booking.etd.format('yyyy-MM-dd')}</td>
+		    </tr>
+		#{/list}
+	</table>
+	
+	<h1>Departured Vessel</h1>
+	<table id="crudList">
+		<thead>
+			<th>Booking Number</th>
+			<th>Vessel</th>
+			<th>Voyage</th>
+			<th>Customer</th>
+			<th>ATA</th>
+			<th>ATD</th>
+		</thead>
+		#{list items:finalcharges, as:'finalcharge'}
+		    <tr>
+		        <td><a href="@{Approvals.formFinal(finalcharge.id)}">${finalcharge.id}</a></td>
+		        <td>${finalcharge.vessel.name}</a></td>
+		        <td>${finalcharge.voyage}</a></td>
+		        <td>${finalcharge.customer.name}</a></td>
+		        <td>${finalcharge.berthing.ata.format('yyyy-MM-dd')}</td>
+		        <td>${finalcharge.departure.atd.format('yyyy-MM-dd')}</td>
+		    </tr>
+		#{/list}
+	</table>
+
+</div>

@@ -5,6 +5,14 @@
 # Home page
 GET     /                                       Reports.upcoming
 
+# Approval
+GET		/approvals								Approvals.index
+POST	/approvals/{id}							Approvals.approval
+GET		/approvals/booking/{id}					Approvals.formBooking
+GET		/approvals/berthing/{id}				Approvals.formBerthing
+GET		/approvals/departure/{id}				Approvals.formDeparture
+GET		/approvals/final/{id}					Approvals.formFinal
+
 # Operational
 GET		/ops									Operationals.index
 

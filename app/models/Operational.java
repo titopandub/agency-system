@@ -20,7 +20,7 @@ public class Operational extends Model {
 	
 	public String bNo;
 	
-	public String bstatus;
+	public String status;
 	
 	@Embedded
 	public Vessel vessel;
@@ -57,10 +57,6 @@ public class Operational extends Model {
 	public Double tugfix;
 	public Double tugvar;
 	
-	public Operational() {
-		
-	}
-	
 	public Operational(Vessel vessel, String voyage, Port port,
 			Customer customer, Agent agent, String statusAgent, 
 			Agent subAgent) {
@@ -71,7 +67,7 @@ public class Operational extends Model {
 		this.agent = agent;
 		this.statusAgent = statusAgent;
 		this.subAgent = subAgent;
-		this.bstatus = "New";
+		this.status = "New";
 		this.tugPtr = this.searchIntegerArray(port.getTugTariff(), vessel.grt);
 		this.tugfix = port.costtariff.tug.get(this.tugPtr).fixed;
 		this.tugvar = port.costtariff.tug.get(this.tugPtr).var;
@@ -80,24 +76,33 @@ public class Operational extends Model {
 	public void oBooking(Date eta, Date etd, Double bookTugIn, 
 			Double bookTugOut, String cargo, int cargoWeight) {
 		this.booking = new Booking(eta, etd, bookTugIn, bookTugOut, cargo, cargoWeight);
-		this.bstatus = "New";
+		this.status = "New";
 		this.booking.additional = new ArrayList();
+		eBookingExpenses();
+	}
+	
+	public void oBooking(Date eta, Date etd, Double bookTugIn, 
+			Double bookTugOut, String cargo, int cargoWeight, 
+			List<Additional> additional) {
+		this.booking = new Booking(eta, etd, bookTugIn, bookTugOut, cargo, cargoWeight);
+		this.status = "New";
+		this.booking.additional = additional;
 		eBookingExpenses();
 	}
 	
 	public void oBerthing(Date ata, Date etd, Double berthTugIn,
 			String cargo, int cargoWeight) {
 		this.berthing = new Berthing(ata, etd, berthTugIn, cargo, cargoWeight);
-		this.bstatus = "Berthing";
-		this.berthing.additional = booking.additional;
+		this.status = "Berthing";
+		this.berthing.additional = new ArrayList();
 		eBerthingExpenses();
 	}
 	
 	public void oDeparture(Date atd, Double departTugOut, 
 			String cargo, int cargoWeight) {
 		this.departure = new Departure(atd, departTugOut, cargo, cargoWeight);
-		this.bstatus = "Departure";
-		this.departure.additional = berthing.additional;
+		this.status = "Departure";
+		this.departure.additional = new ArrayList();
 		eDepartureExpenses();
 	}
 	
@@ -105,8 +110,8 @@ public class Operational extends Model {
 			String cargo, int cargoWeight) {
 		this.finalCharge = new FinalCharge(actualTugIn, actualTugOut, cargo, 
 				cargoWeight);
-		this.bstatus = "Final";
-		this.finalCharge.additional = departure.additional;
+		this.status = "Final";
+		this.finalCharge.additional = new ArrayList();
 		aFinalCharges();
 	}
 	
@@ -184,33 +189,33 @@ public class Operational extends Model {
 	
 	public void approvalBooking(Boolean approve) {
 		if(approve) {
-			this.bstatus = "Booking Approved";
+			this.status = "Booking Approved";
 		} else {
-			this.bstatus = "Booking Rejected";
+			this.status = "Booking Rejected";
 		}
 	}
 	
 	public void approvalBerthing(Boolean approve) {
 		if(approve) {
-			this.bstatus = "Berthing Approved";
+			this.status = "Berthing Approved";
 		} else {
-			this.bstatus = "Berthing Rejected";
+			this.status = "Berthing Rejected";
 		}
 	}
 	
 	public void approvalDeparture(Boolean approve) {
 		if(approve) {
-			this.bstatus = "Departure Approved";
+			this.status = "Departure Approved";
 		} else {
-			this.bstatus = "Berthing Rejected";
+			this.status = "Berthing Rejected";
 		}
 	}
 	
 	public void approvalFinal(Boolean approve) {
 		if(approve) {
-			this.bstatus = "Final Approved";
+			this.status = "Final Approved";
 		} else {
-			this.bstatus = "Final Reject";
+			this.status = "Final Reject";
 		}
 	}
 	

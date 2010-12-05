@@ -47,10 +47,13 @@ public class Bootstrap extends Job {
     	Operational agc001 = Operational.find("byVoyage", "249 N").first();
     	
     	DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-    	Date eta = df.parse("02/12/2010");
-    	Date etd = df.parse("03/12/2010");
+    	Date eta = df.parse("05/12/2010");
+    	Date etd = df.parse("08/12/2010");
 		
     	agc001.oBooking(eta, etd, 2.0, 2.0, "Bauxite", 20000);
+    	agc001.booking.addAdditional("Entertain", eta, 20000.0);
+    	agc001.booking.addAdditional("Other", eta, 20000.0);
+    	agc001.booking.addAdditional("What else", eta, 20000.0);
     	agc001.save();
     	
 //    	Date ata = df.parse("14/11/2010");

@@ -3,11 +3,13 @@ package controllers;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import play.cache.Cache;
 import play.mvc.Controller;
+import models.Additional;
 import models.Agent;
 import models.Customer;
 import models.Operational;
@@ -38,17 +40,31 @@ public class Berthings extends Controller {
 	}
 	
 	public static void save(Long id, Date ata, Date etd, Double berthTugIn, 
-			String cargo, int cargoWeight) throws ParseException {
+			String cargo, int cargoWeight, List<Additional> additional) throws ParseException {
 		
 		Operational berthing;
 		if(params.get("calculate") != null) {
 			berthing = Operational.findById(id);
 			berthing.oBerthing(ata, etd, berthTugIn, cargo, cargoWeight);
+			berthing.berthing.additional = new ArrayList<Additional>();
+			int i = 0;
+			while(i < additional.size()) {
+				berthing.booking.addAdditional(additional.get(i).name, 
+						additional.get(i).date, additional.get(i).cost);
+				i++;
+			}
 			Cache.set("berthing_" + id, berthing, "1mn");
 			form(id);
 		} else if(params.get("save") !=null) {
 			berthing = Operational.findById(id);
 			berthing.oBerthing(ata, etd, berthTugIn, cargo, cargoWeight);
+			berthing.berthing.additional = new ArrayList<Additional>();
+			int i = 0;
+			while(i < additional.size()) {
+				berthing.booking.addAdditional(additional.get(i).name, 
+						additional.get(i).date, additional.get(i).cost);
+				i++;
+			}
 			berthing.save();
 			form(id);
 		}

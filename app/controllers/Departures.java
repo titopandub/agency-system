@@ -8,6 +8,7 @@ import java.util.List;
 
 import play.cache.Cache;
 import play.mvc.Controller;
+import models.Additional;
 import models.Agent;
 import models.Customer;
 import models.Operational;
@@ -38,16 +39,28 @@ public class Departures extends Controller {
 	}
 	
 	public static void save(Long id, Date atd, Double departTugOut, 
-			String cargo, int cargoWeight) throws ParseException {
+			String cargo, int cargoWeight, List<Additional> additional) throws ParseException {
 		
 		Operational departure;
 		if(params.get("calculate") != null) {
 			departure = Operational.findById(id);
+			int i = 0;
+			while(i < additional.size()) {
+				departure.booking.addAdditional(additional.get(i).name, 
+						additional.get(i).date, additional.get(i).cost);
+				i++;
+			}
 			departure.oDeparture(atd, departTugOut, cargo, cargoWeight);
 			Cache.set("departure_" + id, departure, "1mn");
 			form(id);
 		} else if(params.get("save") !=null) {
 			departure = Operational.findById(id);
+			int i = 0;
+			while(i < additional.size()) {
+				departure.booking.addAdditional(additional.get(i).name, 
+						additional.get(i).date, additional.get(i).cost);
+				i++;
+			}
 			departure.oDeparture(atd, departTugOut, cargo, cargoWeight);
 			departure.save();
 			form(id);

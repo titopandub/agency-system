@@ -8,6 +8,7 @@ import java.util.List;
 
 import play.cache.Cache;
 import play.mvc.Controller;
+import models.Additional;
 import models.Agent;
 import models.Customer;
 import models.Operational;
@@ -38,16 +39,28 @@ public class FinalCharges extends Controller {
 	}
 	
 	public static void save(Long id, Double actualTugIn, Double actualTugOut,
-			String cargo, int cargoWeight) throws ParseException {
+			String cargo, int cargoWeight, List<Additional> additional) throws ParseException {
 		
 		Operational finalcharge;
 		if(params.get("calculate") != null) {
 			finalcharge = Operational.findById(id);
+			int i = 0;
+			while(i < additional.size()) {
+				finalcharge.booking.addAdditional(additional.get(i).name, 
+						additional.get(i).date, additional.get(i).cost);
+				i++;
+			}
 			finalcharge.oFinalCharge(actualTugIn, actualTugOut, cargo, cargoWeight);
 			Cache.set("finalcharge_" + id, finalcharge, "1mn");
 			form(id);
 		} else if(params.get("save") !=null) {
 			finalcharge = Operational.findById(id);
+			int i = 0;
+			while(i < additional.size()) {
+				finalcharge.booking.addAdditional(additional.get(i).name, 
+						additional.get(i).date, additional.get(i).cost);
+				i++;
+			}
 			finalcharge.oFinalCharge(actualTugIn, actualTugOut, cargo, cargoWeight);
 			finalcharge.save();
 			form(id);

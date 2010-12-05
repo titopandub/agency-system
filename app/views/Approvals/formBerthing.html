@@ -122,37 +122,6 @@
 		<br/>
 		#{/field}
 	</p>
-	
-	<p>
-        #{field 'additional'}
-        <label>Additional Charges:</label>
-        <input type="button" value="Add Row" onclick="addRow('dataTable')" />
-		<input type="button" value="Delete Row" onclick="deleteRow('dataTable')" /><br />
-        <table id="dataTable" border="0">
-			<tr>
-			  <td>Charges</td>
-			  <td>Date</td>
-			  <td>Cost</td>
-			</tr>
-	        #{list items:berthing?.booking?.additional, as:'additional'}
-			<tr>
-				<td><input type="text" name='additional[${additional_index - 1}].name' value="${additional?.name}" class="${field.errorClass}" /></td>
-				<td><input type="text" name='additional[${additional_index - 1}].date' value="${additional?.date?.format('yyyy-MM-dd')}" class="${field.errorClass}" /></td>
-				<td><input type="text" name='additional[${additional_index - 1}].cost' value="${additional?.cost}" class="${field.errorClass}" /></td>
-			</tr>
-	        #{/list}
-			#{else}
-				#{list items:0..2, as:'i'}
-				<tr>
-					<td><input type="text" name='additional[${i}].name' value="${additional?.name}" class="${field.errorClass}" /></td>
-					<td><input type="text" name='additional[${i}].date' value="${additional?.date?.format('yyyy-MM-dd')}" class="${field.errorClass}" /></td>
-					<td><input type="text" name='additional[${i}].cost' value="${additional?.cost}" class="${field.errorClass}" /></td>
-				</tr>
-				#{/list}
-			#{/else}
-		</table>
-        #{/field} 
-    </p>
     
 	<p class="crudButtons">
         <input type="submit" name="calculate" value="Calculate" />
