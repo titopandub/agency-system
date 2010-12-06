@@ -23,20 +23,20 @@ import models.Vessel;
 public class Operationals extends Controller {
 	
 	public static void index() {
-		List<Operational> bookings = (List<Operational>) Operational.find("byBstatus", "New").asList();
-		bookings.addAll((List<Operational>) Operational.find("byBstatus", "Booking Rejected").asList());
+		List<Operational> bookings = (List<Operational>) Operational.find("bystatus", "New").asList();
+		bookings.addAll((List<Operational>) Operational.find("bystatus", "Booking Rejected").asList());
 		
-		List<Operational> berthings = (List<Operational>) Operational.find("byBstatus", "Berthing").asList();
-		berthings.addAll((List<Operational>) Operational.find("byBstatus", "Booking Approved").asList());
-		berthings.addAll((List<Operational>) Operational.find("byBstatus", "Berthing Rejected").asList());
+		List<Operational> berthings = (List<Operational>) Operational.find("bystatus", "Berthing").asList();
+		berthings.addAll((List<Operational>) Operational.find("bystatus", "Booking Approved").asList());
+		berthings.addAll((List<Operational>) Operational.find("bystatus", "Berthing Rejected").asList());
 		
-		List<Operational> departures = (List<Operational>) Operational.find("byBstatus", "Departure").asList();
-		departures.addAll((List<Operational>) Operational.find("byBstatus", "Berthing Approved").asList());
-		departures.addAll((List<Operational>) Operational.find("byBstatus", "Departure Rejected").asList());
+		List<Operational> departures = (List<Operational>) Operational.find("bystatus", "Departure").asList();
+		departures.addAll((List<Operational>) Operational.find("bystatus", "Berthing Approved").asList());
+		departures.addAll((List<Operational>) Operational.find("bystatus", "Departure Rejected").asList());
 		
-		List<Operational> finals = (List<Operational>) Operational.find("byBstatus", "Final").asList();
-		finals.addAll((List<Operational>) Operational.find("byBstatus", "Departure Approved").asList());
-		finals.addAll((List<Operational>) Operational.find("byBstatus", "Final Rejected").asList());
+		List<Operational> finals = (List<Operational>) Operational.find("bystatus", "Final").asList();
+		finals.addAll((List<Operational>) Operational.find("bystatus", "Departure Approved").asList());
+		finals.addAll((List<Operational>) Operational.find("bystatus", "Final Rejected").asList());
 		
 		render(bookings, berthings, departures, finals);
 	}

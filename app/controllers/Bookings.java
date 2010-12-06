@@ -1,13 +1,17 @@
 package controllers;
 
+import groovy.lang.Singleton;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 import play.cache.Cache;
 import play.mvc.Controller;
+import models.Additional;
 import models.Agent;
 import models.Customer;
 import models.Operational;
@@ -35,10 +39,11 @@ public class Bookings extends Controller {
 		}
 	}
 	
-	public static void save(Long id,Long vesselId, String voyage, Long portId,
+	public static void save(Long id, Long vesselId, String voyage, Long portId,
 			Long customerId, Long agentId, String statusAgent, 
 			Long subAgentId, Date eta, Date etd, Double bookTugIn, 
-			Double bookTugOut, String cargo, int cargoWeight) throws ParseException {
+			Double bookTugOut, String cargo, int cargoWeight, List<Additional> additional) 
+	throws ParseException {
 		
 		Vessel vessel = Vessel.findById(vesselId);
 		Port port = Port.findById(portId);
@@ -55,10 +60,22 @@ public class Bookings extends Controller {
 				booking.agent = agent;
 				booking.subAgent = subAgent;
 				booking.oBooking(eta, etd, bookTugIn, bookTugOut, cargo, cargoWeight);
+				int i = 0;
+				while(i < additional.size()) {
+					booking.booking.addAdditional(additional.get(i).name, 
+							additional.get(i).date, additional.get(i).cost);
+					i++;
+				}
 			} else {
 				booking = new Operational(vessel, voyage, port, customer, 
 						agent, statusAgent, subAgent);
 				booking.oBooking(eta, etd, bookTugIn, bookTugOut, cargo, cargoWeight);
+				int i = 0;
+				while(i < additional.size()) {
+					booking.booking.addAdditional(additional.get(i).name, 
+							additional.get(i).date, additional.get(i).cost);
+					i++;
+				}
 			}
 			Cache.set("booking_" + id, booking, "1mn");
 			form(id);
@@ -72,10 +89,22 @@ public class Bookings extends Controller {
 				booking.agent = agent;
 				booking.subAgent = subAgent;
 				booking.oBooking(eta, etd, bookTugIn, bookTugOut, cargo, cargoWeight);
+				int i = 0;
+				while(i < additional.size()) {
+					booking.booking.addAdditional(additional.get(i).name, 
+							additional.get(i).date, additional.get(i).cost);
+					i++;
+				}
 			} else {
 				booking = new Operational(vessel, voyage, port, customer, 
 						agent, statusAgent, subAgent);
 				booking.oBooking(eta, etd, bookTugIn, bookTugOut, cargo, cargoWeight);
+				int i = 0;
+				while(i < additional.size()) {
+					booking.booking.addAdditional(additional.get(i).name, 
+							additional.get(i).date, additional.get(i).cost);
+					i++;
+				}
 			}
 			booking.save();
 			Operationals.index();

@@ -1,0 +1,153 @@
+#{extends 'layout.html' /}
+
+<div class="objectForm">
+#{form @approval(booking?.id)}
+
+	<p>
+        #{field 'vessel'}
+        <label>Vessel:</label>
+        <label>${booking?.vessel?.name}</label>
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'voyage'}
+        <label>Name:</label>
+        <label>${booking?.voyage}</label>
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'port'}
+        <label>Port:</label>
+        <label>${booking?.port?.name}</label>
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'customer'}
+        <label>Customer:</label>
+        <label>${booking?.customer?.name}</label>
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'agent'}
+        <label>Agent:</label>
+        <label>${booking?.agent?.name}</label>
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'statusAgent'}
+        <label>Agent Status:</label>
+        <label>${booking?.statusAgent}</label>
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'subAgent'}
+        <label>Agent:</label>
+        <label>${booking?.subAgent?.name}</label>
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'eta'}
+        <label>Estimate Time Arrival:</label>
+        <label>${booking?.booking?.eta?.format('yyyy-MM-dd')}</label>
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'etd'}
+        <label>Estimate Time Departure:</label>
+        <label>${booking?.booking?.etd?.format('yyyy-MM-dd')}</label>
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'bookTugIn'}
+        <label>Estimate Tug in duration:</label>
+        <label>${booking?.booking?.bookTugIn}</label>
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'bookTugOut'}
+        <label>Estimate Tug out duration:</label>
+        <label>${booking?.booking?.bookTugOut}</label>
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'cargo'}
+        <label>Cargo Name:</label>
+        <label>${booking?.booking?.cargo}</label>
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'cargoWeight'}
+        <label>Cargo Weight:</label>
+        <label>${booking?.booking?.cargoWeight}</label>
+        #{/field}
+    </p>
+		
+	<p>
+		#{field 'harbor'}
+		<label>Harbor dues : ${booking?.booking?.harbor}</label>
+		<br/>
+		#{/field}
+	</p>
+	
+	<p>
+		#{field 'queue'}
+		<label>Queue dues : ${booking?.booking?.queue}</label>
+		<br/>
+		#{/field}
+	</p>
+	
+	<p>
+		#{field 'pilot'}
+		<label>Pilot dues : ${booking?.booking?.pilot}</label>
+		<br/>
+		#{/field}
+	</p>
+	
+	<p>
+		#{field 'tug'}
+		<label>Tug dues : ${booking?.booking?.tug}</label>
+		<br/>
+		#{/field}
+	</p>
+	
+	<p>
+		#{field 'light'}
+		<label>Light dues : ${booking?.booking?.light}</label>
+		<br/>
+		#{/field}
+	</p>
+	
+	<p>
+		#{field 'gnt'}
+		<label>Government Tax : ${booking?.booking?.gnt}</label>
+		<br/>
+		#{/field}
+	</p>
+	
+	<p>
+    	<input type="hidden" name="status" value="${booking.status}">
+    </p>
+    
+	<p class="crudButtons">
+        <input type="submit" name="approve" value="Approve" />
+		<input type="submit" name="reject" value="Reject" />
+    </p>
+
+#{/form}
+</div>
+
+
+
+
