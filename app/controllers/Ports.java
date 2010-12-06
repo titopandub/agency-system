@@ -20,20 +20,19 @@ public class Ports extends CRUD {
 	}
 	
 	public static void save(Long id, String code, String name, String type, 
-			double harbor, double queue, double pilotfix, double pilotvar, 
-			double light, double gnt, List<Tug> tug) {
+			double harbour, double quay, double pilotfix, double pilotvar, 
+			double light, List<Tug> tug) {
 		Port port;
 		if(id != null) {
 	    	port = Port.findById(id);
 			port.code = code;
 			port.name = name;
 			port.costtariff.type = type;
-			port.costtariff.harbor = harbor;
-			port.costtariff.queue = queue;
+			port.costtariff.harbour = harbour;
+			port.costtariff.quay = quay;
 			port.costtariff.pilotfix = pilotfix;
 			port.costtariff.pilotvar = pilotvar;
 			port.costtariff.light = light;
-			port.costtariff.gnt = gnt;
 			port.costtariff.tug = new ArrayList<Tug>();
 			int i = 0;
 			while(i < tug.size()) {
@@ -42,8 +41,8 @@ public class Ports extends CRUD {
 				i++;
 			}
 		} else {
-			Tariff cost = new Tariff(type, harbor, queue, pilotfix, pilotvar, 
-					light, gnt);
+			Tariff cost = new Tariff(type, harbour, quay, pilotfix, pilotvar, 
+					light);
 			cost.tug = new ArrayList<Tug>();
 			int i = 0;
 			while(i < tug.size()) {
@@ -51,7 +50,8 @@ public class Ports extends CRUD {
 						tug.get(i).maximum, tug.get(i).fixed, tug.get(i).var);
 				i++;
 			}
-	    	port = new Port(code, name, cost);
+	    	port = new Port(name, cost);
+	    	port.code = code;
 		}
 		
 		port.save();

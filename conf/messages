@@ -3,6 +3,7 @@
 #
 name=Name
 pic=Person in Charge
+pictelephone=PIC Phone Number
 address=Address
 telephone=Telephone Number
 fax=Fax Number

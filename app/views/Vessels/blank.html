@@ -1,12 +1,12 @@
 #{extends 'CRUD/layout.html' /}
 
-<div id="crudShow" class="${type.name}">
+<div id="crudBlank" class="${type.name}">
 	
-	<h2 id="crudShowTitle">&{'crud.show.title', type.modelName}</h2>
+	<h2 id="crudBlankTitle">&{'crud.blank.title', type.modelName}</h2>
 	
 	<div class="objectForm">
-	#{form action:@save(object._key()), enctype:'multipart/form-data'}
-		#{crud.form fields:['name', 'pic', 'pictelephone', 'address', 'telephone', 'fax', 'email']}
+	#{form action:@create(), enctype:'multipart/form-data'}
+		#{crud.form fields:['code', 'name', 'grt', 'owner']}
 			#{crud.custom '_id'}
 				#{field 'object.' + '_id'}
     				<input id="${field.id}" class="${field.errorClass}" type="hidden" name="${field.name}" value="${object?._id}" size="50" />
@@ -16,14 +16,9 @@
 		<p class="crudButtons">
 			<input type="submit" name="_save" value="&{'crud.save', type.modelName}" />
 			<input type="submit" name="_saveAndContinue" value="&{'crud.saveAndContinue', type.modelName}" />
+			<input type="submit" name="_saveAndAddAnother" value="&{'crud.saveAndAddAnother', type.modelName}" />
 		</p>
 	#{/form}
 	</div>
-	
-	#{form @delete(object._key())}
-		<p class="crudDelete">
-			<input type="submit" value="&{'crud.delete', type.modelName}" />
-		</p>
-	#{/form}
 
 </div>

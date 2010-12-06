@@ -23,25 +23,27 @@
 	#{field 'type'}
 	<p class="crudField crud_${field.type}">
         <label>Type:</label>
-        <input type="text" name="${field.name}" 
-            value="${port?.costtariff?.type}" class="${field.errorClass}" />
+        #{select 'type', value:port?.costtariff?.type, id:'select1'}
+			#{option A}A#{/option}
+			#{option B}B#{/option}
+		#{/select}
     </p>
     #{/field}
 	
-	#{field 'harbor'}
+	#{field 'harbour'}
 	<p class="crudField crud_${field.type}">
         
-        <label>Harbor Tariff:</label>
+        <label>Harbour Tariff:</label>
         <input type="text" name="${field.name}" 
-            value="${port?.costtariff?.harbor}" class="${field.errorClass}" />
+            value="${port?.costtariff?.harbour}" class="${field.errorClass}" />
     </p>
     #{/field}
 	
 	#{field 'queue'}
 	<p class="crudField crud_${field.type}">    
-        <label>Queue Tariff:</label>
+        <label>Quay Tariff:</label>
         <input type="text" name="${field.name}" 
-            value="${port?.costtariff?.queue}" class="${field.errorClass}" />        
+            value="${port?.costtariff?.quay}" class="${field.errorClass}" />        
     </p>
     #{/field}
 	
@@ -69,16 +71,8 @@
     </p>
     #{/field}
     
-	#{field 'gnt'}
-	<p class="crudField crud_${field.type}">
-        <label>G/T Tariff:</label>
-        <input type="text" name="${field.name}" 
-            value="${port?.costtariff?.gnt}" class="${field.errorClass}" />
-    </p>
-    #{/field}
-    
+    #{field 'tug'}    
     <p>
-        #{field 'tug'}
         <label>Tug Tariff:</label>
         <input type="button" value="Add Row" onclick="addRow('dataTable')" />
 		<input type="button" value="Delete Row" onclick="deleteRow('dataTable')" /><br />
@@ -107,9 +101,9 @@
 				</tr>
 				#{/list}
 			#{/else}
-		</table>
-        #{/field} 
+		</table>    
     </p>
+    #{/field}
     
 	<p class="crudButtons">
         <input type="submit" value="Save" />

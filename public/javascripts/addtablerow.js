@@ -32,13 +32,6 @@ function addRow(tableID) {
 	element4.name = 'tug[' + rowI + '].var';
 	element4.value = "";
 	cell4.appendChild(element4);
-	    
-	var cell5 = row.insertCell(4);
-	var element5 = document.createElement("input");
-	element5.type = "checkbox";
-	element5.name = "chkbox";
-	element5.value = "";
-	cell5.appendChild(element5);
 }
 	
 function deleteRow(tableID) {

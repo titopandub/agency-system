@@ -121,8 +121,8 @@ public class Operational extends Model {
 		Period days = new Period(dtEta, dtEtd);
 		int periodDay = days.toStandardDays().getDays();
 		
-		this.booking.harbor = vessel.grt * port.costtariff.harbor * periodHarbor(periodDay);
-		this.booking.queue = vessel.grt * port.costtariff.queue * periodDay;
+		this.booking.harbor = vessel.grt * port.costtariff.harbour * periodHarbor(periodDay);
+		this.booking.queue = vessel.grt * port.costtariff.quay * periodDay;
 		this.booking.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
 				port.costtariff.pilotfix) * 2;
 		this.booking.light = vessel.grt * port.costtariff.light;
@@ -139,8 +139,8 @@ public class Operational extends Model {
 		Period days = new Period(dtAta, dtEtd);
 		int periodDay = days.toStandardDays().getDays();
 		
-		this.berthing.harbor = vessel.grt * port.costtariff.harbor * periodHarbor(periodDay);
-		this.berthing.queue = vessel.grt * port.costtariff.queue * periodDay;
+		this.berthing.harbor = vessel.grt * port.costtariff.harbour * periodHarbor(periodDay);
+		this.berthing.queue = vessel.grt * port.costtariff.quay * periodDay;
 		this.berthing.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
 				port.costtariff.pilotfix) * 2;
 		this.berthing.light = vessel.grt * port.costtariff.light;
@@ -157,8 +157,8 @@ public class Operational extends Model {
 		Period days = new Period(dtAta, dtAtd);
 		int periodDay = days.toStandardDays().getDays();
 		
-		this.departure.harbor = vessel.grt * port.costtariff.harbor * periodHarbor(periodDay);
-		this.departure.queue = vessel.grt * port.costtariff.queue * periodDay;
+		this.departure.harbor = vessel.grt * port.costtariff.harbour * periodHarbor(periodDay);
+		this.departure.queue = vessel.grt * port.costtariff.quay * periodDay;
 		this.departure.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
 				port.costtariff.pilotfix) * 2;
 		this.departure.light = vessel.grt * port.costtariff.light;
@@ -175,8 +175,8 @@ public class Operational extends Model {
 		Period days = new Period(dtAta, dtAtd);
 		int periodDay = days.toStandardDays().getDays();
 		
-		this.finalCharge.harbor = vessel.grt * port.costtariff.harbor * periodHarbor(periodDay);
-		this.finalCharge.queue = vessel.grt * port.costtariff.queue * periodDay;
+		this.finalCharge.harbor = vessel.grt * port.costtariff.harbour * periodHarbor(periodDay);
+		this.finalCharge.queue = vessel.grt * port.costtariff.quay * periodDay;
 		this.finalCharge.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
 				port.costtariff.pilotfix) * 2;
 		this.finalCharge.light = vessel.grt * port.costtariff.light;

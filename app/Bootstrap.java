@@ -27,7 +27,7 @@ public class Bootstrap extends Job {
 	    	new Vessel("YJH", "Yang Jiang He", 100000, coscon).save();
 	    	Vessel vsl = Vessel.find("byName", "Yang Jiang He").first();   	
 	    	
-	    	Tariff cost = new Tariff("A", 0.3, 0.3, 50.0, 0.3, 0.2, 1.0);
+	    	Tariff cost = new Tariff("A", 0.3, 0.3, 50.0, 0.3, 0.2);
 	    	cost.addTugTariff(1, 3500, 145.0, 0.004);
 	    	cost.addTugTariff(3501, 8000, 375.0, 0.004);
 	    	cost.addTugTariff(8001, 14000, 570.0, 0.004);
@@ -36,7 +36,7 @@ public class Bootstrap extends Job {
 	    	cost.addTugTariff(26001, 40000, 1220.0, 0.004);
 	    	cost.addTugTariff(40001, 75000, 1300.0, 0.004);
 	    	cost.addTugTariff(75001, 9999999, 1700.0, 0.002);
-	    	new Port("IDJAK", "Jakarta", cost).save();
+	    	new Port("Jakarta", cost).save();
 	    	Port jkt = Port.find("byName", "Jakarta").first();
 	    	
 	    	new Agent("OGS", "Jakarta", "agency@cosco-ogs.com").save();

@@ -50,7 +50,7 @@ public class BasicTest extends UnitTest {
     	assertEquals("COSCON", owner.name);
     	
     	
-    	Tariff cost = new Tariff("A", 0.3, 0.3, 50.0, 0.3, 0.2, 1.0);
+    	Tariff cost = new Tariff("A", 0.3, 0.3, 50.0, 0.3, 0.2);
     	cost.addTugTariff(1, 3500, 145.0, 0.004);
     	cost.addTugTariff(3501, 8000, 375.0, 0.004);
     	cost.addTugTariff(8001, 14000, 570.0, 0.004);
@@ -59,12 +59,12 @@ public class BasicTest extends UnitTest {
     	cost.addTugTariff(26001, 40000, 1220.0, 0.004);
     	cost.addTugTariff(40001, 75000, 1300.0, 0.004);
     	cost.addTugTariff(75001, 9999999, 1700.0, 0.002);
-    	new Port("IDJAK", "Jakarta", cost).save();
+    	new Port("Jakarta", cost).save();
     	Port jkt = Port.find("byName", "Jakarta").first();
     	
     	assertNotNull(jkt);
     	assertEquals("Jakarta", jkt.name);
-    	assertEquals(0.3, jkt.costtariff.harbor, 0.3);
+    	assertEquals(0.3, jkt.costtariff.harbour, 0.3);
     	assertEquals(770.0, jkt.costtariff.tug.get(3).fixed, 770.0);
     	assertNotNull(jkt.getTugTariff());
     	

@@ -21,10 +21,14 @@ public class Port extends Model {
 //	@Embedded
 //	public Tariff selltariff;
 	
-	public Port(String code, String name) {
-		this.code = code;
+	public Port(String name) {
 		this.name = name;
-//		this.costtariff = new Tariff("", 0, 0, 0, 0, 0, 0);
+//		this.selltariff = selltariff;
+	}
+	
+	public Port(String name, Tariff costtariff) {
+		this.name = name;
+		this.costtariff = costtariff;
 //		this.selltariff = selltariff;
 	}
 	
