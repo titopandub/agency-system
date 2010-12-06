@@ -11,7 +11,7 @@ import models.Tug;
 
 public class Ports extends CRUD {
 	
-	public static void form(Long id) {
+	public static void show(Long id) {
 		if(id != null) {
 			Port port = Port.findById(id);
 			render(port);

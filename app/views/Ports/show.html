@@ -95,7 +95,6 @@
 				<td><input type="text" name='tug[${tug_index - 1}].maximum' value="${tug?.maximum}" class="${field.errorClass}" /></td>
 				<td><input type="text" name='tug[${tug_index - 1}].fixed' value="${tug?.fixed}" class="${field.errorClass}" /></td>
 				<td><input type="text" name='tug[${tug_index - 1}].var' value="${tug?.var}" class="${field.errorClass}" /></td>
-				<td><input type="checkbox" name='chkbox' value="" class="${field.errorClass}" /></td>
 			</tr>
 	        #{/list}
 			#{else}
@@ -105,7 +104,6 @@
 					<td><input type="text" name='tug[${i}].maximum' value="${tug?.maximum}" class="${field.errorClass}" /></td>
 					<td><input type="text" name='tug[${i}].fixed' value="${tug?.fixed}" class="${field.errorClass}" /></td>
 					<td><input type="text" name='tug[${i}].var' value="${tug?.var}" class="${field.errorClass}" /></td>
-					<td><input type="checkbox" name='chkbox' value="" class="${field.errorClass}" /></td>
 				</tr>
 				#{/list}
 			#{/else}

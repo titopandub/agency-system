@@ -38,9 +38,9 @@ POST	/ops/finals/new							FinalCharges.save
 
 # Port CRUD
 GET		/crud/ports/?							Ports.list
-GET		/crud/ports/{id}						Ports.form
+GET		/crud/ports/{id}						Ports.show
 POST	/crud/ports/{id}						Ports.save
-GET		/crud/ports/new							Ports.form
+GET		/crud/ports/new							Ports.show
 POST	/crud/ports/new							Ports.save
 
 # Import CRUD routes

@@ -1,0 +1,29 @@
+#{extends 'CRUD/layout.html' /}
+
+<div id="crudShow" class="${type.name}">
+	
+	<h2 id="crudShowTitle">&{'crud.show.title', type.modelName}</h2>
+	
+	<div class="objectForm">
+	#{form action:@save(object._key()), enctype:'multipart/form-data'}
+		#{crud.form fields:['code', 'name', 'grt', 'owner']}
+			#{crud.custom '_id'}
+				#{field 'object.' + '_id'}
+    				<input id="${field.id}" class="${field.errorClass}" type="hidden" name="${field.name}" value="${object?._id}" size="50" />
+				#{/field}
+			#{/crud.custom}
+		#{/crud.form}
+		<p class="crudButtons">
+			<input type="submit" name="_save" value="&{'crud.save', type.modelName}" />
+			<input type="submit" name="_saveAndContinue" value="&{'crud.saveAndContinue', type.modelName}" />
+		</p>
+	#{/form}
+	</div>
+	
+	#{form @delete(object._key())}
+		<p class="crudDelete">
+			<input type="submit" value="&{'crud.delete', type.modelName}" />
+		</p>
+	#{/form}
+
+</div>
