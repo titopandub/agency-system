@@ -19,8 +19,7 @@ import models.Vessel;
 public class Departures extends Controller {
 	
 	public static void index() {
-		List<Operational> departures = (List<Operational>) Operational.find("byBStatus", 
-				"Departure").asList();
+		List<Operational> departures = Operational.find("byBStatus", "Departure").asList();
 		render(departures);
 	}
 	

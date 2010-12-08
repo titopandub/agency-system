@@ -22,10 +22,10 @@ import models.Vessel;
 public class Bookings extends Controller {
 		
 	public static void form(Long id) {
-		List<Vessel> vessels = (List<Vessel>) Vessel.find().asList();
-		List<Port> ports = (List<Port>) Port.find().asList();
-		List<Customer> customers = (List<Customer>) Customer.find().asList();
-		List<Agent> agents = (List<Agent>) Agent.find().asList();
+		List<Vessel> vessels = Vessel.find().asList();
+		List<Port> ports = Port.find().asList();
+		List<Customer> customers = Customer.find().asList();
+		List<Agent> agents = Agent.find().asList();
 		
 		Operational booking = Cache.get("booking_" + id, Operational.class);
 		if(booking == null) {

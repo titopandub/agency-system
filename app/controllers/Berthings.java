@@ -20,8 +20,7 @@ import models.Vessel;
 public class Berthings extends Controller {
 	
 	public static void index() {
-		List<Operational> berthings = (List<Operational>) Operational.find("byBStatus", 
-				"Berthing").asList();
+		List<Operational> berthings = Operational.find("byBStatus", "Berthing").asList();
 		render(berthings);
 	}
 	

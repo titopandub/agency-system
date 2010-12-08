@@ -10,7 +10,7 @@ import models.*;
 public class Application extends Controller {
 
     public static void index() {
-    	List<Operational> listagents = (List<Operational>) Operational.find().asList();
+    	List<Operational> listagents = Operational.find().asList();
         render(listagents);
     }
     

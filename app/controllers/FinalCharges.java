@@ -19,8 +19,7 @@ import models.Vessel;
 public class FinalCharges extends Controller {
 	
 	public static void index() {
-		List<Operational> finalcharges = (List<Operational>) Operational.find("byBStatus", 
-				"Final").asList();
+		List<Operational> finalcharges = Operational.find("byBStatus", "Final").asList();
 		render(finalcharges);
 	}
 	

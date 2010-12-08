@@ -8,9 +8,6 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import com.google.code.morphia.query.OrBuilder;
-import com.google.code.morphia.query.Query;
-
 import play.cache.Cache;
 import play.mvc.Controller;
 import models.Agent;
@@ -23,13 +20,13 @@ import models.Vessel;
 public class Approvals extends Controller {
 	
 	public static void index() {
-		List<Operational> bookings = (List<Operational>) Operational.find("byStatus", "New").asList();
+		List<Operational> bookings = Operational.find("byStatus", "New").asList();
 		
-		List<Operational> berthings = (List<Operational>) Operational.find("byStatus", "Berthing").asList();
+		List<Operational> berthings = Operational.find("byStatus", "Berthing").asList();
 		
-		List<Operational> departures = (List<Operational>) Operational.find("byStatus", "Departure").asList();
+		List<Operational> departures = Operational.find("byStatus", "Departure").asList();
 		
-		List<Operational> finals = (List<Operational>) Operational.find("byStatus", "Final").asList();
+		List<Operational> finals = Operational.find("byStatus", "Final").asList();
 		
 		render(bookings, berthings, departures, finals);
 	}
