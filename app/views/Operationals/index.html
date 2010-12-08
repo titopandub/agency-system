@@ -19,9 +19,9 @@
 		#{list items:bookings, as:'booking'}
 		    <tr>
 		        <td><a href="@{Bookings.form(booking.id)}">${booking.id}</a></td>
-		        <td><a href="@{Bookings.form(booking.id)}">${booking.vessel.name}</a></td>
-		        <td><a href="@{Bookings.form(booking.id)}">${booking.voyage}</a></td>
-		        <td><a href="@{Bookings.form(booking.id)}">${booking.customer.name}</a></td>
+		        <td>${booking.vessel.name}</td>
+		        <td>${booking.voyage}</td>
+		        <td>${booking.customer.name}</td>
 		        <td>${booking.booking.eta.format('yyyy-MM-dd')}</td>
 		        <td>${booking.booking.etd.format('yyyy-MM-dd')}</td>
 		    </tr>
@@ -41,9 +41,9 @@
 		#{list items:berthings, as:'berthing'}
 		    <tr>
 		        <td><a href="@{Berthings.form(berthing.id)}">${berthing.id}</a></td>
-		        <td><a href="@{Berthings.form(berthing.id)}">${berthing.vessel.name}</a></td>
-		        <td><a href="@{Berthings.form(berthing.id)}">${berthing.voyage}</a></td>
-		        <td><a href="@{Berthings.form(berthing.id)}">${berthing.customer.name}</a></td>
+		        <td>${berthing.vessel.name}</td>
+		        <td>${berthing.voyage}</td>
+		        <td>${berthing.customer.name}</td>
 		        <td>${berthing.booking.eta.format('yyyy-MM-dd')}</td>
 		        <td>${berthing.booking.etd.format('yyyy-MM-dd')}</td>
 		    </tr>
@@ -63,10 +63,10 @@
 		#{list items:departures, as:'departure'}
 		    <tr>
 		        <td><a href="@{Departures.form(departure.id)}">${departure.id}</a></td>
-		        <td><a href="@{Departures.form(departure.id)}">${departure.vessel.name}</a></td>
-		        <td><a href="@{Departures.form(departure.id)}">${departure.voyage}</a></td>
-		        <td><a href="@{Departures.form(departure.id)}">${departure.customer.name}</a></td>
-		        <td></td>
+		        <td>${departure.vessel.name}</td>
+		        <td>${departure.voyage}</td>
+		        <td>${departure.customer.name}</td>
+		        <td>${departure.berthing.ata.format('yyyy-MM-dd')}</td>
 		        <td>${departure.booking.etd.format('yyyy-MM-dd')}</td>
 		    </tr>
 		#{/list}
@@ -85,9 +85,9 @@
 		#{list items:finals, as:'finalcharge'}
 		    <tr>
 		        <td><a href="@{FinalCharges.form(finalcharge.id)}">${finalcharge.id}</a></td>
-		        <td><a href="@{FinalCharges.form(finalcharge.id)}">${finalcharge.vessel.name}</a></td>
-		        <td><a href="@{FinalCharges.form(finalcharge.id)}">${finalcharge.voyage}</a></td>
-		        <td><a href="@{FinalCharges.form(finalcharge.id)}">${finalcharge.customer.name}</a></td>
+		        <td>${finalcharge.vessel.name}</td>
+		        <td>${finalcharge.voyage}</td>
+		        <td>${finalcharge.customer.name}</td>
 		        <td>${finalcharge.berthing.ata.format('yyyy-MM-dd')}</td>
 		        <td>${finalcharge.departure.atd.format('yyyy-MM-dd')}</td>
 		    </tr>

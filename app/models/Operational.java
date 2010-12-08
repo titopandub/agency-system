@@ -12,7 +12,6 @@ import play.modules.morphia.Model;
 import com.google.code.morphia.annotations.Embedded;
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Reference;
-import com.google.code.morphia.query.OrBuilder;
 import com.google.code.morphia.query.Query;
 
 @Entity
@@ -207,7 +206,7 @@ public class Operational extends Model {
 		if(approve) {
 			this.status = "Departure Approved";
 		} else {
-			this.status = "Berthing Rejected";
+			this.status = "Departure Rejected";
 		}
 	}
 	

@@ -35,7 +35,9 @@ public class Ports extends CRUD {
 			port.costtariff.pilotvar = pilotvar;
 			port.costtariff.light = light;
 			port.costtariff.tug = new ArrayList<Tug>();
-			if(tug.isEmpty()) {
+			if(tug.isEmpty()){
+				
+			} else {
 				int i = 0;
 				while(i < tug.size()) {
 					port.costtariff.addTugTariff(tug.get(i).minimum, 
@@ -43,11 +45,14 @@ public class Ports extends CRUD {
 					i++;
 				}
 			}
+
 		} else {
 			Tariff cost = new Tariff(type, harbour, quay, pilotfix, pilotvar, 
 					light);
 			cost.tug = new ArrayList<Tug>();
 			if(tug.isEmpty()) {
+				
+			} else {
 				int i = 0;
 				while(i < tug.size()) {
 					cost.addTugTariff(tug.get(i).minimum, 

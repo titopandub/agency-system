@@ -8,7 +8,10 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import com.google.code.morphia.query.Query;
+
 import play.cache.Cache;
+import play.modules.morphia.Model.MorphiaQuery;
 import play.mvc.Controller;
 import models.Agent;
 import models.Customer;
@@ -20,20 +23,21 @@ import models.Vessel;
 public class Operationals extends Controller {
 	
 	public static void index() {
-		List<Operational> bookings = Operational.find("bystatus", "New").asList();
-		bookings.addAll((List<Operational>) Operational.find("bystatus", "Booking Rejected").asList());
-		
-		List<Operational> berthings = Operational.find("bystatus", "Berthing").asList();
-		berthings.addAll((List<Operational>) Operational.find("bystatus", "Booking Approved").asList());
-		berthings.addAll((List<Operational>) Operational.find("bystatus", "Berthing Rejected").asList());
-		
-		List<Operational> departures = Operational.find("bystatus", "Departure").asList();
-		departures.addAll((List<Operational>) Operational.find("bystatus", "Berthing Approved").asList());
-		departures.addAll((List<Operational>) Operational.find("bystatus", "Departure Rejected").asList());
-		
-		List<Operational> finals = Operational.find("bystatus", "Final").asList();
-		finals.addAll((List<Operational>) Operational.find("bystatus", "Departure Approved").asList());
-		finals.addAll((List<Operational>) Operational.find("bystatus", "Final Rejected").asList());
+	    MorphiaQuery q1 = Operational.createQuery(); // create a Query
+	    q1.or(q1.criteria("status").contains("New"), q1.criteria("status").contains("Booking Rejected"));
+	    List<Operational> bookings = q1.asList();
+	    
+	    MorphiaQuery q2 = Operational.createQuery(); // create a Query
+	    q2.or(q2.criteria("status").equal("Berthing"), q2.criteria("status").contains("Booking Approved"), q2.criteria("status").contains("Berthing Rejected"));
+	    List<Operational> berthings = q2.asList();
+	    
+	    MorphiaQuery q3 = Operational.createQuery(); // create a Query
+	    q3.or(q3.criteria("status").equal("Departure"), q3.criteria("status").contains("Berthing Approved"),  q3.criteria("status").contains("Departure Rejected"));
+	    List<Operational> departures = q3.asList();
+	    
+	    MorphiaQuery q4 = Operational.createQuery(); // create a Query
+	    q4.or(q4.criteria("status").equal("Final"), q4.criteria("status").contains("Departure Approved"), q4.criteria("status").contains("Final Rejected"));
+	    List<Operational> finals = q4.asList();
 		
 		render(bookings, berthings, departures, finals);
 	}
