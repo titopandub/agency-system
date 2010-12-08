@@ -19,14 +19,15 @@ public class Ports extends CRUD {
 		render();
 	}
 	
-	public static void save(Long id, String code, String name, String type, 
-			double harbour, double quay, double pilotfix, double pilotvar, 
+	public static void save(Long id, String code, String name, String info,
+			String type, double harbour, double quay, double pilotfix, double pilotvar, 
 			double light, List<Tug> tug) {
 		Port port;
 		if(id != null) {
 	    	port = Port.findById(id);
 			port.code = code;
 			port.name = name;
+			port.info = info;
 			port.costtariff.type = type;
 			port.costtariff.harbour = harbour;
 			port.costtariff.quay = quay;
@@ -34,24 +35,29 @@ public class Ports extends CRUD {
 			port.costtariff.pilotvar = pilotvar;
 			port.costtariff.light = light;
 			port.costtariff.tug = new ArrayList<Tug>();
-			int i = 0;
-			while(i < tug.size()) {
-				port.costtariff.addTugTariff(tug.get(i).minimum, 
-						tug.get(i).maximum, tug.get(i).fixed, tug.get(i).var);
-				i++;
+			if(tug.isEmpty()) {
+				int i = 0;
+				while(i < tug.size()) {
+					port.costtariff.addTugTariff(tug.get(i).minimum, 
+							tug.get(i).maximum, tug.get(i).fixed, tug.get(i).var);
+					i++;
+				}
 			}
 		} else {
 			Tariff cost = new Tariff(type, harbour, quay, pilotfix, pilotvar, 
 					light);
 			cost.tug = new ArrayList<Tug>();
-			int i = 0;
-			while(i < tug.size()) {
-				cost.addTugTariff(tug.get(i).minimum, 
-						tug.get(i).maximum, tug.get(i).fixed, tug.get(i).var);
-				i++;
+			if(tug.isEmpty()) {
+				int i = 0;
+				while(i < tug.size()) {
+					cost.addTugTariff(tug.get(i).minimum, 
+							tug.get(i).maximum, tug.get(i).fixed, tug.get(i).var);
+					i++;
+				}
 			}
 	    	port = new Port(name, cost);
 	    	port.code = code;
+	    	port.info = info;
 		}
 		
 		port.save();

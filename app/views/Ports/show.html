@@ -20,6 +20,13 @@
     </p>
     #{/field}
     
+    #{field 'info'}
+	<p class="crudField crud_${field.type}">
+        <label>Info:</label>
+        <textarea cols="48" rows="5" name="${field.name}">${port?.info}</textarea>
+    </p>
+    #{/field}
+    
 	#{field 'type'}
 	<p class="crudField crud_${field.type}">
         <label>Type:</label>

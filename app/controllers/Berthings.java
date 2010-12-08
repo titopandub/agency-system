@@ -46,22 +46,26 @@ public class Berthings extends Controller {
 		if(params.get("calculate") != null) {
 			berthing = Operational.findById(id);
 			berthing.oBerthing(ata, etd, berthTugIn, cargo, cargoWeight);
-			int i = 0;
-			while(i < additional.size()) {
-				berthing.booking.addAdditional(additional.get(i).name, 
-						additional.get(i).date, additional.get(i).cost);
-				i++;
+			if(additional.isEmpty()) {
+				int i = 0;
+				while(i < additional.size()) {
+					berthing.booking.addAdditional(additional.get(i).name, 
+							additional.get(i).date, additional.get(i).cost);
+					i++;
+				}
 			}
 			Cache.set("berthing_" + id, berthing, "1mn");
 			form(id);
 		} else if(params.get("save") !=null) {
 			berthing = Operational.findById(id);
 			berthing.oBerthing(ata, etd, berthTugIn, cargo, cargoWeight);
-			int i = 0;
-			while(i < additional.size()) {
-				berthing.booking.addAdditional(additional.get(i).name, 
-						additional.get(i).date, additional.get(i).cost);
-				i++;
+			if(additional.isEmpty()) {
+				int i = 0;
+				while(i < additional.size()) {
+					berthing.booking.addAdditional(additional.get(i).name, 
+							additional.get(i).date, additional.get(i).cost);
+					i++;
+				}
 			}
 			berthing.save();
 			form(id);
