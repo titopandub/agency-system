@@ -14,10 +14,30 @@ public class Vessel extends Model {
 	
 	public String name;
 	
+	public String flag;
+	
+	public String built;
+	
+	public int dwt;
+	
 	public int grt;
+	
+	public int nrt;
+	
+	public Double loa;
+	
+	public Double beam;
+	
+	public int ha;
+	
+	public int ho;
+	
+	public String derricks;
 	
 	@Reference
 	public Owner owner;
+	
+	public String note;
 	
 	public Vessel(String code, String name, int grt, Owner owner) {
 		this.code = code;

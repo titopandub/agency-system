@@ -6,7 +6,7 @@
 	
 	<div class="objectForm">
 	#{form action:@save(object._key()), enctype:'multipart/form-data'}
-		#{crud.form fields:['code', 'name', 'grt', 'owner']}
+		#{crud.form fields:['code', 'name', 'flag', 'built', 'dwt', 'grt', 'nrt', 'loa', 'beam', 'ha', 'ho', 'derricks', 'owner', 'note']}
 			#{crud.custom '_id'}
 				#{field 'object.' + '_id'}
     				<input id="${field.id}" class="${field.errorClass}" type="hidden" name="${field.name}" value="${object?._id}" size="50" />

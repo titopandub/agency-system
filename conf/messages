@@ -17,5 +17,15 @@ isManager=Manager
 
 code=Code
 name=Name
+flag=Flag
+built=Built
+dwt=DWT
 grt=GRT
+nrt=NRT
+loa=LOA
+beam=Beam
+ha=HA
+ho=HO
+derricks=Derricks
 owner=Owner
+note=Note
