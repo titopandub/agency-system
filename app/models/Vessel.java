@@ -1,9 +1,12 @@
 package models;
 
+import javax.persistence.Lob;
+
 import com.google.code.morphia.annotations.Embedded;
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Reference;
 
+import play.data.validation.MaxSize;
 import play.data.validation.Required;
 import play.modules.morphia.Model;
 
@@ -37,6 +40,8 @@ public class Vessel extends Model {
 	@Reference
 	public Owner owner;
 	
+	@Lob
+    @MaxSize(500)
 	public String note;
 	
 	public Vessel(String code, String name, int grt, Owner owner) {
