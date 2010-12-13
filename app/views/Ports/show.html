@@ -31,8 +31,8 @@
 	<p class="crudField crud_${field.type}">
         <label>Type:</label>
         #{select 'type', value:port?.costtariff?.type, id:'select1'}
-			#{option A}A#{/option}
-			#{option B}B#{/option}
+			#{option 'A'}A#{/option}
+			#{option 'B'}B#{/option}
 		#{/select}
     </p>
     #{/field}
@@ -99,7 +99,7 @@
 			</tr>
 	        #{/list}
 			#{else}
-				#{list items:0..2, as:'i'}
+				#{list items:0..0, as:'i'}
 				<tr>
 					<td><input type="text" name='tug[${i}].minimum' value="${tug?.minimum}" class="${field.errorClass}" /></td>
 					<td><input type="text" name='tug[${i}].maximum' value="${tug?.maximum}" class="${field.errorClass}" /></td>
