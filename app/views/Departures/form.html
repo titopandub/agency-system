@@ -146,7 +146,7 @@
 				</tr>
 		        #{/list}
 				#{else}
-					#{list items:0..2, as:'i'}
+					#{list items:0..0, as:'i'}
 					<tr>
 						<td><input type="text" name='additional[${i}].name' value="${additional?.name}" class="${field.errorClass}" /></td>
 						<td><input type="text" name='additional[${i}].date' value="${additional?.date?.format('yyyy-MM-dd')}" class="${field.errorClass}" /></td>
