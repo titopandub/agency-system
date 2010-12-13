@@ -58,6 +58,7 @@ public class Bookings extends Controller {
 				booking.port = port;
 				booking.customer = customer;
 				booking.agent = agent;
+				booking.statusAgent = statusAgent;
 				booking.subAgent = subAgent;
 				booking.oBooking(eta, etd, bookTugIn, bookTugOut, cargo, cargoWeight);
 				if(additional.isEmpty()) {
@@ -91,6 +92,7 @@ public class Bookings extends Controller {
 				booking.port = port;
 				booking.customer = customer;
 				booking.agent = agent;
+				booking.statusAgent = statusAgent;
 				booking.subAgent = subAgent;
 				booking.oBooking(eta, etd, bookTugIn, bookTugOut, cargo, cargoWeight);
 				if(additional.isEmpty()) {

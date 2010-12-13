@@ -53,8 +53,11 @@ public class Port extends Model {
 			v[i] = this.costtariff.tug.get(i).minimum;
 			i++;
 		}
-		
-		v[i] = this.costtariff.tug.get(i-1).maximum;
+		if(this.costtariff.tug.size() == 1) {
+			v[1] = this.costtariff.tug.get(i-1).maximum;
+		} else {
+			v[i] = this.costtariff.tug.get(i-1).maximum;
+		}
 		return v;
 	}
 	

@@ -35,30 +35,26 @@ public class Ports extends CRUD {
 			port.costtariff.pilotvar = pilotvar;
 			port.costtariff.light = light;
 			port.costtariff.tug = new ArrayList<Tug>();
-			if(tug.isEmpty()){
-				
-			} else {
-				int i = 0;
-				while(i < tug.size()) {
-					port.costtariff.addTugTariff(tug.get(i).minimum, 
-							tug.get(i).maximum, tug.get(i).fixed, tug.get(i).var);
-					i++;
-				}
+			
+			int i = 0;
+			while(i < tug.size()) {
+				port.costtariff.addTugTariff(tug.get(i).minimum, 
+						tug.get(i).maximum, tug.get(i).fixed, tug.get(i).var);
+				i++;
 			}
 
 		} else {
 			Tariff cost = new Tariff(type, harbour, quay, pilotfix, pilotvar, 
 					light);
 			cost.tug = new ArrayList<Tug>();
-			if(tug.isEmpty()) {
-				
-			} else {
-				int i = 0;
-				while(i < tug.size()) {
-					cost.addTugTariff(tug.get(i).minimum, 
-							tug.get(i).maximum, tug.get(i).fixed, tug.get(i).var);
-					i++;
-				}
+			
+			int i = 0;
+			while(i < tug.size()) {
+				if(tug.get(i).minimum == null) tug.get(i).minimum = 0;
+				if(tug.get(i).maximum == null) tug.get(i).maximum = 0;
+				cost.addTugTariff(tug.get(i).minimum, 
+						tug.get(i).maximum, tug.get(i).fixed, tug.get(i).var);
+				i++;
 			}
 	    	port = new Port(name, cost);
 	    	port.code = code;

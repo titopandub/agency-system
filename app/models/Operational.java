@@ -68,8 +68,13 @@ public class Operational extends Model {
 		this.subAgent = subAgent;
 		this.status = "New";
 		this.tugPtr = this.searchIntegerArray(port.getTugTariff(), vessel.grt);
-		this.tugfix = port.costtariff.tug.get(this.tugPtr).fixed;
-		this.tugvar = port.costtariff.tug.get(this.tugPtr).var;
+		if(this.tugPtr == -1){
+			this.tugfix = 0.0;
+			this.tugvar = 0.0;
+		} else {
+			this.tugfix = port.costtariff.tug.get(this.tugPtr).fixed;
+			this.tugvar = port.costtariff.tug.get(this.tugPtr).var;
+		}
 	}
 	
 	public void oBooking(Date eta, Date etd, Double bookTugIn, 
@@ -221,14 +226,18 @@ public class Operational extends Model {
 	public Integer searchIntegerArray(Integer[] minimum, Integer grt) {
 		int bot = 0;
 		int top = minimum.length - 1;
-		
-		while(bot <= top) {
-			int mid = (bot + top) / 2;
-			if(grt < minimum[mid+1] && grt > minimum[mid]) return mid;
-			else if(grt < minimum[mid]) top = mid - 1;
-			else if(grt > minimum[mid]) bot = mid + 1;
+		if (top == 1) {
+			if(grt < minimum[1] && grt > minimum[0]) {return 0;}
+			else return -1;
+		} else {
+			while(bot <= top) {
+				int mid = (bot + top) / 2;
+				if(grt < minimum[mid+1] && grt > minimum[mid]) return mid;
+				else if(grt < minimum[mid]) top = mid - 1;
+				else if(grt > minimum[mid]) bot = mid + 1;
+			}
+			return -1;
 		}
-		return -1;
 	}
 	
 	public Integer periodHarbor(int day) {

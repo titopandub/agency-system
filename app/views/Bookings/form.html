@@ -43,9 +43,11 @@
 	<div class="crudField crud_text">
         #{field 'statusAgent'}
         <label>Agent Status:</label>
-        <input type="text" name="${field.name}" 
-            value="${booking?.statusAgent}" class="${field.errorClass}" />
-        #{/field}
+        #{select 'statusAgent', value:booking?.statusAgent, id:'select1'}
+			#{option 'General'}General Agent#{/option}
+			#{option 'Protecting'}Protecting Agent#{/option}
+		#{/select}
+		#{/field}
     </div>
 	
 	<div class="crudField crud_relation">
