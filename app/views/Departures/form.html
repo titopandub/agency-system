@@ -1,158 +1,163 @@
 #{extends 'layout.html' /}
+<script src="@{'/public/javascripts/addtablerow-ops.js'}" type="text/javascript" charset="utf-8"></script>
 
 <div class="objectForm">
 #{form @save(departure?.id)}
 	
-	<p>
+	<div class="crudField crud_text">
 		#{field 'vessel'}
 		<label>Vessel : </label>
 		<label>${departure?.vessel?.name}</label>
 		<br/>
 		#{/field}
-	</p>
+	</div>
 	
-	<p>
+	<div class="crudField crud_text">
 		#{field 'voyage'}
 		<label>Voyage : </label>
 		<label>${departure?.voyage}</label>
 		<br/>
 		#{/field}
-	</p>
+	</div>
 	
-	<p>
+	<div class="crudField crud_text">
 		#{field 'port'}
 		<label>Port : </label>
 		<label>${departure?.port?.name}</label>
 		<br/>
 		#{/field}
-	</p>
+	</div>
 	
-	<p>
+	<div class="crudField crud_text">
 		#{field 'customer'}
 		<label>Customer : </label>
 		<label>${departure?.customer?.name}</label>
 		<br/>
 		#{/field}
-	</p>
+	</div>
 	
-	<p>
+	<div class="crudField crud_text">
         #{field 'ata'}
         <label>Actual Time Arrival : </label>
         <label>${departure?.berthing?.ata?.format('yyyy-MM-dd')}</label>
         <br/>
         #{/field}
-    </p>
+    </div>
 	
-	<p>
+	<div class="crudField crud_text">
         #{field 'atd'}
         <label>Actual Time Departure :</label>
         <input type="text" name="${field.name}" 
             value="${departure?.departure?.atd?.format('yyyy-MM-dd')}" class="${field.errorClass}" />
         #{/field}
-    </p>
+    </div>
 	
-	<p>
+	<div class="crudField crud_text">
         #{field 'departTugOut'}
         <label>Estimate Tug out duration :</label>
         <input type="text" name="${field.name}" 
             value="${departure?.departure?.departTugOut}" class="${field.errorClass}" />
         #{/field}
-    </p>
+    </div>
 	
-	<p>
+	<div class="crudField crud_text">
         #{field 'cargo'}
         <label>Cargo Name :</label>
         <input type="text" name="${field.name}" 
             value="${departure?.departure?.cargo}" class="${field.errorClass}" />
         #{/field}
-    </p>
+    </div>
 	
-	<p>
+	<div class="crudField crud_text">
         #{field 'cargoWeight'}
         <label>Cargo Weight :</label>
         <input type="text" name="${field.name}" 
             value="${departure?.departure?.cargoWeight}" class="${field.errorClass}" />
         #{/field}
-    </p>
+    </div>
 		
-	<p>
+	<div class="crudField crud_text">
 		#{field 'harbor'}
 		<label>Harbor dues : </label>
 		<label>${departure?.departure?.harbor}</label>
 		<br/>
 		#{/field}
-	</p>
+	</div>
 	
-	<p>
+	<div class="crudField crud_text">
 		#{field 'queue'}
 		<label>Queue dues : </label>
 		<label>${departure?.departure?.queue}</label>
 		<br/>
 		#{/field}
-	</p>
+	</div>
 	
-	<p>
+	<div class="crudField crud_text">
 		#{field 'pilot'}
 		<label>Pilot dues : </label>
 		<label>${departure?.departure?.pilot}</label>
 		<br/>
 		#{/field}
-	</p>
+	</div>
 	
-	<p>
+	<div class="crudField crud_text">
 		#{field 'tug'}
 		<label>Tug dues : </label>
 		<label>${departure?.departure?.tug}</label>
 		<br/>
 		#{/field}
-	</p>
+	</div>
 	
-	<p>
+	<div class="crudField crud_text">
 		#{field 'light'}
 		<label>Light dues : </label>
 		<label>${departure?.departure?.light}</label>
 		<br/>
 		#{/field}
-	</p>
+	</div>
 	
-	<p>
+	<div class="crudField crud_text">
 		#{field 'gnt'}
 		<label>Government Tax : </label>
 		<label>${departure?.departure?.gnt}</label>
 		<br/>
 		#{/field}
-	</p>
+	</div>
 	
-	<p>
+	<div class="crudField crud_text">
         #{field 'additional'}
         <label>Additional Charges:</label>
         <input type="button" value="Add Row" onclick="addRow('dataTable')" />
 		<input type="button" value="Delete Row" onclick="deleteRow('dataTable')" /><br />
-        <table id="dataTable" border="0">
-			<tr>
-			  <td>Charges</td>
-			  <td>Date</td>
-			  <td>Cost</td>
-			</tr>
-	        #{list items:departure?.booking?.additional, as:'additional'}
-			<tr>
-				<td><input type="text" name='additional[${additional_index - 1}].name' value="${additional?.name}" class="${field.errorClass}" /></td>
-				<td><input type="text" name='additional[${additional_index - 1}].date' value="${additional?.date?.format('yyyy-MM-dd')}" class="${field.errorClass}" /></td>
-				<td><input type="text" name='additional[${additional_index - 1}].cost' value="${additional?.cost}" class="${field.errorClass}" /></td>
-			</tr>
-	        #{/list}
-			#{else}
-				#{list items:0..2, as:'i'}
+		<div id="crudListTable">
+			<table id="dataTable" border="0">
+			<thead>
 				<tr>
-					<td><input type="text" name='additional[${i}].name' value="${additional?.name}" class="${field.errorClass}" /></td>
-					<td><input type="text" name='additional[${i}].date' value="${additional?.date?.format('yyyy-MM-dd')}" class="${field.errorClass}" /></td>
-					<td><input type="text" name='additional[${i}].cost' value="${additional?.cost}" class="${field.errorClass}" /></td>
+				  <th>Charges</th>
+				  <th>Date</th>
+				  <th>Cost</th>
 				</tr>
-				#{/list}
-			#{/else}
-		</table>
-        #{/field} 
-    </p>
+			</thead>
+		        #{list items:departure?.booking?.additional, as:'additional'}
+				<tr>
+					<td><input type="text" name='additional[${additional_index - 1}].name' value="${additional?.name}" class="${field.errorClass}" /></td>
+					<td><input type="text" name='additional[${additional_index - 1}].date' value="${additional?.date?.format('yyyy-MM-dd')}" class="${field.errorClass}" /></td>
+					<td><input type="text" name='additional[${additional_index - 1}].cost' value="${additional?.cost}" class="${field.errorClass}" /></td>
+				</tr>
+		        #{/list}
+				#{else}
+					#{list items:0..2, as:'i'}
+					<tr>
+						<td><input type="text" name='additional[${i}].name' value="${additional?.name}" class="${field.errorClass}" /></td>
+						<td><input type="text" name='additional[${i}].date' value="${additional?.date?.format('yyyy-MM-dd')}" class="${field.errorClass}" /></td>
+						<td><input type="text" name='additional[${i}].cost' value="${additional?.cost}" class="${field.errorClass}" /></td>
+					</tr>
+					#{/list}
+				#{/else}
+			</table>
+	        #{/field}
+		</div> 
+    </div>
     
 	<p class="crudButtons">
         <input type="submit" name="calculate" value="Calculate" />

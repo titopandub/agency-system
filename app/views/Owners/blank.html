@@ -6,7 +6,7 @@
 	
 	<div class="objectForm">
 	#{form action:@create(), enctype:'multipart/form-data'}
-		#{crud.form fields:['name', 'pic', 'address', 'telephone', 'fax', 'email']}
+		#{crud.form fields:['name', 'pic', 'pictelephone', 'address', 'telephone', 'fax', 'email']}
 			#{crud.custom '_id'}
 				#{field 'object.' + '_id'}
     				<input id="${field.id}" class="${field.errorClass}" type="hidden" name="${field.name}" value="${object?._id}" size="50" />
