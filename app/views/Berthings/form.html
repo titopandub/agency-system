@@ -133,13 +133,15 @@
 		    <table id="dataTable" border="0">
 		    <thead>
 			    <tr>
-				  <th>Charges</th>
-				  <th>Date</th>
-				  <th>Cost</th>
+			    	<th>Delete</th>
+					<th>Charges</th>
+					<th>Date</th>
+					<th>Cost</th>
 				</tr>
 		    </thead>
 		        #{list items:berthing?.booking?.additional, as:'additional'}
 				<tr>
+					<td><input type="checkbox" /></td>
 					<td><input type="text" name='additional[${additional_index - 1}].name' value="${additional?.name}" class="${field.errorClass}" /></td>
 					<td><input type="text" name='additional[${additional_index - 1}].date' value="${additional?.date?.format('yyyy-MM-dd')}" class="${field.errorClass}" /></td>
 					<td><input type="text" name='additional[${additional_index - 1}].cost' value="${additional?.cost}" class="${field.errorClass}" /></td>
@@ -148,6 +150,7 @@
 				#{else}
 					#{list items:0..0, as:'i'}
 					<tr>
+						<td><input type="checkbox" /></td>
 						<td><input type="text" name='additional[${i}].name' value="${additional?.name}" class="${field.errorClass}" /></td>
 						<td><input type="text" name='additional[${i}].date' value="${additional?.date?.format('yyyy-MM-dd')}" class="${field.errorClass}" /></td>
 						<td><input type="text" name='additional[${i}].cost' value="${additional?.cost}" class="${field.errorClass}" /></td>

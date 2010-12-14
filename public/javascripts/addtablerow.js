@@ -43,8 +43,10 @@ function deleteRow(tableID) {
     try {
 		var table = document.getElementById(tableID);
 		var rowCount = table.rows.length;
+		var i = 0;
+		var j = 0;
  
-        for(var i=0; i<rowCount; i++) {
+        for(i=0; i<rowCount; i++) {
             var row = table.rows[i];
             var chkbox = row.cells[0].childNodes[0];
             if(null != chkbox && true == chkbox.checked) {
@@ -54,7 +56,7 @@ function deleteRow(tableID) {
             }
         }
 		
-		for(var j=0; j<rowCount; j++) {
+		for(j=0; j<rowCount; j++) {
 			var row = table.rows[j];
 			var input1 = row.cells[1].childNodes[0];
 			var input2 = row.cells[2].childNodes[0];

@@ -231,10 +231,16 @@ public class Operational extends Model {
 			else return -1;
 		} else {
 			while(bot <= top) {
-				int mid = (bot + top) / 2;
-				if(grt < minimum[mid+1] && grt > minimum[mid]) return mid;
-				else if(grt < minimum[mid]) top = mid - 1;
-				else if(grt > minimum[mid]) bot = mid + 1;
+				try {
+					if(grt < minimum[bot+1] && grt > minimum[bot]) return bot;
+				} catch (Exception e) {
+					return -1;
+				}
+				bot++;
+//				int mid = (bot + top) / 2;
+//				if(grt < minimum[mid+1] && grt > minimum[mid]) return mid;
+//				else if(grt < minimum[mid]) top = mid - 1;
+//				else if(grt > minimum[mid]) bot = mid + 1;
 			}
 			return -1;
 		}

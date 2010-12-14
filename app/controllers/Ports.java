@@ -38,6 +38,8 @@ public class Ports extends CRUD {
 			
 			int i = 0;
 			while(i < tug.size()) {
+				if(tug.get(i).minimum == null) tug.get(i).minimum = 0;
+				if(tug.get(i).maximum == null) tug.get(i).maximum = 0;
 				port.costtariff.addTugTariff(tug.get(i).minimum, 
 						tug.get(i).maximum, tug.get(i).fixed, tug.get(i).var);
 				i++;
