@@ -1,5 +1,4 @@
 #{extends 'layout.html' /}
-<script src="@{'/public/javascripts/addtablerow-ops.js'}" type="text/javascript" charset="utf-8"></script>
 
 <div class="objectForm">
 #{form @save(booking?.id)}
@@ -150,36 +149,38 @@
 	<div class="crudField crud_text">
         #{field 'additional'}
         <label>Additional Charges:</label>
-        <input type="button" value="Add Row" onclick="addRow('dataTable')" />
-		<input type="button" value="Delete Row" onclick="deleteRow('dataTable')" /><br />
+        <input id="addbutton" type="button" value="Add Row" />
+        <input id="calculate" type="button" value="Calculate" />
 		<div id="crudListTable">
 			<table id="dataTable" border="0">
 	        <thead>
 	        	<tr>
-	        		<th>Delete</th>
 					<th>Charges</th>
 					<th>Date</th>
 					<th>Cost</th>
 				</tr>
 	        </thead>	
 		        #{list items:booking?.booking?.additional, as:'additional'}
-				<tr>
-					<td><input type="checkbox" /></td>
-					<td><input type="text" name='additional[${additional_index - 1}].name' value="${additional?.name}" class="${field.errorClass}" /></td>
+				<tr class="item-row">
+					<td><div class="delete-wpr"><input type="text" name='additional[${additional_index - 1}].name' value="${additional?.name}" class="${field.errorClass}" /><a href="javascript:;" class="delete">x</a></td>
 					<td><input type="text" name='additional[${additional_index - 1}].date' value="${additional?.date?.format('yyyy-MM-dd')}" class="${field.errorClass}" /></td>
-					<td><input type="text" name='additional[${additional_index - 1}].cost' value="${additional?.cost}" class="${field.errorClass}" /></td>
+					<td><input type="text" name='additional[${additional_index - 1}].cost' value="${additional?.cost}" class="add-cost" /></td>
 				</tr>
 		        #{/list}
 				#{else}
 					#{list items:0..0, as:'i'}
-					<tr>
-						<td><input type="checkbox" /></td>
-						<td><input type="text" name='additional[${i}].name' value="${additional?.name}" class="${field.errorClass}" /></td>
-						<td><input type="text" name='additional[${i}].date' value="${additional?.date?.format('yyyy-MM-dd')}" class="${field.errorClass}" /></td>
-						<td><input type="text" name='additional[${i}].cost' value="${additional?.cost}" class="${field.errorClass}" /></td>
+					<tr class="item-row">
+						<td><div class="delete-wpr"><input type="text" name='additional[${i}].name' value="${additional?.name}" class="add-name" /><a href="javascript:;" class="delete">x</a></td>
+						<td><input type="text" name='additional[${i}].date' value="${additional?.date?.format('yyyy-MM-dd')}" class="add-date" /></td>
+						<td><input type="text" name='additional[${i}].cost' value="${additional?.cost}" class="add-cost" /></td>
 					</tr>
 					#{/list}
 				#{/else}
+				<tr>
+		            <td colspan="1" class="blank"></td>
+		            <td colspan="1" class="total-line">Subtotal</td>
+		            <td class="total-value"><div id="subtotal">0</div></td>
+		        </tr>
 			</table>
 	        #{/field} 
 		</div>
@@ -192,6 +193,10 @@
 
 #{/form}
 </div>
+
+<!-- JS -->
+<script type="text/javascript" src="@{'/public/javascripts/jquery-1.4.2.min.js'}"></script>
+<script type="text/javascript" src="@{'/public/javascripts/addtablerow-jq-ops.js'}"></script>
 
 
 

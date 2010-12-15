@@ -1,5 +1,5 @@
 #{extends 'CRUD/layout.html' /}
-<script src="@{'/public/javascripts/addtablerow.js'}" type="text/javascript" charset="utf-8"></script>
+
 
 <div class="objectForm">
 #{form @save(port?.id)}
@@ -81,13 +81,11 @@
     #{field 'tug'}    
     <div class="crudField">
         <label>Tug Tariff:</label>
-        <input type="button" value="Add Row" onclick="addRow('dataTable')" />
-		<input type="button" value="Delete Row" onclick="deleteRow('dataTable')" /><br />
+        <input id="addbutton" type="button" value="Add Row" />
 		<div id="crudListTable">
 			<table id="dataTable" border="0">
 			<thead>
 	        	<tr>
-	        		<th>Delete</th>
 					<th>Minimum GRT</th>
 					<th>Maximum GRT</th>
 					<th>Fix Tariff</th>
@@ -95,9 +93,8 @@
 				</tr>
 	        </thead>
 		        #{list items:port?.costtariff?.tug, as:'tug'}
-				<tr>
-					<td><input type="checkbox" /></td>
-					<td><input type="text" name='tug[${tug_index - 1}].minimum' value="${tug?.minimum}" class="${field.errorClass}" /></td>
+				<tr class="item-row">
+					<td><div class="delete-wpr"><input type="text" name='tug[${tug_index - 1}].minimum' value="${tug?.minimum}" class="${field.errorClass}" /><a href="javascript:;" class="delete">x</a></div></td>
 					<td><input type="text" name='tug[${tug_index - 1}].maximum' value="${tug?.maximum}" class="${field.errorClass}" /></td>
 					<td><input type="text" name='tug[${tug_index - 1}].fixed' value="${tug?.fixed}" class="${field.errorClass}" /></td>
 					<td><input type="text" name='tug[${tug_index - 1}].var' value="${tug?.var}" class="${field.errorClass}" /></td>
@@ -105,9 +102,8 @@
 		        #{/list}
 				#{else}
 					#{list items:0..0, as:'i'}
-					<tr>
-						<td><input type="checkbox" /></td>
-						<td><input type="text" name='tug[${i}].minimum' value="${tug?.minimum}" class="${field.errorClass}" /></td>
+					<tr class="item-row">
+						<td><div class="delete-wpr"><input type="text" name='tug[${i}].minimum' value="${tug?.minimum}" class="${field.errorClass}" /><a href="javascript:;" class="delete">x</a></div></td>
 						<td><input type="text" name='tug[${i}].maximum' value="${tug?.maximum}" class="${field.errorClass}" /></td>
 						<td><input type="text" name='tug[${i}].fixed' value="${tug?.fixed}" class="${field.errorClass}" /></td>
 						<td><input type="text" name='tug[${i}].var' value="${tug?.var}" class="${field.errorClass}" /></td>
@@ -126,6 +122,10 @@
 
 #{/form}
 </div>
+
+<!-- JS -->
+<script type="text/javascript" src="@{'/public/javascripts/jquery-1.4.2.min.js'}"></script>
+<script type="text/javascript" src="@{'/public/javascripts/addtablerow-jq-port.js'}"></script>
 
 
 
