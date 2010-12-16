@@ -58,6 +58,9 @@ POST	/crud/ports/new							Ports.save
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
+GET     /css/									staticDir:public/stylesheets
+GET     /js/									staticDir:public/javascripts
+GET     /img/									staticDir:public/images
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
