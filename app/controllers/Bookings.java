@@ -61,25 +61,23 @@ public class Bookings extends Controller {
 				booking.statusAgent = statusAgent;
 				booking.subAgent = subAgent;
 				booking.oBooking(eta, etd, bookTugIn, bookTugOut, cargo, cargoWeight);
-				if(additional.isEmpty()) {
-					int i = 0;
-					while(i < additional.size()) {
-						booking.booking.addAdditional(additional.get(i).name, 
-								additional.get(i).date, additional.get(i).cost);
-						i++;
-					}
+				
+				int i = 0;
+				while(i < additional.size()) {
+					booking.booking.addAdditional(additional.get(i).name, 
+							additional.get(i).date, additional.get(i).cost);
+					i++;
 				}
 			} else {
 				booking = new Operational(vessel, voyage, port, customer, 
 						agent, statusAgent, subAgent);
 				booking.oBooking(eta, etd, bookTugIn, bookTugOut, cargo, cargoWeight);
-				if(additional.isEmpty()) {
-					int i = 0;
-					while(i < additional.size()) {
-						booking.booking.addAdditional(additional.get(i).name, 
-								additional.get(i).date, additional.get(i).cost);
-						i++;
-					}
+				
+				int i = 0;
+				while(i < additional.size()) {
+					booking.booking.addAdditional(additional.get(i).name, 
+							additional.get(i).date, additional.get(i).cost);
+					i++;
 				}
 			}
 			Cache.set("booking_" + id, booking, "1mn");
@@ -95,25 +93,23 @@ public class Bookings extends Controller {
 				booking.statusAgent = statusAgent;
 				booking.subAgent = subAgent;
 				booking.oBooking(eta, etd, bookTugIn, bookTugOut, cargo, cargoWeight);
-				if(additional.isEmpty()) {
-					int i = 0;
-					while(i < additional.size()) {
-						booking.booking.addAdditional(additional.get(i).name, 
-								additional.get(i).date, additional.get(i).cost);
-						i++;
-					}
+				
+				int i = 0;
+				while(i < additional.size()) {
+					booking.booking.addAdditional(additional.get(i).name, 
+							additional.get(i).date, additional.get(i).cost);
+					i++;
 				}
 			} else {
 				booking = new Operational(vessel, voyage, port, customer, 
 						agent, statusAgent, subAgent);
 				booking.oBooking(eta, etd, bookTugIn, bookTugOut, cargo, cargoWeight);
-				if(additional.isEmpty()) {
-					int i = 0;
-					while(i < additional.size()) {
-						booking.booking.addAdditional(additional.get(i).name, 
-								additional.get(i).date, additional.get(i).cost);
-						i++;
-					}
+				
+				int i = 0;
+				while(i < additional.size()) {
+					booking.booking.addAdditional(additional.get(i).name, 
+							additional.get(i).date, additional.get(i).cost);
+					i++;
 				}
 			}
 			booking.save();
