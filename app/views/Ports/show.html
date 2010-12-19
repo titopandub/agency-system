@@ -95,7 +95,7 @@
 				</tr>
 	        </thead>
 		        #{list items:port?.costtariff?.tug, as:'tug'}
-				<tr>
+				<tr class="item-row">
 					<td><input type="checkbox" /></td>
 					<td><input type="text" name='tug[${tug_index - 1}].minimum' value="${tug?.minimum}" class="${field.errorClass}" /></td>
 					<td><input type="text" name='tug[${tug_index - 1}].maximum' value="${tug?.maximum}" class="${field.errorClass}" /></td>
@@ -105,7 +105,7 @@
 		        #{/list}
 				#{else}
 					#{list items:0..0, as:'i'}
-					<tr>
+					<tr class="item-row">
 						<td><input type="checkbox" /></td>
 						<td><input type="text" name='tug[${i}].minimum' value="${tug?.minimum}" class="${field.errorClass}" /></td>
 						<td><input type="text" name='tug[${i}].maximum' value="${tug?.maximum}" class="${field.errorClass}" /></td>
