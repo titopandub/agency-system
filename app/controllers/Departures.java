@@ -37,33 +37,29 @@ public class Departures extends Controller {
 		}
 	}
 	
-	public static void save(Long id, Date atd, Double departTugOut, 
+	public static void save(Long id, Date atd, int quay, Double departTugOut, 
 			String cargo, int cargoWeight, List<Additional> additional) throws ParseException {
 		
 		Operational departure;
 		if(params.get("calculate") != null) {
 			departure = Operational.findById(id);
-			departure.oDeparture(atd, departTugOut, cargo, cargoWeight);
-			if(additional.isEmpty()) {
-				int i = 0;
-				while(i < additional.size()) {
-					departure.booking.addAdditional(additional.get(i).name, 
-							additional.get(i).date, additional.get(i).cost);
-					i++;
-				}
+			departure.oDeparture(atd, quay, departTugOut, cargo, cargoWeight);
+			int i = 0;
+			while(i < additional.size()) {
+				departure.booking.addAdditional(additional.get(i).name, 
+						additional.get(i).date, additional.get(i).cost);
+				i++;
 			}
 			Cache.set("departure_" + id, departure, "1mn");
 			form(id);
 		} else if(params.get("save") !=null) {
 			departure = Operational.findById(id);
-			departure.oDeparture(atd, departTugOut, cargo, cargoWeight);
-			if(additional.isEmpty()) {
-				int i = 0;
-				while(i < additional.size()) {
-					departure.booking.addAdditional(additional.get(i).name, 
-							additional.get(i).date, additional.get(i).cost);
-					i++;
-				}
+			departure.oDeparture(atd, quay, departTugOut, cargo, cargoWeight);
+			int i = 0;
+			while(i < additional.size()) {
+				departure.booking.addAdditional(additional.get(i).name, 
+						additional.get(i).date, additional.get(i).cost);
+				i++;
 			}
 			departure.save();
 			form(id);

@@ -41,7 +41,7 @@ public class Bookings extends Controller {
 	
 	public static void save(Long id, Long vesselId, String voyage, Long portId,
 			Long customerId, Long agentId, String statusAgent, 
-			Long subAgentId, Date eta, Date etd, Double bookTugIn, 
+			Long subAgentId, Date eta, Date etd, int quay, Double bookTugIn, 
 			Double bookTugOut, String cargo, int cargoWeight, List<Additional> additional) 
 	throws ParseException {
 		
@@ -60,8 +60,7 @@ public class Bookings extends Controller {
 				booking.agent = agent;
 				booking.statusAgent = statusAgent;
 				booking.subAgent = subAgent;
-				booking.oBooking(eta, etd, bookTugIn, bookTugOut, cargo, cargoWeight);
-				
+				booking.oBooking(eta, etd, quay, bookTugIn, bookTugOut, cargo, cargoWeight);
 				int i = 0;
 				while(i < additional.size()) {
 					booking.booking.addAdditional(additional.get(i).name, 
@@ -71,7 +70,7 @@ public class Bookings extends Controller {
 			} else {
 				booking = new Operational(vessel, voyage, port, customer, 
 						agent, statusAgent, subAgent);
-				booking.oBooking(eta, etd, bookTugIn, bookTugOut, cargo, cargoWeight);
+				booking.oBooking(eta, etd, quay, bookTugIn, bookTugOut, cargo, cargoWeight);
 				
 				int i = 0;
 				while(i < additional.size()) {
@@ -92,7 +91,7 @@ public class Bookings extends Controller {
 				booking.agent = agent;
 				booking.statusAgent = statusAgent;
 				booking.subAgent = subAgent;
-				booking.oBooking(eta, etd, bookTugIn, bookTugOut, cargo, cargoWeight);
+				booking.oBooking(eta, etd, quay, bookTugIn, bookTugOut, cargo, cargoWeight);
 				
 				int i = 0;
 				while(i < additional.size()) {
@@ -103,7 +102,7 @@ public class Bookings extends Controller {
 			} else {
 				booking = new Operational(vessel, voyage, port, customer, 
 						agent, statusAgent, subAgent);
-				booking.oBooking(eta, etd, bookTugIn, bookTugOut, cargo, cargoWeight);
+				booking.oBooking(eta, etd, quay, bookTugIn, bookTugOut, cargo, cargoWeight);
 				
 				int i = 0;
 				while(i < additional.size()) {

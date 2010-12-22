@@ -60,7 +60,7 @@
         #{field 'eta'}
         <label>Estimate Time Arrival:</label>
         <input type="text" name="${field.name}" 
-            value="${booking?.booking?.eta?.format('yyyy-MM-dd')}" class="${field.errorClass}" />
+            value="${booking?.booking?.eta?.format('yyyy-MM-dd')}" class="jdate" />
         #{/field}
     </div>
 	
@@ -68,7 +68,15 @@
         #{field 'etd'}
         <label>Estimate Time Departure:</label>
         <input type="text" name="${field.name}" 
-            value="${booking?.booking?.etd?.format('yyyy-MM-dd')}" class="${field.errorClass}" />
+            value="${booking?.booking?.etd?.format('yyyy-MM-dd')}" class="jdate" />
+        #{/field}
+    </div>
+    
+    <div class="crudField crud_text">
+        #{field 'quay'}
+        <label>Quay time:</label>
+        <input type="text" name="${field.name}" 
+            value="${booking?.booking?.quay}" class="${field.errorClass}" />
         #{/field}
     </div>
 	
@@ -113,7 +121,7 @@
 	
 	<div class="crudField crud_text">
 		#{field 'queue'}
-		<label>Queue dues : ${booking?.booking?.queue}</label>
+		<label>Quay dues : ${booking?.booking?.queue}</label>
 		<br/>
 		#{/field}
 	</div>
@@ -196,6 +204,8 @@
 
 <!-- JS -->
 <script type="text/javascript" src="@{'/public/javascripts/addtablerow-jq-ops.js'}"></script>
+
+
 
 
 
