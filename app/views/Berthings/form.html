@@ -2,179 +2,180 @@
 
 <div class="objectForm">
 #{form @save(berthing?.id)}
+
+	<h2>Fill Berthing Activity</h2>
 	
-	<div class="crudField crud_text">
-		#{field 'vessel'}
-		<label>Vessel : </label>
-		<label>${berthing?.vessel?.name}</label>
-		<br/>
-		#{/field}
-	</div>
-	
-	<div class="crudField crud_text">
-		#{field 'voyage'}
-		<label>Voyage : </label>
-		<label>${berthing?.voyage}</label>
-		<br/>
-		#{/field}
-	</div>
-	
-	<div class="crudField crud_text">
-		#{field 'port'}
-		<label>Port : </label>
-		<label>${berthing?.port?.name}</label>
-		<br/>
-		#{/field}
-	</div>
-	
-	<div class="crudField crud_text">
-		#{field 'customer'}
-		<label>Customer : </label>
-		<label>${berthing?.customer?.name}</label>
-		<br/>
-		#{/field}
-	</div>
-	
-	<div class="crudField crud_text">
-        #{field 'ata'}
-        <label>Actual Time Arrival :</label>
-        <input type="text" name="${field.name}" 
-            value="${berthing?.berthing?.ata?.format('yyyy-MM-dd')}" class="jdate" />
-        #{/field}
-    </div>
-	
-	<div class="crudField crud_text">
-        #{field 'etd'}
-        <label>Estimate Time Departure :</label>
-        <input type="text" name="${field.name}" 
-            value="${berthing?.berthing?.etd?.format('yyyy-MM-dd')}" class="jdate" />
-        #{/field}
-    </div>
-    
-    <div class="crudField crud_text">
-        #{field 'quay'}
-        <label>Quay time:</label>
-        <input type="text" name="${field.name}" 
-            value="${berthing?.berthing?.quay}" class="${field.errorClass}" />
-        #{/field}
-    </div>
-	
-	<div class="crudField crud_text">
-        #{field 'berthTugIn'}
-        <label>Estimate Tug in duration :</label>
-        <input type="text" name="${field.name}" 
-            value="${berthing?.berthing?.berthTugIn}" class="${field.errorClass}" />
-        #{/field}
-    </div>
-	
-	<div class="crudField crud_text">
-        #{field 'cargo'}
-        <label>Cargo Name :</label>
-        <input type="text" name="${field.name}" 
-            value="${berthing?.berthing?.cargo}" class="${field.errorClass}" />
-        #{/field}
-    </div>
-	
-	<div class="crudField crud_text">
-        #{field 'cargoWeight'}
-        <label>Cargo Weight :</label>
-        <input type="text" name="${field.name}" 
-            value="${berthing?.berthing?.cargoWeight}" class="${field.errorClass}" />
-        #{/field}
-    </div>
-		
-	<div class="crudField crud_text">
-		#{field 'harbor'}
-		<label>Harbor dues : </label>
-		<label>${berthing?.berthing?.harbor}</label>
-		<br/>
-		#{/field}
-	</div>
-	
-	<div class="crudField crud_text">
-		#{field 'queue'}
-		<label>Quay dues : </label>
-		<label>${berthing?.berthing?.queue}</label>
-		<br/>
-		#{/field}
-	</div>
-	
-	<div class="crudField crud_text">
-		#{field 'pilot'}
-		<label>Pilot dues : </label>
-		<label>${berthing?.berthing?.pilot}</label>
-		<br/>
-		#{/field}
-	</div>
-	
-	<div class="crudField crud_text">
-		#{field 'tug'}
-		<label>Tug dues : </label>
-		<label>${berthing?.berthing?.tug}</label>
-		<br/>
-		#{/field}
-	</div>
-	
-	<div class="crudField crud_text">
-		#{field 'light'}
-		<label>Light dues : </label>
-		<label>${berthing?.berthing?.light}</label>
-		<br/>
-		#{/field}
-	</div>
-	
-	<div class="crudField crud_text">
-		#{field 'gnt'}
-		<label>Government Tax : </label>
-		<label>${berthing?.berthing?.gnt}</label>
-		<br/>
-		#{/field}
-	</div>
-	
-	<div class="crudField crud_text">
-        #{field 'additional'}
-        <label>Additional Charges:</label>
-        <input id="addbutton" type="button" value="Add Row" />
-        <input id="calculate" type="button" value="Calculate" />
-		<div id="crudListTable">
-			<table id="dataTable" border="0">
-	        <thead>
-	        	<tr>
-					<th>Charges</th>
-					<th>Date</th>
-					<th>Cost</th>
-				</tr>
-	        </thead>	
-		        #{list items:berthing?.booking?.additional, as:'additional'}
-				<tr class="item-row">
-					<td><div class="delete-wpr"><input type="text" name='additional[${additional_index - 1}].name' value="${additional?.name}" class="${field.errorClass}" /><a href="javascript:;" class="delete">x</a></td>
-					<td><input type="text" name='additional[${additional_index - 1}].date' value="${additional?.date?.format('yyyy-MM-dd')}" class="${field.errorClass}" /></td>
-					<td><input type="text" name='additional[${additional_index - 1}].cost' value="${additional?.cost}" class="add-cost" /></td>
-				</tr>
-		        #{/list}
-				#{else}
-					#{list items:0..0, as:'i'}
-					<tr class="item-row">
-						<td><div class="delete-wpr"><input type="text" name='additional[${i}].name' value="${additional?.name}" class="add-name" /><a href="javascript:;" class="delete">x</a></td>
-						<td><input type="text" name='additional[${i}].date' value="${additional?.date?.format('yyyy-MM-dd')}" class="add-date" /></td>
-						<td><input type="text" name='additional[${i}].cost' value="${additional?.cost}" class="add-cost" /></td>
-					</tr>
-					#{/list}
-				#{/else}
-				<tr>
-		            <td colspan="1" class="blank"></td>
-		            <td colspan="1" class="total-line">Subtotal</td>
-		            <td class="total-value"><div id="subtotal">0</div></td>
-		        </tr>
-			</table>
-	        #{/field} 
+	<fieldset><legend>Booking data</legend>
+		<div class="crudField crud_text">
+			#{field 'vessel'}
+			<label>Vessel</label>
+			<label>${berthing?.vessel?.name}</label>
+			<br/>
+			#{/field}
 		</div>
-    </div>
+		
+		<div class="crudField crud_text">
+			#{field 'voyage'}
+			<label>Voyage</label>
+			<label>${berthing?.voyage}</label>
+			<br/>
+			#{/field}
+		</div>
+		
+		<div class="crudField crud_text">
+			#{field 'port'}
+			<label>Port</label>
+			<label>${berthing?.port?.name}</label>
+			<br/>
+			#{/field}
+		</div>
+		
+		<div class="crudField crud_text">
+			#{field 'customer'}
+			<label>Customer</label>
+			<label>${berthing?.customer?.name}</label>
+			<br/>
+			#{/field}
+		</div>
+	</fieldset>
+	
+	<fieldset><legend>Activity data</legend>	
+		<div class="crudField crud_text">
+	        #{field 'ata'}
+	        <label>Actual Time Arrival</label>
+	        <input type="text" name="${field.name}" 
+	            value="${berthing?.berthing?.ata?.format('yyyy-MM-dd')}" class="jdate" />
+	        #{/field}
+	    </div>
+		
+		<div class="crudField crud_text">
+	        #{field 'etd'}
+	        <label>Estimate Time Departure</label>
+	        <input type="text" name="${field.name}" 
+	            value="${berthing?.berthing?.etd?.format('yyyy-MM-dd')}" class="jdate" />
+	        #{/field}
+	    </div>
 	    
-	<p class="crudButtons">
-        <input type="submit" name="calculate" value="Calculate" />
+	    <div class="crudField crud_text">
+	        #{field 'quay'}
+	        <label>Quay time</label>
+	        <input type="text" name="${field.name}" 
+	            value="${berthing?.berthing?.quay}" class="${field.errorClass}" />
+	        #{/field}
+	    </div>
+		
+		<div class="crudField crud_text">
+	        #{field 'berthTugIn'}
+	        <label>Estimate Tug in duration</label>
+	        <input type="text" name="${field.name}" 
+	            value="${berthing?.berthing?.berthTugIn}" class="${field.errorClass}" />
+	        #{/field}
+	    </div>
+		
+		<div class="crudField crud_text">
+	        #{field 'cargo'}
+	        <label>Cargo Name</label>
+	        <input type="text" name="${field.name}" 
+	            value="${berthing?.berthing?.cargo}" class="${field.errorClass}" />
+	        #{/field}
+	    </div>
+		
+		<div class="crudField crud_text">
+	        #{field 'cargoWeight'}
+	        <label>Cargo Weight</label>
+	        <input type="text" name="${field.name}" 
+	            value="${berthing?.berthing?.cargoWeight}" class="${field.errorClass}" />
+	        #{/field}
+	    </div>
+	</fieldset>
+		
+	<fieldset><legend>Charges</legend>
+		<div class="crudField crud_text">
+			<div class="buttons">
+				<input type="submit" name="calculate" value="Calculate" />
+			</div>
+			<table id="charges">
+				<thead>
+					<tr>
+						<th>Charges</th>
+						<th>Cost</th>
+					</tr>
+				</thead>
+				<tr>
+					<td>Harbour dues</td>
+					<td>${berthing?.berthing?.harbor}</td>
+				</tr>
+				<tr>
+					<td>Quay dues</td>
+					<td>${berthing?.berthing?.queue}</td>
+				</tr>
+				<tr>
+					<td>Pilot dues</td>
+					<td>${berthing?.berthing?.pilot}</td>
+				</tr>
+				<tr>
+					<td>Tug dues</td>
+					<td>${berthing?.berthing?.tug}</td>
+				</tr>
+				<tr>
+					<td>Light dues</td>
+					<td>${berthing?.berthing?.light}</td>
+				</tr>
+				<tr>
+					<td>Government Tax</td>
+					<td>${berthing?.berthing?.gnt}</td>
+				</tr>
+			</table>
+		</div>
+	</fieldset>
+	
+	<fieldset><legend>Additional Charges</legend>
+		<div class="crudField crud_text">
+	        #{field 'additional'}
+	        <label>Additional Charges</label>
+	        <div class="buttons">
+		        <input id="addbutton" type="button" value="Add Row" />
+		        <input id="calculate" type="button" value="Calculate" />
+	        </div>
+			<div id="crudListTable">
+				<table id="dataTable" border="0">
+		        <thead>
+		        	<tr>
+						<th>Charges</th>
+						<th>Date</th>
+						<th>Cost</th>
+					</tr>
+		        </thead>	
+			        #{list items:berthing?.booking?.additional, as:'additional'}
+					<tr class="item-row">
+						<td><div class="delete-wpr"><input type="text" name='additional[${additional_index - 1}].name' value="${additional?.name}" class="${field.errorClass}" /><a href="javascript:;" class="delete">x</a></td>
+						<td><input type="text" name='additional[${additional_index - 1}].date' value="${additional?.date?.format('yyyy-MM-dd')}" class="${field.errorClass}" /></td>
+						<td><input type="text" name='additional[${additional_index - 1}].cost' value="${additional?.cost}" class="add-cost" /></td>
+					</tr>
+			        #{/list}
+					#{else}
+						#{list items:0..0, as:'i'}
+						<tr class="item-row">
+							<td><div class="delete-wpr"><input type="text" name='additional[${i}].name' value="${additional?.name}" class="add-name" /><a href="javascript:;" class="delete">x</a></td>
+							<td><input type="text" name='additional[${i}].date' value="${additional?.date?.format('yyyy-MM-dd')}" class="add-date" /></td>
+							<td><input type="text" name='additional[${i}].cost' value="${additional?.cost}" class="add-cost" /></td>
+						</tr>
+						#{/list}
+					#{/else}
+					<tr>
+			            <td colspan="1" class="blank"></td>
+			            <td colspan="1" class="total-line">Subtotal</td>
+			            <td class="total-value"><div id="subtotal">0</div></td>
+			        </tr>
+				</table>
+		        #{/field} 
+			</div>
+	    </div>
+    </fieldset>
+	    
+	<div class="buttons">
 		<input type="submit" name="save" value="Save" />
-    </p>
+    </div>
 
 #{/form}
 </div>

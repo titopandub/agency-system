@@ -3,6 +3,7 @@ package controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import play.i18n.Messages;
 import play.mvc.Controller;
 
 import models.Port;
@@ -64,7 +65,14 @@ public class Ports extends CRUD {
 		}
 		
 		port.save();
-        redirect(request.controller + ".list");
+        flash.success(Messages.get("crud.created", "Port"));
+        if (params.get("_save") != null) {
+            redirect(request.controller + ".list");
+        }
+        if (params.get("_saveAndAddAnother") != null) {
+            redirect(request.controller + ".blank");
+        }
+        redirect(request.controller + ".show", port._key());
 	}
 	
 }

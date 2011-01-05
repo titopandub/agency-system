@@ -4,9 +4,11 @@
 <div class="objectForm">
 #{form @save(port?.id)}
 
+	<h2>Port</h2>
+
 	#{field 'code'}
 	<div class="crudField crud_${field.type}">  
-        <label>Code:</label>
+        <label>Code</label>
         <input type="text" name="${field.name}" 
             value="${port?.code}" class="${field.errorClass}" /> 
     </div>
@@ -14,7 +16,7 @@
 	
 	#{field 'name'}
 	<div class="crudField crud_${field.type}">
-        <label>Name:</label>
+        <label>Name</label>
         <input type="text" name="${field.name}" 
             value="${port?.name}" class="${field.errorClass}" />
     </div>
@@ -22,14 +24,14 @@
     
     #{field 'info'}
 	<div class="crudField crud_${field.type}">
-        <label>Info:</label>
+        <label>Info</label>
         <textarea cols="48" rows="5" name="${field.name}">${port?.info}</textarea>
     </div>
     #{/field}
     
 	#{field 'type'}
 	<div class="crudField crud_${field.type}">
-        <label>Type:</label>
+        <label>Type</label>
         #{select 'type', value:port?.costtariff?.type, id:'select1'}
 			#{option 'A'}A#{/option}
 			#{option 'B'}B#{/option}
@@ -40,7 +42,7 @@
 	#{field 'harbour'}
 	<div class="crudField crud_${field.type}">
         
-        <label>Harbour Tariff:</label>
+        <label>Harbour Tariff</label>
         <input type="text" name="${field.name}" 
             value="${port?.costtariff?.harbour}" class="${field.errorClass}" />
     </div>
@@ -48,7 +50,7 @@
 	
 	#{field 'quay'}
 	<div class="crudField crud_${field.type}">    
-        <label>Quay Tariff:</label>
+        <label>Quay Tariff</label>
         <input type="text" name="${field.name}" 
             value="${port?.costtariff?.quay}" class="${field.errorClass}" />        
     </div>
@@ -56,7 +58,7 @@
 	
 	#{field 'pilotfix'}
 	<div class="crudField crud_${field.type}"> 
-        <label>Pilot Fix Tariff:</label>
+        <label>Pilot Fix Tariff</label>
         <input type="text" name="${field.name}" 
             value="${port?.costtariff?.pilotfix}" class="${field.errorClass}" />
     </div>
@@ -64,7 +66,7 @@
 	
 	#{field 'pilotvar'}
 	<div class="crudField crud_${field.type}">
-        <label>Pilot Var Tariff:</label>
+        <label>Pilot Var Tariff</label>
         <input type="text" name="${field.name}" 
             value="${port?.costtariff?.pilotvar}" class="${field.errorClass}" />
     </div>
@@ -72,7 +74,7 @@
 	
 	#{field 'light'}
 	<div class="crudField crud_${field.type}">
-        <label>Light Tariff:</label>
+        <label>Light Tariff</label>
         <input type="text" name="${field.name}" 
             value="${port?.costtariff?.light}" class="${field.errorClass}" />
     </div>
@@ -80,8 +82,10 @@
     
     #{field 'tug'}    
     <div class="crudField">
-        <label>Tug Tariff:</label>
-        <input id="addbutton" type="button" value="Add Row" />
+        <label>Tug Tariff</label>
+        <div class="buttons">
+	        <input id="addbutton" type="button" value="Add Row" />
+        </div>
 		<div id="crudListTable">
 			<table id="dataTable" border="0">
 			<thead>
@@ -115,10 +119,11 @@
     </div>
     #{/field}
     
-    
-	<p class="crudButtons">
-        <input type="submit" value="Save" />
-    </p>
+    <p class="buttons">
+			<input type="submit" name="_save" value="Save" />
+			<input type="submit" name="_saveAndContinue" value="Save and continue editing" />
+			<input type="submit" name="_saveAndAddAnother" value="Save and add another" />
+	</p>
 
 #{/form}
 </div>
