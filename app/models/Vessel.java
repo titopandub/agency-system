@@ -44,6 +44,11 @@ public class Vessel extends Model {
     @MaxSize(500)
 	public String note;
 	
+	public Vessel(String name, int grt) {
+		this.name = name;
+		this.grt = grt;
+	}
+	
 	public Vessel(String code, String name, int grt, Owner owner) {
 		this.code = code;
 		this.name = name;

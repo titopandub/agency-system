@@ -8,6 +8,22 @@ function update_total() {
 }
 
 $(document).ready(function() {
+	//attach autocomplete  
+    $("#vessel").autocomplete({
+        source: function(req, add) {
+			$.getJSON("/listVessel", req, function(data) {
+				var suggestions = [];
+				
+				$.each(data, function(i, val) {
+					suggestions.push(val.name);
+				});
+				
+				add(suggestions);
+			});
+		},
+		minLength: 2
+    });
+	
 	update_total();
 	
     if ($(".delete").length < 2) $(".delete").hide();

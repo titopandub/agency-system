@@ -1,0 +1,190 @@
+#{extends 'layout.html' /}
+
+<div class="objectForm">
+#{form @calculate(booking?.id)}
+
+	<h2>Fill Booking Data</h2>
+	
+	<fieldset><legend>Booking data</legend>
+		<div class="crudField crud_relation">
+	        #{field 'vessel'}
+	        <label>Vessel</label>
+			<input type="text" name="${field.name}" 
+	            value="${booking?.vessel?.name}" class="${field.errorClass}" id="vessel" />
+	        #{/field}
+	    </div>
+	    
+	    <div class="crudField crud_relation">
+	        #{field 'vessel'}
+	        <label>GRT</label>
+			<input type="text" name="${field.name}" 
+	            value="${booking?.vessel?.grt}" class="${field.errorClass}" />
+	        #{/field}
+	    </div>
+		
+		<div class="crudField crud_text">
+	        #{field 'voyage'}
+	        <label>Voyage</label>
+	        <input type="text" name="${field.name}" 
+	            value="${booking?.voyage}" class="${field.errorClass}" />
+	        #{/field}
+	    </div>
+		
+		<div class="crudField crud_relation">
+	        #{field 'port'}
+	        <label>Port</label>
+			#{select 'portId', items:ports, valueProperty:'id', labelProperty:'name', value:booking?.port?._id /}
+	        #{/field}
+	    </div>
+    </fieldset>
+	
+	<fieldset><legend>Activity Data</legend>
+		<div class="crudField crud_text">
+	        #{field 'eta'}
+	        <label>Estimate Time Arrival</label>
+	        <input type="text" name="${field.name}" 
+	            value="${booking?.booking?.eta?.format('yyyy-MM-dd')}" class="jdate" />
+	        #{/field}
+	    </div>
+		
+		<div class="crudField crud_text">
+	        #{field 'etd'}
+	        <label>Estimate Time Departure</label>
+	        <input type="text" name="${field.name}" 
+	            value="${booking?.booking?.etd?.format('yyyy-MM-dd')}" class="jdate" />
+	        #{/field}
+	    </div>
+	    
+	    <div class="crudField crud_text">
+	        #{field 'quay'}
+	        <label>Quay time</label>
+	        <input type="text" name="${field.name}" 
+	            value="${booking?.booking?.quay}" class="${field.errorClass}" />
+	        #{/field}
+	    </div>
+		
+		<div class="crudField crud_text">
+	        #{field 'bookTugIn'}
+	        <label>Estimate Tug (in)</label>
+	        <input type="text" name="${field.name}" 
+	            value="${booking?.booking?.bookTugIn}" class="${field.errorClass}" />
+	        #{/field}
+	    </div>
+		
+		<div class="crudField crud_text">
+	        #{field 'bookTugOut'}
+	        <label>Estimate Tug (out)</label>
+	        <input type="text" name="${field.name}" 
+	            value="${booking?.booking?.bookTugOut}" class="${field.errorClass}" />
+	        #{/field}
+	    </div>
+		
+		<div class="crudField crud_text">
+	        #{field 'cargo'}
+	        <label>Cargo Name</label>
+	        <input type="text" name="${field.name}" 
+	            value="${booking?.booking?.cargo}" class="${field.errorClass}" />
+	        #{/field}
+	    </div>
+		
+		<div class="crudField crud_text">
+	        #{field 'cargoWeight'}
+	        <label>Cargo Weight</label>
+	        <input type="text" name="${field.name}" 
+	            value="${booking?.booking?.cargoWeight}" class="${field.errorClass}" />
+	        #{/field}
+	    </div>
+    </fieldset>
+	
+	<fieldset><legend>Charges</legend>
+		<div class="crudField crud_text">
+			<div class="buttons">
+				<input type="submit" name="calculate" value="Calculate" />
+			</div>
+			<table id="charges">
+				<thead>
+					<tr>
+						<th>Charges</th>
+						<th>Cost</th>
+					</tr>
+				</thead>
+				<tr>
+					<td>Harbour dues</td>
+					<td>${booking?.booking?.harbor}</td>
+				</tr>
+				<tr>
+					<td>Quay dues</td>
+					<td>${booking?.booking?.queue}</td>
+				</tr>
+				<tr>
+					<td>Pilot dues</td>
+					<td>${booking?.booking?.pilot}</td>
+				</tr>
+				<tr>
+					<td>Tug dues</td>
+					<td>${booking?.booking?.tug}</td>
+				</tr>
+				<tr>
+					<td>Light dues</td>
+					<td>${booking?.booking?.light}</td>
+				</tr>
+				<tr>
+					<td>Government Tax</td>
+					<td>${booking?.booking?.gnt}</td>
+				</tr>
+			</table>
+		</div>
+	</fieldset>
+	
+	<fieldset><legend>Additional Charges</legend>
+		<div class="crudField crud_text">
+	        #{field 'additional'}
+	        <div class="buttons">
+		        <input id="addbutton" type="button" value="Add Row" />
+		        <input id="calculate" type="button" value="Calculate" />
+	        </div>
+			<div id="crudListTable">
+				<table id="dataTable" border="0">
+		        <thead>
+		        	<tr>
+						<th>Charges</th>
+						<th>Date</th>
+						<th>Cost</th>
+					</tr>
+		        </thead>	
+			        #{list items:booking?.booking?.additional, as:'additional'}
+					<tr class="item-row">
+						<td><div class="delete-wpr"><input type="text" name='additional[${additional_index - 1}].name' value="${additional?.name}" class="${field.errorClass}" /><a href="javascript:;" class="delete">x</a></td>
+						<td><input type="text" name='additional[${additional_index - 1}].date' value="${additional?.date?.format('yyyy-MM-dd')}" class="${field.errorClass}" /></td>
+						<td><input type="text" name='additional[${additional_index - 1}].cost' value="${additional?.cost}" class="add-cost" /></td>
+					</tr>
+			        #{/list}
+					#{else}
+						#{list items:0..0, as:'i'}
+						<tr class="item-row">
+							<td><div class="delete-wpr"><input type="text" name='additional[${i}].name' value="${additional?.name}" class="add-name" /><a href="javascript:;" class="delete">x</a></td>
+							<td><input type="text" name='additional[${i}].date' value="${additional?.date?.format('yyyy-MM-dd')}" class="add-date" /></td>
+							<td><input type="text" name='additional[${i}].cost' value="${additional?.cost}" class="add-cost" /></td>
+						</tr>
+						#{/list}
+					#{/else}
+					<tr>
+			            <td colspan="1" class="blank"></td>
+			            <td colspan="1" class="total-line">Subtotal</td>
+			            <td class="total-value"><div id="subtotal">0</div></td>
+			        </tr>
+				</table>
+		        #{/field} 
+			</div>
+	    </div>
+	</fieldset>
+    
+	<div class="buttons">
+		<input type="submit" name="save" value="Save" />
+    </div>
+
+#{/form}
+</div>
+
+<!-- JS -->
+<script type="text/javascript" src="@{'/public/javascripts/addtablerow-jq-ops.js'}"></script>
