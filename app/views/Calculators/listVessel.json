@@ -1,3 +1,4 @@
 {
-	"name": ${vesselName}
+	"name": ${name},
+	"grt": ${grt)
 }
