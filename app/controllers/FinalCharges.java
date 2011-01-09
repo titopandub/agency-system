@@ -44,26 +44,22 @@ public class FinalCharges extends Controller {
 		if(params.get("calculate") != null) {
 			finalcharge = Operational.findById(id);
 			finalcharge.oFinalCharge(actualTugIn, actualTugOut, cargo, cargoWeight);
-			if(additional.isEmpty()) {
-				int i = 0;
-				while(i < additional.size()) {
-					finalcharge.booking.addAdditional(additional.get(i).name, 
-							additional.get(i).date, additional.get(i).cost);
-					i++;
-				}
+			int i = 0;
+			while(i < additional.size()) {
+				finalcharge.booking.addAdditional(additional.get(i).name, 
+						additional.get(i).date, additional.get(i).cost);
+				i++;
 			}
 			Cache.set("finalcharge_" + id, finalcharge, "1mn");
 			form(id);
 		} else if(params.get("save") !=null) {
 			finalcharge = Operational.findById(id);
 			finalcharge.oFinalCharge(actualTugIn, actualTugOut, cargo, cargoWeight);
-			if(additional.isEmpty()) {
-				int i = 0;
-				while(i < additional.size()) {
-					finalcharge.booking.addAdditional(additional.get(i).name, 
-							additional.get(i).date, additional.get(i).cost);
-					i++;
-				}
+			int i = 0;
+			while(i < additional.size()) {
+				finalcharge.booking.addAdditional(additional.get(i).name, 
+						additional.get(i).date, additional.get(i).cost);
+				i++;
 			}
 			finalcharge.save();
 			form(id);

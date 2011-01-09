@@ -82,18 +82,18 @@ public class BasicTest extends UnitTest {
     	Date eta = df.parse("14/11/2010");
     	Date etd = df.parse("21/11/2010");
 		
-    	agc001.oBooking(eta, etd, 2.0, 2.0, "Bauxite", 20000);
+    	agc001.oBooking(eta, etd, 2, 2.0, 2.0, "Bauxite", 20000);
     	agc001.save();
     	
     	Date ata = df.parse("14/11/2010");
     	etd = df.parse("21/11/2010");
     	
-    	agc001.oBerthing(ata, etd, 2.0, "Bauxite", 20000);
+    	agc001.oBerthing(ata, etd, 2, 2.0, "Bauxite", 20000);
     	agc001.save();
     	
     	Date atd = df.parse("21/11/2010");
     	
-    	agc001.oDeparture(atd, 2.0, "Bauxite", 25000);
+    	agc001.oDeparture(atd, 2, 2.0, "Bauxite", 25000);
     	agc001.oFinalCharge(2.0, 2.0, "Bauxite", 21000);
     	agc001.save();
     	assertNotNull(agc001.booking);

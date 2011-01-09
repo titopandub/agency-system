@@ -77,34 +77,35 @@ public class Operational extends Model {
 		}
 	}
 	
-	public void oBooking(Date eta, Date etd, Double bookTugIn, 
+	public void oBooking(Date eta, Date etd, int quay, Double bookTugIn, 
 			Double bookTugOut, String cargo, int cargoWeight) {
-		this.booking = new Booking(eta, etd, bookTugIn, bookTugOut, cargo, cargoWeight);
+		this.booking = new Booking(eta, etd, quay, bookTugIn, bookTugOut, cargo, cargoWeight);
 		this.status = "New";
 		this.booking.additional = new ArrayList();
 		eBookingExpenses();
 	}
 	
-	public void oBooking(Date eta, Date etd, Double bookTugIn, 
+	public void oBooking(Date eta, Date etd, int quay, Double bookTugIn, 
 			Double bookTugOut, String cargo, int cargoWeight, 
 			List<Additional> additional) {
-		this.booking = new Booking(eta, etd, bookTugIn, bookTugOut, cargo, cargoWeight);
+		this.booking = new Booking(eta, etd, quay, bookTugIn, bookTugOut, cargo, cargoWeight);
+		System.out.println(this.booking.quay);
 		this.status = "New";
 		this.booking.additional = additional;
 		eBookingExpenses();
 	}
 	
-	public void oBerthing(Date ata, Date etd, Double berthTugIn,
+	public void oBerthing(Date ata, Date etd, int quay, Double berthTugIn,
 			String cargo, int cargoWeight) {
-		this.berthing = new Berthing(ata, etd, berthTugIn, cargo, cargoWeight);
+		this.berthing = new Berthing(ata, etd, quay, berthTugIn, cargo, cargoWeight);
 		this.status = "Berthing";
 		this.booking.additional = new ArrayList();
 		eBerthingExpenses();
 	}
 	
-	public void oDeparture(Date atd, Double departTugOut, 
+	public void oDeparture(Date atd, int quay, Double departTugOut, 
 			String cargo, int cargoWeight) {
-		this.departure = new Departure(atd, departTugOut, cargo, cargoWeight);
+		this.departure = new Departure(atd, quay, departTugOut, cargo, cargoWeight);
 		this.status = "Departure";
 		this.booking.additional = new ArrayList();
 		eDepartureExpenses();
@@ -126,7 +127,7 @@ public class Operational extends Model {
 		int periodDay = days.toStandardDays().getDays();
 		
 		this.booking.harbor = vessel.grt * port.costtariff.harbour * periodHarbor(periodDay);
-		this.booking.queue = vessel.grt * port.costtariff.quay * periodDay;
+		this.booking.queue = vessel.grt * port.costtariff.quay * this.booking.quay;
 		this.booking.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
 				port.costtariff.pilotfix) * 2;
 		this.booking.light = vessel.grt * port.costtariff.light;
@@ -144,7 +145,7 @@ public class Operational extends Model {
 		int periodDay = days.toStandardDays().getDays();
 		
 		this.berthing.harbor = vessel.grt * port.costtariff.harbour * periodHarbor(periodDay);
-		this.berthing.queue = vessel.grt * port.costtariff.quay * periodDay;
+		this.berthing.queue = vessel.grt * port.costtariff.quay * this.berthing.quay;
 		this.berthing.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
 				port.costtariff.pilotfix) * 2;
 		this.berthing.light = vessel.grt * port.costtariff.light;
@@ -162,7 +163,7 @@ public class Operational extends Model {
 		int periodDay = days.toStandardDays().getDays();
 		
 		this.departure.harbor = vessel.grt * port.costtariff.harbour * periodHarbor(periodDay);
-		this.departure.queue = vessel.grt * port.costtariff.quay * periodDay;
+		this.departure.queue = vessel.grt * port.costtariff.quay * this.departure.quay;
 		this.departure.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
 				port.costtariff.pilotfix) * 2;
 		this.departure.light = vessel.grt * port.costtariff.light;

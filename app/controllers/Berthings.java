@@ -38,33 +38,29 @@ public class Berthings extends Controller {
 		}
 	}
 	
-	public static void save(Long id, Date ata, Date etd, Double berthTugIn, 
+	public static void save(Long id, Date ata, Date etd, int quay, Double berthTugIn, 
 			String cargo, int cargoWeight, List<Additional> additional) throws ParseException {
 		
 		Operational berthing;
 		if(params.get("calculate") != null) {
 			berthing = Operational.findById(id);
-			berthing.oBerthing(ata, etd, berthTugIn, cargo, cargoWeight);
-			if(additional.isEmpty()) {
-				int i = 0;
-				while(i < additional.size()) {
-					berthing.booking.addAdditional(additional.get(i).name, 
-							additional.get(i).date, additional.get(i).cost);
-					i++;
-				}
+			berthing.oBerthing(ata, etd, quay, berthTugIn, cargo, cargoWeight);
+			int i = 0;
+			while(i < additional.size()) {
+				berthing.booking.addAdditional(additional.get(i).name, 
+						additional.get(i).date, additional.get(i).cost);
+				i++;
 			}
 			Cache.set("berthing_" + id, berthing, "1mn");
 			form(id);
 		} else if(params.get("save") !=null) {
 			berthing = Operational.findById(id);
-			berthing.oBerthing(ata, etd, berthTugIn, cargo, cargoWeight);
-			if(additional.isEmpty()) {
-				int i = 0;
-				while(i < additional.size()) {
-					berthing.booking.addAdditional(additional.get(i).name, 
-							additional.get(i).date, additional.get(i).cost);
-					i++;
-				}
+			berthing.oBerthing(ata, etd, quay, berthTugIn, cargo, cargoWeight);
+			int i = 0;
+			while(i < additional.size()) {
+				berthing.booking.addAdditional(additional.get(i).name, 
+						additional.get(i).date, additional.get(i).cost);
+				i++;
 			}
 			berthing.save();
 			form(id);

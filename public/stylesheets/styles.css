@@ -1,0 +1,273 @@
+body, div, h1, h2, h3, h4, h5, h6, p, ul, img { margin: 0px; padding: 0px; }
+
+body { 
+	font-family: Arial, Helvetica, sans-serif;
+	background: #ebe8e8;
+}
+
+.container {
+	width: 960px;
+	margin: 0 auto;
+}
+
+#main {
+	background: url(../images/header_slice.jpg) repeat-x;
+	}
+	
+	#main .container {
+		background: url(../images/header01.jpg) no-repeat;
+		}
+		#main .container #header {
+			padding-top: 15px;
+			}
+			#main .container #header #logo {
+				float: left;
+				margin: 0 0 0 5px;
+			}
+			#main .container #header #tagline {
+				float: left;
+				padding-top: 30px;
+				padding-left: 20px;
+				}
+				#main .container #header #tagline h3 {
+					font-size: 30px; color: #ffffff;
+				}
+		
+		#main .container #header ul#menu {
+			list-style: none;
+			margin: 0px auto 0px auto;
+			padding: 0px 20px 0px 5px;
+			height: 43px;
+			width: 940px;
+		}
+		#main .container #header ul#menu .menu_right {
+			float: right;
+			margin-right: 0px;
+			}
+			#main .container #header ul#menu li {
+				float: left;
+				display: block;
+				text-align: center;
+				position: relative;
+				padding: 5px 10px 5px 10px;
+				margin-right: 24px;
+				margin-top: 7px;
+				border: none;
+			}
+			#main .container #header ul#menu li:hover {
+				border: 1px solid #cccccc;
+				padding: 4px 9px 4px 9px;
+				background: #ebe8e8;
+				-moz-border-radius: 5px 5px 0px 0px;
+				-webkit-border-radius: 5px 5px 0px 0px;
+				border-radius: 5px 5px 0px 0px;
+			}
+			#main .container #header ul#menu li.no-drop:hover {
+				border: 1px solid #cccccc;
+				padding: 4px 9px 4px 9px;
+				background: #ebe8e8;
+				-moz-border-radius: 5px 5px 5px 5px;
+				-webkit-border-radius: 5px 5px 5px 5px;
+				border-radius: 5px 5px 5px 5px;
+			}			
+			#main .container #header ul#menu li a {
+				font-size: 16px;
+				color: #5e5e5e;
+				text-decoration: none;
+				display: block;
+				outline: 0;
+			}
+			#main .container #header ul#menu li .drop {
+				padding-right: 21px;
+				background: url(../images/drop.png) no-repeat right 8px;
+			}
+			#main .container #header ul#menu li .drop:hover {
+				background: url(../images/drop.png) no-repeat right 8px;
+			}
+			#main .container #header ul#menu li .dropdown_1column {
+				margin: 4px auto;
+				position: absolute;
+				left: -999em;
+				text-align: left;
+				padding: 10px 5px 10px 5px;
+				border: 1px solid #cccccc;
+				border-top: none;
+				background: #ebe8e8;
+				-moz-border-radius: 0px 5px 5px 5px;
+				-webkit-border-radius: 0px 5px 5px 5px;
+				border-radius: 0px 5px 5px 5px;
+			}
+			#main .container #header ul#menu li .dropdown_1column {
+				width: 140px;
+			}
+			#main .container #header ul#menu li:hover .dropdown_1column {
+				left: -1px; top:auto;
+			}
+			#main .container #header ul#menu li .align_right {
+				/* Rounded corners */
+				-moz-border-radius: 5px 0px 5px 5px;
+				-webkit-border-radius: 5px 0px 5px 5px;
+				border-radius: 5px 0px 5px 5px;
+			}
+			#main .container #header ul#menu li:hover .align_right {
+				left: auto;
+				right: -1px;
+				top: auto;
+			}
+			#main .container #header ul#menu li:hover div a {
+				color: #015b86;
+			}
+			#main .container #header ul#menu li:hover div a:hover {
+				color: #029feb;
+			}
+			#main .container #header ul#menu li ul li {
+				position: relative;
+				padding: 0;
+				margin: 0;
+				float: none;
+				text-align: left;
+				line-height: 24px;
+			}
+			#main .container #header ul#menu li ul li:hover {
+				background: none;
+				border: none;
+				padding: 0;
+				margin: 0;
+			}
+			
+					
+		#main .container #content h2 {
+			font-size: 36px;
+			color: #444444;
+			padding-top: 25px;
+		}
+		#main .container #content h3 {
+			font-size: 24px;
+			color: #444444;
+			padding-top: 20px;
+			padding-bottom: 20px;
+		}
+		#main .container #content h4 {
+			font-size: 18px;
+			color: #373737;
+		}
+		#main .container #content p {
+			font-size: 14px;
+			color: #595858;
+			padding-top: 20px;
+		}
+		#main .container #content small {
+			font-size: 12px;
+			color: #373737;
+		}
+		#main .container #content a {
+			color: #0f6c8d;
+			font-weight: bold;
+			text-decoration: none;
+		}
+		
+		#main .container #content form {
+			margin: 10px 0 0 0;
+			}
+			#main .container #content form fieldset legend {
+				font-weight: bold;
+				padding: 5px;
+			}
+			#main .container #content form div {
+				margin: 10px 0 10px 0;
+			}
+			#main .container #content form input,
+			#main .container #content form select,
+			#main .container #content form textarea {
+				padding: 2px;
+				font-size: 12px;
+				width: 200px;
+			}
+			#main .container #content form select[multiple] {
+				max-height: 100px;
+			}
+			#main .container #content form textarea {
+				width: 300px;
+				max-width: 300px;
+				height: 120px;
+				line-height: 150%;
+			}
+			#main .container #content form label {
+				display: block;
+				font-weight: bold;
+				width: 23%;
+				float: left;
+				padding: 5px 15px 0 0;
+			}
+			#main .container #content form .buttons input {
+				width: auto;
+				padding: 9px 15px;
+				border: 0;
+				background: #666666;
+				color: #ffffff;
+				font-weight: bold;
+				-webkit-border-radius: 5px;
+				-moz-border-radius: 5px;
+			}
+			#main .container #content form .crudButtons input {
+				width: auto;
+				padding: 9px 15px;
+				border: 0;
+				background: #666666;
+				color: #ffffff;
+				font-weight: bold;
+				-webkit-border-radius: 5px;
+				-moz-border-radius: 5px;
+			}
+			#main .container #content form .crudDelete input {
+				display: none;
+			}
+		#main .container #content table {
+			width: 100%;
+			border: 1px solid #cccccc;
+			border-collapse: collapse;
+			}
+			#main .container #content table thead tr {
+				background: #00ccff;
+			}
+			#main .container #content table thead tr th {
+				color: #ffffff;
+				font-weight: bold;
+				text-align: left;
+				padding: 6px 5px;
+				border: 1px solid #ffffff;
+			}
+			#main .container #content table tr td {
+				text-align: left;
+				padding: 2px 3px;
+				border: 1px solid #ffffff;
+				font-size: 14px;
+				color: #595858;
+			}
+			#main .container #content table tr td input {
+				padding: 1px;
+				margin: 0px auto;
+				width: 95%;
+			}
+			#main .container #content table tr:last-child td {
+				border: 1px solid #ffffff;
+			}
+			
+		#main .container #content #crudListAdd a {
+			width: auto;
+			padding: 9px 15px;
+			border: 0;
+			background: #666666;
+			color: #ffffff;
+			font-weight: bold;
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+		}
+		
+
+#footer {
+	background: url(../images/footer_slice.jpg) repeat-x;
+	padding: 20px 0 60px 0;
+	margin-top: 40px;
+	color: #fff;
+}

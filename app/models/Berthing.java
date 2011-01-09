@@ -15,6 +15,8 @@ public class Berthing extends Model {
 	
 	public Date etd;
 	
+	public int quay;
+	
 	public Double berthTugIn;
 	
 	public String cargo;
@@ -32,10 +34,11 @@ public class Berthing extends Model {
 	public Double tug;
 	public Double gnt;
 	
-	public Berthing(Date ata, Date etd, Double berthTugIn,
+	public Berthing(Date ata, Date etd, int quay, Double berthTugIn,
 			String cargo, int cargoWeight) {
 		this.ata = ata;
 		this.etd = etd;
+		this.quay = quay;
 		this.berthTugIn = berthTugIn;
 		this.cargo = cargo;
 		this.cargoWeight = cargoWeight;

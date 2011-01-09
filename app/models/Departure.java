@@ -13,6 +13,8 @@ public class Departure extends Model {
 	
 	public Date atd;
 	
+	public int quay;
+	
 	public Double departTugOut;
 	
 	public String cargo;
@@ -32,9 +34,10 @@ public class Departure extends Model {
 	public Double tug;
 	public Double gnt;
 	
-	public Departure(Date atd, Double departTugOut, 
+	public Departure(Date atd, int quay, Double departTugOut,
 			String cargo, int cargoWeight) {
 		this.atd = atd;
+		this.quay = quay;
 		this.departTugOut = departTugOut;
 		this.cargo = cargo;
 		this.cargoWeight = cargoWeight;

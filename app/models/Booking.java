@@ -17,6 +17,8 @@ public class Booking extends Model {
 	
 	public Date etd;
 	
+	public int quay;
+	
 	public Double bookTugIn;
 	
 	public Double bookTugOut;
@@ -37,10 +39,11 @@ public class Booking extends Model {
 	public Double gnt;
 	
 	
-	public Booking(Date eta, Date etd, Double bookTugIn, 
+	public Booking(Date eta, Date etd, int quay, Double bookTugIn, 
 			Double bookTugOut, String cargo, int cargoWeight) {
 		this.eta = eta;
 		this.etd = etd;
+		this.quay = quay;
 		this.bookTugIn = bookTugIn;
 		this.bookTugOut = bookTugOut;
 		this.cargo = cargo;
