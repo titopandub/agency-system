@@ -15,9 +15,8 @@ public class Additional extends Model {
 	
 	public Double cost;
 	
-	public Additional(String name, Date date, Double cost) {
+	public Additional(String name, Double cost) {
 		this.name = name;
-		this.date = date;
 		this.cost = cost;
 	}
 	

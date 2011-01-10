@@ -46,8 +46,7 @@ public class Departures extends Controller {
 			departure.oDeparture(atd, quay, departTugOut, cargo, cargoWeight);
 			int i = 0;
 			while(i < additional.size()) {
-				departure.booking.addAdditional(additional.get(i).name, 
-						additional.get(i).date, additional.get(i).cost);
+				departure.booking.addAdditional(additional.get(i).name, additional.get(i).cost);
 				i++;
 			}
 			Cache.set("departure_" + id, departure, "1mn");
@@ -57,8 +56,7 @@ public class Departures extends Controller {
 			departure.oDeparture(atd, quay, departTugOut, cargo, cargoWeight);
 			int i = 0;
 			while(i < additional.size()) {
-				departure.booking.addAdditional(additional.get(i).name, 
-						additional.get(i).date, additional.get(i).cost);
+				departure.booking.addAdditional(additional.get(i).name, additional.get(i).cost);
 				i++;
 			}
 			departure.save();

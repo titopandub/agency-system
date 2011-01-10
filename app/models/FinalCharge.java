@@ -39,9 +39,8 @@ public class FinalCharge extends Model {
 		this.cargoWeight = cargoWeight;
 	}
 	
-	public FinalCharge addAdditional(String name, Date date, 
-			Double cost) {
-		Additional newAdd = new Additional(name, date, cost);
+	public FinalCharge addAdditional(String name, Double cost) {
+		Additional newAdd = new Additional(name, cost);
         this.additional.add(newAdd);
         return this;
 	}

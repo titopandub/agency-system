@@ -45,9 +45,8 @@ public class Berthing extends Model {
 		this.additional = new ArrayList();
 	}
 	
-	public Berthing addAdditional(String name, Date date, 
-			Double cost) {
-		Additional newAdd = new Additional(name, date, cost);
+	public Berthing addAdditional(String name, Double cost) {
+		Additional newAdd = new Additional(name, cost);
         this.additional.add(newAdd);
         return this;
 	}

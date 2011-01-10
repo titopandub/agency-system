@@ -63,8 +63,7 @@ public class Bookings extends Controller {
 				booking.oBooking(eta, etd, quay, bookTugIn, bookTugOut, cargo, cargoWeight);
 				int i = 0;
 				while(i < additional.size()) {
-					booking.booking.addAdditional(additional.get(i).name, 
-							additional.get(i).date, additional.get(i).cost);
+					booking.booking.addAdditional(additional.get(i).name, additional.get(i).cost);
 					i++;
 				}
 			} else {
@@ -74,8 +73,7 @@ public class Bookings extends Controller {
 				
 				int i = 0;
 				while(i < additional.size()) {
-					booking.booking.addAdditional(additional.get(i).name, 
-							additional.get(i).date, additional.get(i).cost);
+					booking.booking.addAdditional(additional.get(i).name, additional.get(i).cost);
 					i++;
 				}
 			}
@@ -95,8 +93,7 @@ public class Bookings extends Controller {
 				
 				int i = 0;
 				while(i < additional.size()) {
-					booking.booking.addAdditional(additional.get(i).name, 
-							additional.get(i).date, additional.get(i).cost);
+					booking.booking.addAdditional(additional.get(i).name, additional.get(i).cost);
 					i++;
 				}
 			} else {
@@ -106,8 +103,7 @@ public class Bookings extends Controller {
 				
 				int i = 0;
 				while(i < additional.size()) {
-					booking.booking.addAdditional(additional.get(i).name, 
-							additional.get(i).date, additional.get(i).cost);
+					booking.booking.addAdditional(additional.get(i).name, additional.get(i).cost);
 					i++;
 				}
 			}

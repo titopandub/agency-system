@@ -47,8 +47,7 @@ public class Berthings extends Controller {
 			berthing.oBerthing(ata, etd, quay, berthTugIn, cargo, cargoWeight);
 			int i = 0;
 			while(i < additional.size()) {
-				berthing.booking.addAdditional(additional.get(i).name, 
-						additional.get(i).date, additional.get(i).cost);
+				berthing.booking.addAdditional(additional.get(i).name, additional.get(i).cost);
 				i++;
 			}
 			Cache.set("berthing_" + id, berthing, "1mn");
@@ -58,8 +57,7 @@ public class Berthings extends Controller {
 			berthing.oBerthing(ata, etd, quay, berthTugIn, cargo, cargoWeight);
 			int i = 0;
 			while(i < additional.size()) {
-				berthing.booking.addAdditional(additional.get(i).name, 
-						additional.get(i).date, additional.get(i).cost);
+				berthing.booking.addAdditional(additional.get(i).name, additional.get(i).cost);
 				i++;
 			}
 			berthing.save();

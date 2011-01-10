@@ -141,14 +141,12 @@
 		        <thead>
 		        	<tr>
 						<th>Charges</th>
-						<th>Date</th>
 						<th>Cost</th>
 					</tr>
 		        </thead>	
 			        #{list items:finalcharge?.booking?.additional, as:'additional'}
 					<tr class="item-row">
 						<td><div class="delete-wpr"><input type="text" name='additional[${additional_index - 1}].name' value="${additional?.name}" class="${field.errorClass}" /><a href="javascript:;" class="delete">x</a></td>
-						<td><input type="text" name='additional[${additional_index - 1}].date' value="${additional?.date?.format('yyyy-MM-dd')}" class="${field.errorClass}" /></td>
 						<td><input type="text" name='additional[${additional_index - 1}].cost' value="${additional?.cost}" class="add-cost" /></td>
 					</tr>
 			        #{/list}
@@ -156,14 +154,12 @@
 						#{list items:0..0, as:'i'}
 						<tr class="item-row">
 							<td><div class="delete-wpr"><input type="text" name='additional[${i}].name' value="${additional?.name}" class="add-name" /><a href="javascript:;" class="delete">x</a></td>
-							<td><input type="text" name='additional[${i}].date' value="${additional?.date?.format('yyyy-MM-dd')}" class="add-date" /></td>
 							<td><input type="text" name='additional[${i}].cost' value="${additional?.cost}" class="add-cost" /></td>
 						</tr>
 						#{/list}
 					#{/else}
 					<tr>
-			            <td colspan="1" class="blank"></td>
-			            <td colspan="1" class="total-line">Subtotal</td>
+			            <td class="total-line">Subtotal</td>
 			            <td class="total-value"><div id="subtotal">0</div></td>
 			        </tr>
 				</table>

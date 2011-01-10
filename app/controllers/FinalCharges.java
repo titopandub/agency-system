@@ -46,8 +46,7 @@ public class FinalCharges extends Controller {
 			finalcharge.oFinalCharge(actualTugIn, actualTugOut, cargo, cargoWeight);
 			int i = 0;
 			while(i < additional.size()) {
-				finalcharge.booking.addAdditional(additional.get(i).name, 
-						additional.get(i).date, additional.get(i).cost);
+				finalcharge.booking.addAdditional(additional.get(i).name, additional.get(i).cost);
 				i++;
 			}
 			Cache.set("finalcharge_" + id, finalcharge, "1mn");
@@ -57,8 +56,7 @@ public class FinalCharges extends Controller {
 			finalcharge.oFinalCharge(actualTugIn, actualTugOut, cargo, cargoWeight);
 			int i = 0;
 			while(i < additional.size()) {
-				finalcharge.booking.addAdditional(additional.get(i).name, 
-						additional.get(i).date, additional.get(i).cost);
+				finalcharge.booking.addAdditional(additional.get(i).name, additional.get(i).cost);
 				i++;
 			}
 			finalcharge.save();

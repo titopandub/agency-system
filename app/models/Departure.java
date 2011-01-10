@@ -44,9 +44,8 @@ public class Departure extends Model {
 		this.additional = new ArrayList();
 	}
 	
-	public Departure addAdditional(String name, Date date, 
-			Double cost) {
-		Additional newAdd = new Additional(name, date, cost);
+	public Departure addAdditional(String name, Double cost) {
+		Additional newAdd = new Additional(name, cost);
         this.additional.add(newAdd);
         return this;
 	}

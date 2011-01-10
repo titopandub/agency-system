@@ -51,9 +51,8 @@ public class Booking extends Model {
 		this.additional = new ArrayList();
 	}
 	
-	public Booking addAdditional(String name, Date date, 
-			Double cost) {
-		Additional newAdd = new Additional(name, date, cost);
+	public Booking addAdditional(String name, Double cost) {
+		Additional newAdd = new Additional(name, cost);
         this.additional.add(newAdd);
         return this;
 	}

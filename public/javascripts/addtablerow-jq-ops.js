@@ -7,6 +7,15 @@ function update_total() {
     $('#subtotal').html(total);
 }
 
+function update_total_port() {
+    var total_port = 0;
+    $('.port-cost').each(function(i){
+        price = $(this).html();
+        if (!isNaN(price)) total_port += Number(price);
+    });
+    $('#subtotal-port').html(total_port);
+}
+
 $(document).ready(function() {
 	//attach autocomplete
 	var vessel = [];
@@ -36,6 +45,7 @@ $(document).ready(function() {
     });
 	
 	update_total();
+	update_total_port();
 	
     if ($(".delete").length < 2) $(".delete").hide();
     
@@ -51,6 +61,7 @@ $(document).ready(function() {
     
     $('#calculate').click(function() {
         update_total();
+		update_total_port();
     });
     
     $('.delete').live('click',function() {

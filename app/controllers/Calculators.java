@@ -35,29 +35,71 @@ public class Calculators extends Controller {
 		}
 	}
 	
-	public static void calculate(Long id, Long vesselId, String name, int grt, Long portId, Date eta, Date etd, 
-			int quay, Double bookTugIn, Double bookTugOut, String cargo, int cargoWeight, List<Additional> additional) {
+	public static void calculate(Long id, String name, int grt, String voyage, Long portId, 
+			Date eta, Date etd, int quay, Double bookTugIn, Double bookTugOut, 
+			String cargo, int cargoWeight, List<Additional> additional) {
 		
 		Port port = Port.findById(portId);
 		Operational booking;
-		Vessel vessel = Vessel.find("name", name).first();
-		if(vessel == null) {
-			vessel = new Vessel(name, grt);
-			vessel.save();
-			booking = new Operational(grt, port);
-		} else {
-			booking = new Operational(vessel, port);
-		}
+		Vessel vessel = Vessel.find("byName", name).first();
 		
-		booking.oBooking(eta, etd, quay, bookTugIn, bookTugOut, cargo, cargoWeight);
-		int i = 0;
-		while(i < additional.size()) {
-			booking.booking.addAdditional(additional.get(i).name, 
-					additional.get(i).date, additional.get(i).cost);
-			i++;
+		if(params.get("calculate") != null) {
+			if(vessel == null) {
+				vessel = new Vessel(name, grt);
+				vessel.save();
+			}
+			if(id != null) {
+				booking = Operational.findById(id);
+				booking.vessel = vessel;
+				booking.port = port;
+				booking.voyage = voyage;
+				booking.oBooking(eta, etd, quay, bookTugIn, bookTugOut, cargo, cargoWeight);
+				int i = 0;
+				while(i < additional.size()) {
+					booking.booking.addAdditional(additional.get(i).name, additional.get(i).cost);
+					i++;
+				}
+			} else {
+				booking = new Operational(vessel, port);
+				booking.voyage = voyage;
+				booking.oBooking(eta, etd, quay, bookTugIn, bookTugOut, cargo, cargoWeight);
+				int i = 0;
+				while(i < additional.size()) {
+					booking.booking.addAdditional(additional.get(i).name, additional.get(i).cost);
+					i++;
+				}
+			}
+			Cache.set("booking_" + id, booking, "1mn");
+			form(id);
+		} else if(params.get("save") !=null) {
+			if(vessel == null) {
+				vessel = new Vessel(name, grt);
+				vessel.save();
+			}
+			if(id != null) {
+				booking = Operational.findById(id);
+				booking.vessel = vessel;
+				booking.port = port;
+				booking.voyage = voyage;
+				booking.oBooking(eta, etd, quay, bookTugIn, bookTugOut, cargo, cargoWeight);
+				int i = 0;
+				while(i < additional.size()) {
+					booking.booking.addAdditional(additional.get(i).name, additional.get(i).cost);
+					i++;
+				}
+			} else {
+				booking = new Operational(vessel, port);
+				booking.voyage = voyage;
+				booking.oBooking(eta, etd, quay, bookTugIn, bookTugOut, cargo, cargoWeight);
+				int i = 0;
+				while(i < additional.size()) {
+					booking.booking.addAdditional(additional.get(i).name, additional.get(i).cost);
+					i++;
+				}
+			}
+			booking.save();
+			Cache.delete("booking_" + id);
+			redirect(request.controller + ".form", booking._key());
 		}
-		Cache.set("booking_" + id, booking, "1mn");
-		form(id);
 	}
-
 }
