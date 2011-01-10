@@ -56,6 +56,32 @@ public class Operational extends Model {
 	public Double tugfix;
 	public Double tugvar;
 	
+	public Operational(int grt, Port port) {
+		this.port = port;
+		this.status = "Prospect";
+		this.tugPtr = this.searchIntegerArray(port.getTugTariff(), grt);
+		if(this.tugPtr == -1){
+			this.tugfix = 0.0;
+			this.tugvar = 0.0;
+		} else {
+			this.tugfix = port.costtariff.tug.get(this.tugPtr).fixed;
+			this.tugvar = port.costtariff.tug.get(this.tugPtr).var;
+		}
+	}
+	
+	public Operational(Vessel vessel, Port port) {
+		this.port = port;
+		this.status = "Prospect";
+		this.tugPtr = this.searchIntegerArray(port.getTugTariff(), vessel.grt);
+		if(this.tugPtr == -1){
+			this.tugfix = 0.0;
+			this.tugvar = 0.0;
+		} else {
+			this.tugfix = port.costtariff.tug.get(this.tugPtr).fixed;
+			this.tugvar = port.costtariff.tug.get(this.tugPtr).var;
+		}
+	}
+	
 	public Operational(Vessel vessel, String voyage, Port port,
 			Customer customer, Agent agent, String statusAgent, 
 			Agent subAgent) {

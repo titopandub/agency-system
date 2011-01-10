@@ -8,6 +8,33 @@ function update_total() {
 }
 
 $(document).ready(function() {
+	//attach autocomplete
+	var vessel = [];
+    $("#vessel").autocomplete({
+        source: function(req, add) {
+			$.getJSON("/listVessel", req, function(data) {
+				var suggestions = [];
+				vessel = [];
+				$.each(data, function(i, val) {
+					suggestions.push(val.name);
+					vessel.push({
+						name: val.name,
+						grt: val.grt
+					});
+				});
+				add(suggestions);
+			});
+		},
+		minLength: 2,
+		select: function(event, ui) {
+			$.each(vessel, function(i, val) {
+				if(val.name == ui.item.label) {
+					$("#grt").val(val.grt);
+				}
+			});
+		}
+    });
+	
 	update_total();
 	
     if ($(".delete").length < 2) $(".delete").hide();
