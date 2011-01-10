@@ -99,27 +99,31 @@
 				</thead>
 				<tr>
 					<td>Harbour dues</td>
-					<td>${departure?.departure?.harbor}</td>
+					<td class="port-cost">${departure?.departure?.harbor}</td>
 				</tr>
 				<tr>
 					<td>Quay dues</td>
-					<td>${departure?.departure?.queue}</td>
+					<td class="port-cost">${departure?.departure?.queue}</td>
 				</tr>
 				<tr>
 					<td>Pilot dues</td>
-					<td>${departure?.departure?.pilot}</td>
+					<td class="port-cost">${departure?.departure?.pilot}</td>
 				</tr>
 				<tr>
 					<td>Tug dues</td>
-					<td>${departure?.departure?.tug}</td>
+					<td class="port-cost">${departure?.departure?.tug}</td>
 				</tr>
 				<tr>
 					<td>Light dues</td>
-					<td>${departure?.departure?.light}</td>
+					<td class="port-cost">${departure?.departure?.light}</td>
 				</tr>
 				<tr>
 					<td>Government Tax</td>
-					<td>${departure?.departure?.gnt}</td>
+					<td class="port-cost">${departure?.departure?.gnt}</td>
+				</tr>
+				<tr>
+					<td class="total-line">Subtotal</td>
+		            <td class="total-value"><div id="subtotal-port">0</div></td>
 				</tr>
 			</table>
 		</div>

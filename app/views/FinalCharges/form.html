@@ -103,27 +103,31 @@
 				</thead>
 				<tr>
 					<td>Harbour dues</td>
-					<td>${finalcharge?.finalCharge?.harbor}</td>
+					<td class="port-cost">${finalcharge?.finalCharge?.harbor}</td>
 				</tr>
 				<tr>
 					<td>Quay dues</td>
-					<td>${finalcharge?.finalCharge?.queue}</td>
+					<td class="port-cost">${finalcharge?.finalCharge?.queue}</td>
 				</tr>
 				<tr>
 					<td>Pilot dues</td>
-					<td>${finalcharge?.finalCharge?.pilot}</td>
+					<td class="port-cost">${finalcharge?.finalCharge?.pilot}</td>
 				</tr>
 				<tr>
 					<td>Tug dues</td>
-					<td>${finalcharge?.finalCharge?.tug}</td>
+					<td class="port-cost">${finalcharge?.finalCharge?.tug}</td>
 				</tr>
 				<tr>
 					<td>Light dues</td>
-					<td>${finalcharge?.finalCharge?.light}</td>
+					<td class="port-cost">${finalcharge?.finalCharge?.light}</td>
 				</tr>
 				<tr>
 					<td>Government Tax</td>
-					<td>${finalcharge?.finalCharge?.gnt}</td>
+					<td class="port-cost">${finalcharge?.finalCharge?.gnt}</td>
+				</tr>
+				<tr>
+					<td class="total-line">Subtotal</td>
+		            <td class="total-value"><div id="subtotal-port">0</div></td>
 				</tr>
 			</table>
 		</div>

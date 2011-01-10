@@ -3,94 +3,37 @@
 <div id="crudList">
 		
 	<div id="crudListTable">
-		<h3>Booking Vessel</h3>
+		<h3>List Vessel Operational</h3>
 		<table>
 			<thead>
 			<tr>
-				<th>Booking Number</th>
-				<th>Vessel</th>
-				<th>Voyage</th>
-				<th>ETA</th>
-				<th>ETD</th>
+				<th>Booking No.</th>
+				<th>Vessel & Voyage</th>
+				<th>Port</th>
+				<th>Status</th>
+				<th>Arrival Date</th>
+				<th>Departure</th>
+				<th>Owner</th>
+				<th>Cargo</th>
+				<th>Cargo Weight</th>
+				<th>Sub Agent</th>
 			</tr>
 			</thead>
-			#{list items:bookings, as:'booking'}
+			#{list items:operations, as:'ops'}
 			    <tr>
-			        <td><a href="@{Bookings.form(booking.id)}">${booking.id}</a></td>
-			        <td>${booking.vessel.name}</td>
-			        <td>${booking.voyage}</td>
-			        <td>${booking.booking.eta.format('yyyy-MM-dd')}</td>
-			        <td>${booking.booking.etd.format('yyyy-MM-dd')}</td>
-			    </tr>
-			#{/list}
-		</table>
-		
-	
-		
-		<h3>Upcoming Vessel</h3>
-		<table>
-			<thead>
-			<tr>
-				<th>Booking Number</th>
-				<th>Vessel</th>
-				<th>Voyage</th>
-				<th>ETA</th>
-				<th>ETD</th>
-			</tr>
-			</thead>
-			#{list items:berthings, as:'berthing'}
-			    <tr>
-			        <td><a href="@{Berthings.form(berthing.id)}">${berthing.id}</a></td>
-			        <td>${berthing.vessel.name}</td>
-			        <td>${berthing.voyage}</td>
-			        <td>${berthing.booking.eta.format('yyyy-MM-dd')}</td>
-			        <td>${berthing.booking.etd.format('yyyy-MM-dd')}</td>
-			    </tr>
-			#{/list}
-		</table>
-		
-		<h3>Berthing Vessel</h3>
-		<table>
-			<thead>
-			<tr>
-			<th>Booking Number</th>
-				<th>Vessel</th>
-				<th>Voyage</th>
-				<th>ATA</th>
-				<th>ETD</th>
-			</tr>				
-			</thead>
-			#{list items:departures, as:'departure'}
-			    <tr>
-			        <td><a href="@{Departures.form(departure.id)}">${departure.id}</a></td>
-			        <td>${departure.vessel.name}</td>
-			        <td>${departure.voyage}</td>
-			        <td>${departure.berthing.ata.format('yyyy-MM-dd')}</td>
-			        <td>${departure.booking.etd.format('yyyy-MM-dd')}</td>
-			    </tr>
-			#{/list}
-		</table>
-		
-		<h3>Departured Vessel</h3>	
-		<table>
-			<thead>
-			<tr>
-				<th>Booking Number</th>
-				<th>Vessel</th>
-				<th>Voyage</th>
-				<th>ATA</th>
-				<th>ATD</th>
-			</tr>
-			</thead>
-			#{list items:finals, as:'finalcharge'}
-			    <tr>
-			        <td><a href="@{FinalCharges.form(finalcharge.id)}">${finalcharge.id}</a></td>
-			        <td>${finalcharge.vessel.name}</td>
-			        <td>${finalcharge.voyage}</td>
-			        <td>${finalcharge.berthing.ata.format('yyyy-MM-dd')}</td>
-			        <td>${finalcharge.departure.atd.format('yyyy-MM-dd')}</td>
+			        <td><a href="@{Bookings.form(ops.id)}">${ops?.id}</a></td>
+			        <td>${ops?.vessel?.name} ${ops?.voyage}</td>
+			        <td>${ops?.port?.name}</td>
+			        <td>${ops?.status}</td>
+			        <td>${ops?.booking?.eta?.format('yyyy-MM-dd')}</td>
+			        <td>${ops?.booking?.etd?.format('yyyy-MM-dd')}</td>
+			        <td>${ops?.vessel?.owner?.name}</td>
+			        <td>Cargo</td>
+			        <td>Weight</td>
+			        <td>${ops?.subAgent?.name}</td>
 			    </tr>
 			#{/list}
 		</table>
 	</div>
+	
 </div>

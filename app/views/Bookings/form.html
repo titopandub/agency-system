@@ -132,27 +132,31 @@
 				</thead>
 				<tr>
 					<td>Harbour dues</td>
-					<td>${booking?.booking?.harbor}</td>
+					<td class="port-cost">${booking?.booking?.harbor}</td>
 				</tr>
 				<tr>
 					<td>Quay dues</td>
-					<td>${booking?.booking?.queue}</td>
+					<td class="port-cost">${booking?.booking?.queue}</td>
 				</tr>
 				<tr>
 					<td>Pilot dues</td>
-					<td>${booking?.booking?.pilot}</td>
+					<td class="port-cost">${booking?.booking?.pilot}</td>
 				</tr>
 				<tr>
 					<td>Tug dues</td>
-					<td>${booking?.booking?.tug}</td>
+					<td class="port-cost">${booking?.booking?.tug}</td>
 				</tr>
 				<tr>
 					<td>Light dues</td>
-					<td>${booking?.booking?.light}</td>
+					<td class="port-cost">${booking?.booking?.light}</td>
 				</tr>
 				<tr>
 					<td>Government Tax</td>
-					<td>${booking?.booking?.gnt}</td>
+					<td class="port-cost">${booking?.booking?.gnt}</td>
+				</tr>
+				<tr>
+					<td class="total-line">Subtotal</td>
+		            <td class="total-value"><div id="subtotal-port">0</div></td>
 				</tr>
 			</table>
 		</div>
@@ -175,14 +179,14 @@
 		        </thead>	
 			        #{list items:booking?.booking?.additional, as:'additional'}
 					<tr class="item-row">
-						<td><div class="delete-wpr"><input type="text" name='additional[${additional_index - 1}].name' value="${additional?.name}" class="${field.errorClass}" /><a href="javascript:;" class="delete">x</a></td>
+						<td><span class="delete-wpr"><input type="text" name='additional[${additional_index - 1}].name' value="${additional?.name}" class="${field.errorClass}" /><a href="javascript:;" class="delete">x</a></span></td>
 						<td><input type="text" name='additional[${additional_index - 1}].cost' value="${additional?.cost}" class="add-cost" /></td>
 					</tr>
 			        #{/list}
 					#{else}
 						#{list items:0..0, as:'i'}
 						<tr class="item-row">
-							<td><div class="delete-wpr"><input type="text" name='additional[${i}].name' value="${additional?.name}" class="add-name" /><a href="javascript:;" class="delete">x</a></td>
+							<td><span class="delete-wpr"><input type="text" name='additional[${i}].name' value="${additional?.name}" class="add-name" /><a href="javascript:;" class="delete">x</a></span></td>
 							<td><input type="text" name='additional[${i}].cost' value="${additional?.cost}" class="add-cost" /></td>
 						</tr>
 						#{/list}

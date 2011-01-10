@@ -103,27 +103,31 @@
 				</thead>
 				<tr>
 					<td>Harbour dues</td>
-					<td>${berthing?.berthing?.harbor}</td>
+					<td class="port-cost">${berthing?.berthing?.harbor}</td>
 				</tr>
 				<tr>
 					<td>Quay dues</td>
-					<td>${berthing?.berthing?.queue}</td>
+					<td class="port-cost">${berthing?.berthing?.queue}</td>
 				</tr>
 				<tr>
 					<td>Pilot dues</td>
-					<td>${berthing?.berthing?.pilot}</td>
+					<td class="port-cost">${berthing?.berthing?.pilot}</td>
 				</tr>
 				<tr>
 					<td>Tug dues</td>
-					<td>${berthing?.berthing?.tug}</td>
+					<td class="port-cost">${berthing?.berthing?.tug}</td>
 				</tr>
 				<tr>
 					<td>Light dues</td>
-					<td>${berthing?.berthing?.light}</td>
+					<td class="port-cost">${berthing?.berthing?.light}</td>
 				</tr>
 				<tr>
 					<td>Government Tax</td>
-					<td>${berthing?.berthing?.gnt}</td>
+					<td class="port-cost">${berthing?.berthing?.gnt}</td>
+				</tr>
+				<tr>
+					<td class="total-line">Subtotal</td>
+		            <td class="total-value"><div id="subtotal-port">0</div></td>
 				</tr>
 			</table>
 		</div>
