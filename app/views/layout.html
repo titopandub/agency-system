@@ -21,14 +21,6 @@
 				<div style="clear:both"></div>
 				
 				<ul id="menu">
-					<li><a href="/" class="drop">Dashboard</a>
-						<div class="dropdown_1column">
-							<ul>
-								<li><a href="/">Upcoming Vessel</a></li>
-								<li><a href="/monthly">Monthly Report</a></li>		
-							</ul>
-						</div>
-					</li>
 					<li><a href="/ops" class="drop">Operational</a>
 						<div class="dropdown_1column">
 							<ul>
@@ -48,6 +40,7 @@
 							</ul>
 						</div>
 					</li>
+					#{secure.check 'manager'}
 					<li><a href="/approvals" class="drop">Approval</a>
 						<div class="dropdown_1column">
 							<ul>
@@ -56,14 +49,12 @@
 							</ul>
 						</div>
 					</li>
-					<li class="menu_right"><a href="#" class="drop">Login</a>
-						<div class="dropdown_1column align_right">  
-							<div class="col_1">  
-							<p>This is a 1 Column content</p>  
-							</div>  
-						</div>
-					</li>
+					#{/secure.check}
+					<li class="menu_right no-drop">
+	                    <a href="@{Secure.logout()}">Log out</a>
+	                </li>
 					<li class="menu_right no-drop"><a href="#">Change Password</a></li>
+					<li class="menu_right no-drop"><a href="@{Admin.index()}" class="drop">Login</a></li>
 				</ul>
 				
 				<div style="clear:both"></div>

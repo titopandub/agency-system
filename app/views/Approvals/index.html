@@ -1,93 +1,69 @@
 #{extends 'layout.html' /}
 
 <div id="crudList">
-	
-	<h2>Booking Vessel</h2>
-	<table id="crudList">
-		<thead>
-			<th>Booking Number</th>
-			<th>Vessel</th>
-			<th>Voyage</th>
-			<th>Customer</th>
-			<th>ETA</th>
-			<th>ETD</th>
-		</thead>
-		#{list items:bookings, as:'booking'}
-		    <tr>
-		        <td><a href="@{Approvals.formBooking(booking.id)}">${booking.id}</a></td>
-		        <td>${booking.vessel.name}</a></td>
-		        <td>${booking.voyage}</a></td>
-		        <td>${booking.customer.name}</a></td>
-		        <td>${booking.booking.eta.format('yyyy-MM-dd')}</td>
-		        <td>${booking.booking.etd.format('yyyy-MM-dd')}</td>
-		    </tr>
-		#{/list}
-	</table>
-	
-	<h2>Upcoming Vessel</h2>
-	<table id="crudList">
-		<thead>
-			<th>Booking Number</th>
-			<th>Vessel</th>
-			<th>Voyage</th>
-			<th>Customer</th>
-			<th>ETA</th>
-			<th>ETD</th>
-		</thead>
-		#{list items:berthings, as:'berthing'}
-		    <tr>
-		        <td><a href="@{Approvals.formBerthing(berthing.id)}">${berthing.id}</a></td>
-		        <td>${berthing.vessel.name}</a></td>
-		        <td>${berthing.voyage}</a></td>
-		        <td>${berthing.customer.name}</a></td>
-		        <td>${berthing.booking.eta.format('yyyy-MM-dd')}</td>
-		        <td>${berthing.booking.etd.format('yyyy-MM-dd')}</td>
-		    </tr>
-		#{/list}
-	</table>
-	
-	<h2>Berthing Vessel</h2>
-	<table id="crudList">
-		<thead>
-			<th>Booking Number</th>
-			<th>Vessel</th>
-			<th>Voyage</th>
-			<th>Customer</th>
-			<th>ATA</th>
-			<th>ETD</th>
-		</thead>
-		#{list items:departures, as:'departure'}
-		    <tr>
-		        <td><a href="@{Approvals.formDeparture(departure.id)}">${departure.id}</a></td>
-		        <td>${departure.vessel.name}</a></td>
-		        <td>${departure.voyage}</a></td>
-		        <td>${departure.customer.name}</a></td>
-		        <td>${departure.berthing.ata.format('yyyy-MM-dd')}</td>
-		        <td>${departure.booking.etd.format('yyyy-MM-dd')}</td>
-		    </tr>
-		#{/list}
-	</table>
-	
-	<h2>Departured Vessel</h2>
-	<table id="crudList">
-		<thead>
-			<th>Booking Number</th>
-			<th>Vessel</th>
-			<th>Voyage</th>
-			<th>Customer</th>
-			<th>ATA</th>
-			<th>ATD</th>
-		</thead>
-		#{list items:finals, as:'finalcharge'}
-		    <tr>
-		        <td><a href="@{Approvals.formFinal(finalcharge.id)}">${finalcharge.id}</a></td>
-		        <td>${finalcharge.vessel.name}</a></td>
-		        <td>${finalcharge.voyage}</a></td>
-		        <td>${finalcharge.customer.name}</a></td>
-		        <td>${finalcharge.berthing.ata.format('yyyy-MM-dd')}</td>
-		        <td>${finalcharge.departure.atd.format('yyyy-MM-dd')}</td>
-		    </tr>
-		#{/list}
-	</table>
-
+	<div id="crudListTable">
+		<h3>List Vessel Operational</h3>
+		<table>
+			<thead>
+			<tr>
+				<th>No.</th>
+				<th>Vessel & Voyage</th>
+				<th>Port</th>
+				<th>Status</th>
+				<th>Arrival Date</th>
+				<th>Departure Date</th>
+				<th>Owner</th>
+				<th>Cargo</th>
+				<th>Cargo Weight</th>
+				<th>Sub Agent</th>
+			</tr>
+			</thead>
+			#{list items:operations, as:'ops'}
+			    <tr>
+			    	#{if ops.status == "Prospect"}
+			        	<td><a href="@{Calculators.form(ops.id)}">${ops?.id}</a></td>
+			        #{/if}
+			        #{if ops.status == "New" || ops.status == "Booking Rejected"}
+			        	<td><a href="@{Approvals.formBooking(ops.id)}">${ops?.id}</a></td>
+			        #{/if}
+			        #{if ops.status == "Berthing" || ops.status == "Booking Approved" || ops.status == "Berthing Rejected"}
+			        	<td><a href="@{Approvals.formBerthing(ops.id)}">${ops?.id}</a></td>
+			        #{/if}
+			        #{if ops.status == "Departure" || ops.status == "Berthing Approved" || ops.status == "Departure Rejected"}
+			        	<td><a href="@{Approvals.formDeparture(ops.id)}">${ops?.id}</a></td>
+			        #{/if}
+			        #{if ops.status == "Final" || ops.status == "Departure Approved" || ops.status == "Final Rejected"}
+			        	<td><a href="@{Approvals.formFinal(ops.id)}">${ops?.id}</a></td>
+			        #{/if}
+			        <td>${ops?.vessel?.name} ${ops?.voyage}</td>
+			        <td>${ops?.port?.name}</td>
+			        <td>${ops?.status}</td>
+			        #{if ops.status == "Prospect"}
+			        	<td>${ops?.booking?.eta?.format('yyyy-MM-dd')}</td>
+			        	<td>${ops?.booking?.etd?.format('yyyy-MM-dd')}</td>
+			        #{/if}
+			        #{if ops.status == "New" || ops.status == "Booking Rejected"}
+			        	<td>${ops?.booking?.eta?.format('yyyy-MM-dd')}</td>
+			        	<td>${ops?.booking?.etd?.format('yyyy-MM-dd')}</td>
+			        #{/if}
+			        #{if ops.status == "Berthing" || ops.status == "Booking Approved" || ops.status == "Berthing Rejected"}
+			        	<td>${ops?.berthing?.ata?.format('yyyy-MM-dd')}</td>
+			        	<td>${ops?.berthing?.etd?.format('yyyy-MM-dd')}</td>
+			        #{/if}
+			        #{if ops.status == "Departure" || ops.status == "Berthing Approved" || ops.status == "Departure Rejected"}
+			        	<td>${ops?.berthing?.ata?.format('yyyy-MM-dd')}</td>
+			        	<td>${ops?.departure?.atd?.format('yyyy-MM-dd')}</td>
+			        #{/if}
+			        #{if ops.status == "Final" || ops.status == "Departure Approved" || ops.status == "Final Rejected"}
+			        	<td>${ops?.berthing?.ata?.format('yyyy-MM-dd')}</td>
+			        	<td>${ops?.departure?.atd?.format('yyyy-MM-dd')}</td>
+			        #{/if}
+			        <td>${ops?.vessel?.owner?.name}</td>
+			        <td>Cargo</td>
+			        <td>Weight</td>
+			        <td>${ops?.subAgent?.name}</td>
+			    </tr>
+			#{/list}
+		</table>
+	</div>
 </div>

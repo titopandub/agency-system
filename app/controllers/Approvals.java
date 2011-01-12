@@ -8,27 +8,26 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import play.*;
+import play.mvc.*;
 import play.cache.Cache;
-import play.mvc.Controller;
+import play.modules.morphia.Model.MorphiaQuery;
 import models.Agent;
 import models.Customer;
 import models.Operational;
 import models.Port;
 import models.Vessel;
 
-
+@With(Secure.class)
 public class Approvals extends Controller {
 	
 	public static void index() {
-		List<Operational> bookings = Operational.find("byStatus", "New").asList();
-		
-		List<Operational> berthings = Operational.find("byStatus", "Berthing").asList();
-		
-		List<Operational> departures = Operational.find("byStatus", "Departure").asList();
-		
-		List<Operational> finals = Operational.find("byStatus", "Final").asList();
-		
-		render(bookings, berthings, departures, finals);
+		MorphiaQuery q1 = Operational.createQuery(); // create a Query
+	    q1.or(q1.criteria("status").contains("New"), q1.criteria("status").contains("Berthing"), 
+	    		q1.criteria("status").contains("Departure"), q1.criteria("status").contains("Final"));
+	    List<Operational> operations = q1.asList();
+	    
+		render(operations);
 	}
 	
 	public static void formBooking(Long id) {

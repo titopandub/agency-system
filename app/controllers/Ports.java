@@ -10,6 +10,10 @@ import models.Port;
 import models.Tariff;
 import models.Tug;
 
+import play.*;
+import play.mvc.*;
+
+@With(Secure.class)
 public class Ports extends CRUD {
 	
 	public static void show(Long id) {

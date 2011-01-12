@@ -61,6 +61,7 @@ POST	/crud/ports/new							Ports.save
 
 # Import CRUD routes
 *		/crud									module:crud
+*		/										module:secure
 
 
 # Map static resources from the /app/public folder to the /public path

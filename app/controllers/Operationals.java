@@ -19,7 +19,10 @@ import models.Operational;
 import models.Port;
 import models.Vessel;
 
+import play.*;
+import play.mvc.*;
 
+@With(Secure.class)
 public class Operationals extends Controller {
 	
 	public static void index() {

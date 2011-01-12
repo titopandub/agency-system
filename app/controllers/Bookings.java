@@ -18,7 +18,10 @@ import models.Operational;
 import models.Port;
 import models.Vessel;
 
+import play.*;
+import play.mvc.*;
 
+@With(Secure.class)
 public class Bookings extends Controller {
 		
 	public static void form(Long id) {
