@@ -221,6 +221,13 @@ body {
 			#main .container #content form .crudDelete input {
 				display: none;
 			}
+			#main .container #content form .crudHelp {
+				font-size: 70%;
+				color: #888;
+				display: block;
+				margin-left: 25%;
+				margin-top: 5px;
+			}
 		#main .container #content table {
 			width: 100%;
 			border: 1px solid #cccccc;

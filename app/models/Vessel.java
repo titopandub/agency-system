@@ -44,9 +44,12 @@ public class Vessel extends Model {
     @MaxSize(500)
 	public String note;
 	
+	public boolean isApproved;
+	
 	public Vessel(String name, int grt) {
 		this.name = name;
 		this.grt = grt;
+		this.isApproved = false;
 	}
 	
 	public Vessel(String code, String name, int grt, Owner owner) {
@@ -54,6 +57,15 @@ public class Vessel extends Model {
 		this.name = name;
 		this.grt = grt;
 		this.owner = owner;
+		this.isApproved = false;
+	}
+	
+	public void approve(Boolean approve) {
+		if(approve) {
+			this.isApproved = true;
+		} else {
+			this.isApproved = false;
+		}
 	}
 	
 	public String toString() {

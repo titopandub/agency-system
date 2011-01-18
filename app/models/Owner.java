@@ -28,10 +28,21 @@ public class Owner extends Model {
 	
 	public String email;
 	
+	public boolean isApproved;
+	
 	public Owner(String name, String pic, String email) {
 		this.name = name;
 		this.pic = pic;
 		this.email = email;
+		this.isApproved = false;
+	}
+	
+	public void approve(Boolean approve) {
+		if(approve) {
+			this.isApproved = true;
+		} else {
+			this.isApproved = false;
+		}
 	}
 	
 	public String toString() {

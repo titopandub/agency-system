@@ -25,17 +25,21 @@ public class Port extends Model {
 	@Embedded
 	public Tariff costtariff;
 	
+	public boolean isApproved;
+	
 //	@Embedded
 //	public Tariff selltariff;
 	
 	public Port(String name) {
 		this.name = name;
+		this.isApproved = false;
 //		this.selltariff = selltariff;
 	}
 	
 	public Port(String name, Tariff costtariff) {
 		this.name = name;
 		this.costtariff = costtariff;
+		this.isApproved = false;
 //		this.selltariff = selltariff;
 	}
 	
@@ -43,6 +47,7 @@ public class Port extends Model {
 		this.code = code;
 		this.name = name;
 		this.costtariff = costtariff;
+		this.isApproved = false;
 //		this.selltariff = selltariff;
 	}
 	
@@ -59,6 +64,14 @@ public class Port extends Model {
 			v[i] = this.costtariff.tug.get(i-1).maximum;
 		}
 		return v;
+	}
+	
+	public void approve(Boolean approve) {
+		if(approve) {
+			this.isApproved = true;
+		} else {
+			this.isApproved = false;
+		}
 	}
 	
 	public String toString() {

@@ -10,7 +10,9 @@ import models.Port;
 import models.Vessel;
 import play.cache.Cache;
 import play.mvc.Controller;
+import play.mvc.With;
 
+@With(Secure.class)
 public class Calculators extends Controller {
 	
 	public static void listVessel(String term) {

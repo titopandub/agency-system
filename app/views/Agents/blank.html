@@ -10,6 +10,10 @@
 			#{crud.custom '_id'}
 				<input id="object__id" type="hidden" name="object._id" value="89" size="5" />
 			#{/crud.custom}
+			
+			#{crud.custom 'isApproved'}
+				<input id="object_isApproved" type="hidden" name="object.isApproved" value="false" size="5" />
+			#{/crud.custom}
 		#{/crud.form}
 		<p class="crudButtons">
 			<input type="submit" name="_save" value="&{'crud.save', type.modelName}" />

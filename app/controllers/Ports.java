@@ -5,11 +5,13 @@ import java.util.List;
 
 import play.i18n.Messages;
 import play.mvc.Controller;
+import play.mvc.With;
 
 import models.Port;
 import models.Tariff;
 import models.Tug;
 
+@With(Secure.class)
 public class Ports extends CRUD {
 	
 	public static void show(Long id) {

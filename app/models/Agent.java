@@ -29,10 +29,21 @@ public class Agent extends Model {
 	
 	public String email;
 	
+	public boolean isApproved;
+	
 	public Agent(String name, String address, String email) {
 		this.name = name;
 		this.address = address;
 		this.email = email;
+		this.isApproved = false;
+	}
+	
+	public void approve(Boolean approve) {
+		if(approve) {
+			this.isApproved = true;
+		} else {
+			this.isApproved = false;
+		}
 	}
 	
 	public String toString() {

@@ -8,6 +8,7 @@ import java.util.List;
 
 import play.cache.Cache;
 import play.mvc.Controller;
+import play.mvc.With;
 import models.Additional;
 import models.Agent;
 import models.Customer;
@@ -15,13 +16,8 @@ import models.Operational;
 import models.Port;
 import models.Vessel;
 
-
+@With(Secure.class)
 public class FinalCharges extends Controller {
-	
-	public static void index() {
-		List<Operational> finalcharges = Operational.find("byBStatus", "Final").asList();
-		render(finalcharges);
-	}
 	
 	public static void form(Long id) {
 		

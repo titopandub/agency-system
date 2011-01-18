@@ -13,13 +13,14 @@ import com.google.code.morphia.query.Query;
 import play.cache.Cache;
 import play.modules.morphia.Model.MorphiaQuery;
 import play.mvc.Controller;
+import play.mvc.With;
 import models.Agent;
 import models.Customer;
 import models.Operational;
 import models.Port;
 import models.Vessel;
 
-
+@With(Secure.class)
 public class Operationals extends Controller {
 	
 	public static void index() {

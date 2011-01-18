@@ -18,9 +18,12 @@ import play.test.Fixtures;
 public class Bootstrap extends Job {
 	
 	public void doJob() throws Exception {
-		//MorphiaFixtures.deleteAll();
+		MorphiaFixtures.deleteAll();
 		if(User.count() ==0) {
-			new User("tito", "nindia", "yamatokusanagi@gmail.com").save();
+			User tito = new User("tito", "nindia", "yamatokusanagi@gmail.com").save();
+			tito.isAdmin = true;
+			tito.isManager = true;
+			tito.save();
 			new Owner("COSCON", "Shanghai", "owner@coscon.com").save();
 	    	Owner coscon = Owner.find("byName", "COSCON").first();
 	    	

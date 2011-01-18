@@ -24,6 +24,10 @@
 				    #{/ifError}
 				#{/field}
 			#{/crud.custom}
+			
+			#{crud.custom 'isApproved'}
+				<input id="object_isApproved" type="hidden" name="object.isApproved" value="false" size="5" />
+			#{/crud.custom}
 		#{/crud.form}
 		<p class="crudButtons">
 			<input type="submit" name="_save" value="&{'crud.save', type.modelName}" />

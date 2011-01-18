@@ -23,14 +23,25 @@ public class User extends Model {
 	
 	public boolean isManager;
 	
+	public boolean isApproved;
+	
 	public User(String username, String password, String email) {
 		this.username = username;
 		this.password = password;
 		this.email = email;
+		this.isApproved = false;
 	}
 	
 	public static User connect(String username, String password) {
 		return find("byUsernameAndPassword", username, password).first();
+	}
+	
+	public void approve(Boolean approve) {
+		if(approve) {
+			this.isApproved = true;
+		} else {
+			this.isApproved = false;
+		}
 	}
 	
 	public String toString() {

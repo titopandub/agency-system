@@ -6,6 +6,9 @@
 GET     /                                       Reports.upcoming
 GET     /monthly                                Reports.monthly
 
+# Import Secure routes
+*		/login									module:secure
+
 # Approval
 GET		/approvals								Approvals.index
 POST	/approvals/{id}							Approvals.approval
@@ -15,7 +18,7 @@ GET		/approvals/departure/{id}				Approvals.formDeparture
 GET		/approvals/final/{id}					Approvals.formFinal
 
 # Operational
-GET		/ops									Operationals.index
+GET		/ops/?									Operationals.index
 
 # Calculator
 GET		/ops/calculate/{id}						Calculators.form
@@ -25,28 +28,24 @@ POST	/ops/calculate/new						Calculators.calculate
 GET		/listVessel								Calculators.listVessel
 
 # Booking
-GET		/ops/bookings/?							Bookings.index
 GET		/ops/bookings/{id}						Bookings.form
 POST	/ops/bookings/{id}						Bookings.save
 GET		/ops/bookings/new						Bookings.form
 POST	/ops/bookings/new						Bookings.save
 
 # Berthing
-GET		/ops/berthings/?						Berthings.index
 GET		/ops/berthings/{id}						Berthings.form
 POST	/ops/berthings/{id}						Berthings.save
 GET		/ops/berthings/new						Berthings.form
 POST	/ops/berthings/new						Berthings.save
 
 # Departure
-GET		/ops/departures/?						Departures.index
 GET		/ops/departures/{id}					Departures.form
 POST	/ops/departures/{id}					Departures.save
 GET		/ops/departures/new						Departures.form
 POST	/ops/departures/new						Departures.save
 
 # Departure
-GET		/ops/finals/?							FinalCharges.index
 GET		/ops/finals/{id}						FinalCharges.form
 POST	/ops/finals/{id}						FinalCharges.save
 GET		/ops/finals/new							FinalCharges.form

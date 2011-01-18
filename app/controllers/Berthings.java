@@ -9,6 +9,7 @@ import java.util.List;
 
 import play.cache.Cache;
 import play.mvc.Controller;
+import play.mvc.With;
 import models.Additional;
 import models.Agent;
 import models.Customer;
@@ -16,13 +17,8 @@ import models.Operational;
 import models.Port;
 import models.Vessel;
 
-
+@With(Secure.class)
 public class Berthings extends Controller {
-	
-	public static void index() {
-		List<Operational> berthings = Operational.find("byBStatus", "Berthing").asList();
-		render(berthings);
-	}
 	
 	public static void form(Long id) {
 		
