@@ -11,10 +11,6 @@ import models.Vessel;
 import play.cache.Cache;
 import play.mvc.Controller;
 
-import play.*;
-import play.mvc.*;
-
-@With(Secure.class)
 public class Calculators extends Controller {
 	
 	public static void listVessel(String term) {
@@ -56,15 +52,22 @@ public class Calculators extends Controller {
 				booking = Operational.findById(id);
 				booking.vessel = vessel;
 				booking.port = port;
+				booking.voyage = voyage;
+				booking.oBooking(eta, etd, quay, bookTugIn, bookTugOut, cargo, cargoWeight);
+				int i = 0;
+				while(i < additional.size()) {
+					booking.booking.addAdditional(additional.get(i).name, additional.get(i).cost);
+					i++;
+				}
 			} else {
 				booking = new Operational(vessel, port);
-			}
-			booking.voyage = voyage;
-			booking.oCalculate(eta, etd, quay, bookTugIn, bookTugOut, cargo, cargoWeight);
-			int i = 0;
-			while(i < additional.size()) {
-				booking.booking.addAdditional(additional.get(i).name, additional.get(i).cost);
-				i++;
+				booking.voyage = voyage;
+				booking.oBooking(eta, etd, quay, bookTugIn, bookTugOut, cargo, cargoWeight);
+				int i = 0;
+				while(i < additional.size()) {
+					booking.booking.addAdditional(additional.get(i).name, additional.get(i).cost);
+					i++;
+				}
 			}
 			Cache.set("booking_" + id, booking, "1mn");
 			form(id);
@@ -77,15 +80,22 @@ public class Calculators extends Controller {
 				booking = Operational.findById(id);
 				booking.vessel = vessel;
 				booking.port = port;
+				booking.voyage = voyage;
+				booking.oBooking(eta, etd, quay, bookTugIn, bookTugOut, cargo, cargoWeight);
+				int i = 0;
+				while(i < additional.size()) {
+					booking.booking.addAdditional(additional.get(i).name, additional.get(i).cost);
+					i++;
+				}
 			} else {
 				booking = new Operational(vessel, port);
-			}
-			booking.voyage = voyage;
-			booking.oCalculate(eta, etd, quay, bookTugIn, bookTugOut, cargo, cargoWeight);
-			int i = 0;
-			while(i < additional.size()) {
-				booking.booking.addAdditional(additional.get(i).name, additional.get(i).cost);
-				i++;
+				booking.voyage = voyage;
+				booking.oBooking(eta, etd, quay, bookTugIn, bookTugOut, cargo, cargoWeight);
+				int i = 0;
+				while(i < additional.size()) {
+					booking.booking.addAdditional(additional.get(i).name, additional.get(i).cost);
+					i++;
+				}
 			}
 			booking.save();
 			Cache.delete("booking_" + id);

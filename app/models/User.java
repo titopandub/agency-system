@@ -33,15 +33,6 @@ public class User extends Model {
 		return find("byUsernameAndPassword", username, password).first();
 	}
 	
-	public boolean changePass(String oldPassword, String newPassword) {
-		if(this.password == oldPassword) {
-			this.password = newPassword;
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
 	public String toString() {
 		return username;
 	}

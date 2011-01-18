@@ -91,14 +91,6 @@ public class Operational extends Model {
 		}
 	}
 	
-	public void oCalculate(Date eta, Date etd, int quay, Double bookTugIn, 
-			Double bookTugOut, String cargo, int cargoWeight) {
-		this.booking = new Booking(eta, etd, quay, bookTugIn, bookTugOut, cargo, cargoWeight);
-		this.status = "Prospect";
-		this.booking.additional = new ArrayList();
-		eBookingExpenses();
-	}
-	
 	public void oBooking(Date eta, Date etd, int quay, Double bookTugIn, 
 			Double bookTugOut, String cargo, int cargoWeight) {
 		this.booking = new Booking(eta, etd, quay, bookTugIn, bookTugOut, cargo, cargoWeight);

@@ -8,10 +8,6 @@ import models.Operational;
 import play.modules.morphia.Model.MorphiaQuery;
 import play.mvc.Controller;
 
-import play.*;
-import play.mvc.*;
-
-@With(Secure.class)
 public class Reports extends Controller {
 	
 	public static Date date = new Date();

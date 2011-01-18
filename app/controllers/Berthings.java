@@ -9,7 +9,6 @@ import java.util.List;
 
 import play.cache.Cache;
 import play.mvc.Controller;
-import play.mvc.With;
 import models.Additional;
 import models.Agent;
 import models.Customer;
@@ -17,10 +16,7 @@ import models.Operational;
 import models.Port;
 import models.Vessel;
 
-import play.*;
-import play.mvc.*;
 
-@With(Secure.class)
 public class Berthings extends Controller {
 	
 	public static void index() {
