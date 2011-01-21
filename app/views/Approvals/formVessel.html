@@ -1,0 +1,121 @@
+#{extends 'layout.html' /}
+
+<div class="objectForm">
+#{form @approvalVessel(vessel?.id)}
+	<h3>Vessel detail</h3>
+	
+	<div>
+		#{field 'name'}
+		<label>Name</label>
+		<label>${vessel?.name}</label>
+		<br/>
+		#{/field}
+	</div>
+	
+	<div>
+		#{field 'flag'}
+		<label>Flag</label>
+		<label>${vessel?.flag}</label>
+		<br/>
+		#{/field}
+	</div>
+	
+	<div>
+		#{field 'built'}
+		<label>Built</label>
+		<label>${vessel?.built}</label>
+		<br/>
+		#{/field}
+	</div>
+	
+	<div>
+		#{field 'dwt'}
+		<label>DWT</label>
+		<label>${vessel?.dwt}</label>
+		<br/>
+		#{/field}
+	</div>
+	
+	<div>
+        #{field 'grt'}
+        <label>GRT</label>
+        <label>${vessel?.grt}</label>
+        <br/>
+        #{/field}
+    </div>
+	
+	<div>
+        #{field 'nrt'}
+        <label>NRT</label>
+        <label>${vessel?.nrt}</label>
+        <br/>
+        #{/field}
+    </div>
+	
+	<div>
+        #{field 'loa'}
+        <label>LOA</label>
+        <label>${vessel?.loa}</label>
+        <br/>
+        #{/field}
+    </div>
+    
+    <div>
+        #{field 'beam'}
+        <label>Beam</label>
+        <label>${vessel?.beam}</label>
+        <br/>
+        #{/field}
+    </div>
+    
+    <div>
+        #{field 'loa'}
+        <label>LOA</label>
+        <label>${vessel?.loa}</label>
+        <br/>
+        #{/field}
+    </div>
+    
+    <div>
+        #{field 'ha'}
+        <label>HA</label>
+        <label>${vessel?.ha}</label>
+        <br/>
+        #{/field}
+    </div>
+    
+    <div>
+        #{field 'ho'}
+        <label>HO</label>
+        <label>${vessel?.ho}</label>
+        <br/>
+        #{/field}
+    </div>
+    
+    <div>
+        #{field 'derricks'}
+        <label>Derricks</label>
+        <label>${vessel?.derricks}</label>
+        <br/>
+        #{/field}
+    </div>
+    
+    <div>
+        #{field 'owner'}
+        <label>Owner</label>
+        <label>${vessel?.owner?.name}</label>
+        <br/>
+        #{/field}
+    </div>
+    
+	<p class="crudButtons">
+        <input type="submit" name="approve" value="Approve" />
+		<input type="submit" name="reject" value="Reject" />
+    </p>
+
+#{/form}
+</div>
+
+
+
+

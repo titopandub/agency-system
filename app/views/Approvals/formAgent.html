@@ -1,0 +1,70 @@
+#{extends 'layout.html' /}
+
+<div class="objectForm">
+#{form @approvalAgent(agent?.id)}
+	<h3>Agent detail</h3>
+	
+	<p>
+		#{field 'name'}
+		<label>Name</label>
+		<label>${agent?.name}</label>
+		<br/>
+		#{/field}
+	</p>
+	
+	<p>
+		#{field 'pic'}
+		<label>Person in Charge</label>
+		<label>${agent?.pic}</label>
+		<br/>
+		#{/field}
+	</p>
+	
+	<p>
+		#{field 'pictelephone'}
+		<label>PIC Phone Number</label>
+		<label>${agent?.pictelephone}</label>
+		<br/>
+		#{/field}
+	</p>
+	
+	<p>
+		#{field 'address'}
+		<label>Address</label>
+		<label>${agent?.address}</label>
+		<br/>
+		#{/field}
+	</p>
+	
+	<p>
+        #{field 'telephone'}
+        <label>Telephone Number</label>
+        <label>${agent?.telephone}</label>
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'fax'}
+        <label>Fax Number</label>
+        <label>${agent?.fax}</label>
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'email'}
+        <label>Email Address</label>
+        <label>${agent?.email}</label>
+        #{/field}
+    </p>
+    
+	<p class="crudButtons">
+        <input type="submit" name="approve" value="Approve" />
+		<input type="submit" name="reject" value="Reject" />
+    </p>
+
+#{/form}
+</div>
+
+
+
+

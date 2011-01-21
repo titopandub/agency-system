@@ -1,0 +1,99 @@
+#{extends 'layout.html' /}
+
+<div class="objectForm">
+#{form @approvalPort(port?.id)}
+	<h3>Port detail</h3>
+	
+	<div>
+		#{field 'name'}
+		<label>Name</label>
+		<label>${port?.name}</label>
+		<br/>
+		#{/field}
+	</div>
+	
+	<div>
+		#{field 'type'}
+		<label>Type</label>
+		<label>${port?.costtariff?.type}</label>
+		<br/>
+		#{/field}
+	</div>
+	
+	<div>
+		#{field 'harbour'}
+		<label>Harbour tariff</label>
+		<label>${port?.costtariff?.harbour}</label>
+		<br/>
+		#{/field}
+	</div>
+	
+	<div>
+		#{field 'quay'}
+		<label>Quay tariff</label>
+		<label>${port?.costtariff?.quay}</label>
+		<br/>
+		#{/field}
+	</div>
+	
+	<div>
+        #{field 'pilotfix'}
+        <label>Pilot tariff (fix)</label>
+        <label>${port?.costtariff?.pilotfix}</label>
+        <br/>
+        #{/field}
+    </div>
+	
+	<div>
+        #{field 'pilotvar'}
+        <label>Pilot tariff (variable)</label>
+        <label>${port?.costtariff?.pilotvar}</label>
+        <br/>
+        #{/field}
+    </div>
+	
+	<div>
+        #{field 'light'}
+        <label>Light tariff</label>
+        <label>${port?.costtariff?.light}</label>
+        <br/>
+        #{/field}
+    </div>
+    
+    #{field 'tug'}    
+    <div class="crudField">
+        <label>Tug Tariff</label>
+		<div id="crudListTable">
+			<table id="dataTable" border="0">
+			<thead>
+	        	<tr>
+					<th>Minimum GRT</th>
+					<th>Maximum GRT</th>
+					<th>Fix Tariff</th>
+					<th>Variable Tariff</th>
+				</tr>
+	        </thead>
+		        #{list items:port?.costtariff?.tug, as:'tug'}
+				<tr class="item-row">
+					<td>${tug?.minimum}</td>
+					<td>${tug?.maximum}</td>
+					<td>${tug?.fixed}</td>
+					<td>${tug?.var}</td>
+				</tr>
+		        #{/list}
+			</table>
+		</div>
+    </div>
+    #{/field}
+    
+	<p class="crudButtons">
+        <input type="submit" name="approve" value="Approve" />
+		<input type="submit" name="reject" value="Reject" />
+    </p>
+
+#{/form}
+</div>
+
+
+
+

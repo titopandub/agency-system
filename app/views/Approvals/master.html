@@ -1,0 +1,85 @@
+#{extends 'layout.html' /}
+
+<div id="crudList">
+	<div id="crudListTable">
+	#{if agents != null}
+		<h3>Agent</h3>
+		<table>
+			<thead>
+			<tr>
+				<th>Name</th>
+			</tr>
+			</thead>
+			#{list items:agents, as:'agent'}
+			    <tr>
+			        <td><a href="@{Approvals.formAgent(agent.id)}">${agent?.name}</a></td>
+			    </tr>
+			#{/list}
+		</table>
+	#{/if}
+		
+	#{if customers != null}
+		<h3>Customer</h3>
+		<table>
+			<thead>
+			<tr>
+				<th>Name</th>
+			</tr>
+			</thead>
+			#{list items:customers, as:'customer'}
+			    <tr>
+			        <td><a href="@{Approvals.formCustomer(customer.id)}">${customer?.name}</a></td>
+			    </tr>
+			#{/list}
+		</table>
+	#{/if}
+		
+	#{if owners != null}
+		<h3>Owner</h3>
+		<table>
+			<thead>
+			<tr>
+				<th>Name</th>
+			</tr>
+			</thead>
+			#{list items:owners, as:'own'}
+			    <tr>
+			        <td><a href="@{Approvals.formOwner(own.id)}">${own?.name}</a></td>
+			    </tr>
+			#{/list}
+		</table>
+	#{/if}
+	
+	#{if ports != null}	
+		<h3>Port</h3>
+		<table>
+			<thead>
+			<tr>
+				<th>Name</th>
+			</tr>
+			</thead>
+			#{list items:ports, as:'port'}
+			    <tr>
+			        <td><a href="@{Approvals.formPort(port.id)}">${port?.name}</a></td>
+			    </tr>
+			#{/list}
+		</table>
+	#{/if}
+		
+	#{if vessels != null}
+		<h3>Vessel</h3>
+		<table>
+			<thead>
+			<tr>
+				<th>Name</th>
+			</tr>
+			</thead>
+			#{list items:vessels, as:'vessel'}
+			    <tr>
+			        <td><a href="@{Approvals.formVessel(vessel.id)}">${vessel?.name}</a></td>
+			    </tr>
+			#{/list}
+		</table>
+	#{/if}
+	</div>
+</div>

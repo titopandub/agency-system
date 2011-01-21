@@ -206,6 +206,14 @@ public class Operational extends Model {
 		
 	}
 	
+	public void approvalCalculate(Boolean approve) {
+		if(approve) {
+			this.status = "New";
+		} else {
+			this.status = "Prospect Rejected";
+		}
+	}
+	
 	public void approvalBooking(Boolean approve) {
 		if(approve) {
 			this.status = "Booking Approved";

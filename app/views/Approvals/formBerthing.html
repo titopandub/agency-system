@@ -39,6 +39,7 @@
         #{field 'ata'}
         <label>Actual Time Arrival :</label>
         <label>${berthing?.berthing?.ata?.format('yyyy-MM-dd')}</label>
+        <br/>
         #{/field}
     </p>
 	
@@ -46,6 +47,7 @@
         #{field 'etd'}
         <label>Estimate Time Departure :</label>
         <label>${berthing?.berthing?.etd?.format('yyyy-MM-dd')}</label>
+        <br/>
         #{/field}
     </p>
 	
@@ -53,6 +55,7 @@
         #{field 'berthTugIn'}
         <label>Estimate Tug in duration :</label>
         <label>${berthing?.berthing?.berthTugIn}</label>
+        <br/>
         #{/field}
     </p>
 	
@@ -60,6 +63,7 @@
         #{field 'cargo'}
         <label>Cargo Name :</label>
         <label>${berthing?.berthing?.cargo}</label>
+        <br/>
         #{/field}
     </p>
 	
@@ -67,56 +71,72 @@
         #{field 'cargoWeight'}
         <label>Cargo Weight :</label>
         <label>${berthing?.berthing?.cargoWeight}</label>
+        <br/>
         #{/field}
     </p>
-		
-	<p>
-		#{field 'harbor'}
-		<label>Harbor dues : </label>
-		<label>${berthing?.berthing?.harbor}</label>
-		<br/>
-		#{/field}
-	</p>
+    
+    <div class="crudField crud_text">
+		<table id="charges">
+			<thead>
+				<tr>
+					<th>Charges</th>
+					<th>Cost</th>
+				</tr>
+			</thead>
+			<tr>
+				<td>Harbour dues</td>
+				<td class="port-cost">${berthing?.berthing?.harbor}</td>
+			</tr>
+			<tr>
+				<td>Quay dues</td>
+				<td class="port-cost">${berthing?.berthing?.queue}</td>
+			</tr>
+			<tr>
+				<td>Pilot dues</td>
+				<td class="port-cost">${berthing?.berthing?.pilot}</td>
+			</tr>
+			<tr>
+				<td>Tug dues</td>
+				<td class="port-cost">${berthing?.berthing?.tug}</td>
+			</tr>
+			<tr>
+				<td>Light dues</td>
+				<td class="port-cost">${berthing?.berthing?.light}</td>
+			</tr>
+			<tr>
+				<td>Government Tax</td>
+				<td class="port-cost">${berthing?.berthing?.gnt}</td>
+			</tr>
+			<tr>
+				<td class="total-line">Subtotal</td>
+	            <td class="total-value"><div id="subtotal-port">0</div></td>
+			</tr>
+		</table>
+	</div>
 	
-	<p>
-		#{field 'queue'}
-		<label>Queue dues : </label>
-		<label>${berthing?.berthing?.queue}</label>
-		<br/>
-		#{/field}
-	</p>
-	
-	<p>
-		#{field 'pilot'}
-		<label>Pilot dues : </label>
-		<label>${berthing?.berthing?.pilot}</label>
-		<br/>
-		#{/field}
-	</p>
-	
-	<p>
-		#{field 'tug'}
-		<label>Tug dues : </label>
-		<label>${berthing?.berthing?.tug}</label>
-		<br/>
-		#{/field}
-	</p>
-	
-	<p>
-		#{field 'light'}
-		<label>Light dues : </label>
-		<label>${berthing?.berthing?.light}</label>
-		<br/>
-		#{/field}
-	</p>
-	
-	<p>
-		#{field 'gnt'}
-		<label>Government Tax : </label>
-		<label>${berthing?.berthing?.gnt}</label>
-		<br/>
-		#{/field}
-	</p>
+	#{field 'additional'}
+    <label>Additional Charges</label>
+	<div id="crudListTable">
+		<table id="dataTable" border="0">
+        <thead>
+        	<tr>
+				<th>Charges</th>
+				<th>Cost</th>
+			</tr>
+        </thead>	
+	        #{list items:berthing?.booking?.additional, as:'additional'}
+			<tr class="item-row">
+				<td>${additional?.name}</td>
+				<td><span class="add-cost">${additional?.cost}</span></td>
+			</tr>
+	        #{/list}
+		<tr>
+            <td class="total-line">Subtotal</td>
+            <td class="total-value"><div id="subtotal">0</div></td>
+        </tr>
+	</table>
+	</div>
+    #{/field}
 	
 	<p>
     	<input type="hidden" name="status" value="${berthing.status}">

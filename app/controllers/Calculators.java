@@ -71,6 +71,7 @@ public class Calculators extends Controller {
 					i++;
 				}
 			}
+			booking.status = "Prospect";
 			Cache.set("booking_" + id, booking, "1mn");
 			form(id);
 		} else if(params.get("save") !=null) {
@@ -99,6 +100,7 @@ public class Calculators extends Controller {
 					i++;
 				}
 			}
+			booking.status = "Prospect";
 			booking.save();
 			Cache.delete("booking_" + id);
 			redirect(request.controller + ".form", booking._key());

@@ -54,7 +54,7 @@
 		
 		<div class="crudField crud_relation">
 	        #{field 'subAgent'}
-	        <label>Agent</label>
+	        <label>Sub agent</label>
 			#{select 'subAgentId', items:agents, valueProperty:'id', labelProperty:'name', value:booking?.subAgent?._id /}
 	        #{/field}
 	    </div>
@@ -179,14 +179,14 @@
 		        </thead>	
 			        #{list items:booking?.booking?.additional, as:'additional'}
 					<tr class="item-row">
-						<td><span class="delete-wpr"><input type="text" name='additional[${additional_index - 1}].name' value="${additional?.name}" class="${field.errorClass}" /><a href="javascript:;" class="delete">x</a></span></td>
+						<td><div class="delete-wpr"><input type="text" name='additional[${additional_index - 1}].name' value="${additional?.name}" class="${field.errorClass}" /><a href="javascript:;" class="delete">x</a></td>
 						<td><input type="text" name='additional[${additional_index - 1}].cost' value="${additional?.cost}" class="add-cost" /></td>
 					</tr>
 			        #{/list}
 					#{else}
 						#{list items:0..0, as:'i'}
 						<tr class="item-row">
-							<td><span class="delete-wpr"><input type="text" name='additional[${i}].name' value="${additional?.name}" class="add-name" /><a href="javascript:;" class="delete">x</a></span></td>
+							<td><div class="delete-wpr"><input type="text" name='additional[${i}].name' value="${additional?.name}" class="add-name" /><a href="javascript:;" class="delete">x</a></td>
 							<td><input type="text" name='additional[${i}].cost' value="${additional?.cost}" class="add-cost" /></td>
 						</tr>
 						#{/list}
@@ -194,6 +194,10 @@
 					<tr>
 			            <td class="total-line">Subtotal</td>
 			            <td class="total-value"><div id="subtotal">0</div></td>
+			        </tr>
+			        <tr>
+			        	<td class="total-line">Total</td>
+			        	<td class="total-value"><div id="total">0</div></td>
 			        </tr>
 				</table>
 		        #{/field} 

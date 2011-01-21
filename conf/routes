@@ -3,19 +3,32 @@
 # ~~~~
 
 # Home page
-GET     /                                       Reports.upcoming
-GET     /monthly                                Reports.monthly
+GET     /                                       Application.index
+GET     /reports/upcoming						Reports.upcoming
+GET     /reports/monthly						Reports.monthly
 
 # Import Secure routes
 *		/login									module:secure
 
 # Approval
-GET		/approvals								Approvals.index
+GET		/approvals/ops							Approvals.index
+GET		/approvals/master						Approvals.master
 POST	/approvals/{id}							Approvals.approval
+POST	/approvals/agent/{id}					Approvals.approvalAgent
+POST	/approvals/customer/{id}				Approvals.approvalCustomer
+POST	/approvals/owner/{id}					Approvals.approvalOwner
+POST	/approvals/port/{id}					Approvals.approvalPort
+POST	/approvals/vessel/{id}					Approvals.approvalVessel
+
 GET		/approvals/booking/{id}					Approvals.formBooking
 GET		/approvals/berthing/{id}				Approvals.formBerthing
 GET		/approvals/departure/{id}				Approvals.formDeparture
 GET		/approvals/final/{id}					Approvals.formFinal
+GET		/approvals/agent/{id}					Approvals.formAgent
+GET		/approvals/customer/{id}				Approvals.formCustomer
+GET		/approvals/owner/{id}					Approvals.formOwner
+GET		/approvals/port/{id}					Approvals.formPort
+GET		/approvals/vessel/{id}					Approvals.formVessel
 
 # Operational
 GET		/ops/?									Operationals.index

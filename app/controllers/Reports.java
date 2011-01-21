@@ -10,13 +10,7 @@ import play.mvc.Controller;
 
 public class Reports extends Controller {
 	
-	public static Date date = new Date();
-	public static void upcoming() {
-//		List<Operational> berthings = Operational.find("bystatus", "Berthing").asList();
-//		berthings.addAll((List<Operational>) Operational.find("bystatus", "Booking Approved").asList());
-//		berthings.addAll((List<Operational>) Operational.find("bystatus", "Berthing Rejected").asList());
-//		render(berthings);
-		
+	public static void upcoming() {		
 		MorphiaQuery q2 = Operational.find(); // create a Query
 	    q2.or(q2.criteria("status").contains("Berthing"), 
 	    		q2.criteria("status").contains("Booking Approved"), 

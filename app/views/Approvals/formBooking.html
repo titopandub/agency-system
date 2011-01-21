@@ -7,6 +7,7 @@
         #{field 'vessel'}
         <label>Vessel:</label>
         <label>${booking?.vessel?.name}</label>
+        <br/>
         #{/field}
     </p>
 	
@@ -14,6 +15,7 @@
         #{field 'voyage'}
         <label>Name:</label>
         <label>${booking?.voyage}</label>
+        <br/>
         #{/field}
     </p>
 	
@@ -21,6 +23,7 @@
         #{field 'port'}
         <label>Port:</label>
         <label>${booking?.port?.name}</label>
+        <br/>
         #{/field}
     </p>
 	
@@ -28,6 +31,7 @@
         #{field 'customer'}
         <label>Customer:</label>
         <label>${booking?.customer?.name}</label>
+        <br/>
         #{/field}
     </p>
 	
@@ -35,6 +39,7 @@
         #{field 'agent'}
         <label>Agent:</label>
         <label>${booking?.agent?.name}</label>
+        <br/>
         #{/field}
     </p>
 	
@@ -42,6 +47,7 @@
         #{field 'statusAgent'}
         <label>Agent Status:</label>
         <label>${booking?.statusAgent}</label>
+        <br/>
         #{/field}
     </p>
 	
@@ -49,6 +55,7 @@
         #{field 'subAgent'}
         <label>Agent:</label>
         <label>${booking?.subAgent?.name}</label>
+        <br/>
         #{/field}
     </p>
 	
@@ -56,6 +63,7 @@
         #{field 'eta'}
         <label>Estimate Time Arrival:</label>
         <label>${booking?.booking?.eta?.format('yyyy-MM-dd')}</label>
+        <br/>
         #{/field}
     </p>
 	
@@ -63,6 +71,7 @@
         #{field 'etd'}
         <label>Estimate Time Departure:</label>
         <label>${booking?.booking?.etd?.format('yyyy-MM-dd')}</label>
+        <br/>
         #{/field}
     </p>
 	
@@ -70,6 +79,7 @@
         #{field 'bookTugIn'}
         <label>Estimate Tug in duration:</label>
         <label>${booking?.booking?.bookTugIn}</label>
+        <br/>
         #{/field}
     </p>
 	
@@ -77,6 +87,7 @@
         #{field 'bookTugOut'}
         <label>Estimate Tug out duration:</label>
         <label>${booking?.booking?.bookTugOut}</label>
+        <br/>
         #{/field}
     </p>
 	
@@ -84,6 +95,7 @@
         #{field 'cargo'}
         <label>Cargo Name:</label>
         <label>${booking?.booking?.cargo}</label>
+        <br/>
         #{/field}
     </p>
 	
@@ -91,52 +103,74 @@
         #{field 'cargoWeight'}
         <label>Cargo Weight:</label>
         <label>${booking?.booking?.cargoWeight}</label>
+        <br/>
         #{/field}
     </p>
-		
-	<p>
-		#{field 'harbor'}
-		<label>Harbor dues : ${booking?.booking?.harbor}</label>
-		<br/>
-		#{/field}
-	</p>
 	
-	<p>
-		#{field 'queue'}
-		<label>Queue dues : ${booking?.booking?.queue}</label>
-		<br/>
-		#{/field}
-	</p>
+	<div class="crudField crud_text">
+		<table id="charges">
+			<thead>
+				<tr>
+					<th>Charges</th>
+					<th>Cost</th>
+				</tr>
+			</thead>
+			<tr>
+				<td>Harbour dues</td>
+				<td class="port-cost">${booking?.booking?.harbor}</td>
+			</tr>
+			<tr>
+				<td>Quay dues</td>
+				<td class="port-cost">${booking?.booking?.queue}</td>
+			</tr>
+			<tr>
+				<td>Pilot dues</td>
+				<td class="port-cost">${booking?.booking?.pilot}</td>
+			</tr>
+			<tr>
+				<td>Tug dues</td>
+				<td class="port-cost">${booking?.booking?.tug}</td>
+			</tr>
+			<tr>
+				<td>Light dues</td>
+				<td class="port-cost">${booking?.booking?.light}</td>
+			</tr>
+			<tr>
+				<td>Government Tax</td>
+				<td class="port-cost">${booking?.booking?.gnt}</td>
+			</tr>
+			<tr>
+				<td class="total-line">Subtotal</td>
+	            <td class="total-value"><div id="subtotal-port">0</div></td>
+			</tr>
+		</table>
+	</div>
 	
-	<p>
-		#{field 'pilot'}
-		<label>Pilot dues : ${booking?.booking?.pilot}</label>
-		<br/>
-		#{/field}
-	</p>
-	
-	<p>
-		#{field 'tug'}
-		<label>Tug dues : ${booking?.booking?.tug}</label>
-		<br/>
-		#{/field}
-	</p>
-	
-	<p>
-		#{field 'light'}
-		<label>Light dues : ${booking?.booking?.light}</label>
-		<br/>
-		#{/field}
-	</p>
-	
-	<p>
-		#{field 'gnt'}
-		<label>Government Tax : ${booking?.booking?.gnt}</label>
-		<br/>
-		#{/field}
-	</p>
-	
-	<p>
+	#{field 'additional'}
+    <label>Additional Charges</label>
+	<div id="crudListTable">
+		<table id="dataTable" border="0">
+        <thead>
+        	<tr>
+				<th>Charges</th>
+				<th>Cost</th>
+			</tr>
+        </thead>	
+	        #{list items:booking?.booking?.additional, as:'additional'}
+			<tr class="item-row">
+				<td>${additional?.name}</td>
+				<td><span class="add-cost">${additional?.cost}</span></td>
+			</tr>
+	        #{/list}
+		<tr>
+            <td class="total-line">Subtotal</td>
+            <td class="total-value"><div id="subtotal">0</div></td>
+        </tr>
+	</table>
+	</div>
+    #{/field}
+    
+    <p>
     	<input type="hidden" name="status" value="${booking.status}">
     </p>
     

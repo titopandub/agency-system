@@ -141,7 +141,7 @@
 		        <input id="calculate" type="button" value="Calculate" />
 	        </div>
 			<div id="crudListTable">
-				<table id="dataTable">
+				<table id="dataTable" border="0">
 		        <thead>
 		        	<tr>
 						<th>Charges</th>
@@ -166,12 +166,16 @@
 			            <td class="total-line">Subtotal</td>
 			            <td class="total-value"><div id="subtotal">0</div></td>
 			        </tr>
+			        <tr>
+			        	<td class="total-line">Total</td>
+			        	<td class="total-value"><div id="total">0</div></td>
+			        </tr>
 				</table>
 		        #{/field} 
 			</div>
 	    </div>
-    </fieldset>
-    
+	</fieldset>
+	
 	<div class="buttons">
 		<input type="submit" name="save" value="Save" />
     </div>

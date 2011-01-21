@@ -5,7 +5,7 @@
 	
 	<p>
 		#{field 'vessel'}
-		<label>Vessel : </label>
+		<label>Vessel</label>
 		<label>${finalcharge?.vessel?.name}</label>
 		<br/>
 		#{/field}
@@ -13,7 +13,7 @@
 	
 	<p>
 		#{field 'voyage'}
-		<label>Voyage : </label>
+		<label>Voyage</label>
 		<label>${finalcharge?.voyage}</label>
 		<br/>
 		#{/field}
@@ -21,7 +21,7 @@
 	
 	<p>
 		#{field 'port'}
-		<label>Port : </label>
+		<label>Port</label>
 		<label>${finalcharge?.port?.name}</label>
 		<br/>
 		#{/field}
@@ -29,7 +29,7 @@
 	
 	<p>
 		#{field 'customer'}
-		<label>Customer : </label>
+		<label>Customer</label>
 		<label>${finalcharge?.customer?.name}</label>
 		<br/>
 		#{/field}
@@ -37,7 +37,7 @@
 	
 	<p>
         #{field 'ata'}
-        <label>Actual Time Arrival : </label>
+        <label>Actual Time Arrival</label>
         <label>${finalcharge?.berthing?.ata?.format('yyyy-MM-dd')}</label>
         <br/>
         #{/field}
@@ -45,7 +45,7 @@
     
     <p>
         #{field 'atd'}
-        <label>Actual Time Departure : </label>
+        <label>Actual Time Departure</label>
         <label>${finalcharge?.departure?.atd?.format('yyyy-MM-dd')}</label>
         <br/>
         #{/field}
@@ -53,35 +53,39 @@
 	
 	<p>
         #{field 'actualTugIn'}
-        <label>Actual Tug in duration :</label>
+        <label>Actual Tug in duration</label>
         <label>${finalcharge?.finalCharge?.actualTugIn}</label>
+        <br/>
         #{/field}
     </p>
     
     <p>
         #{field 'actualTugOut'}
-        <label>Actual Tug out duration :</label>
+        <label>Actual Tug out duration</label>
         <label>${finalcharge?.finalCharge?.actualTugOut}</label>
+        <br/>
         #{/field}
     </p>
 	
 	<p>
         #{field 'cargo'}
-        <label>Cargo Name :</label>
+        <label>Cargo Name</label>
         <label>${finalcharge?.finalCharge?.cargo}</label>
+        <br/>
         #{/field}
     </p>
 	
 	<p>
         #{field 'cargoWeight'}
-        <label>Cargo Weight :</label>
+        <label>Cargo Weight</label>
         <label>${finalcharge?.finalCharge?.cargoWeight}</label>
+        <br/>
         #{/field}
     </p>
 		
 	<p>
 		#{field 'harbor'}
-		<label>Harbor dues : </label>
+		<label>Harbor dues</label>
 		<label>${finalcharge?.finalCharge?.harbor}</label>
 		<br/>
 		#{/field}
@@ -89,7 +93,7 @@
 	
 	<p>
 		#{field 'queue'}
-		<label>Queue dues : </label>
+		<label>Queue dues</label>
 		<label>${finalcharge?.finalCharge?.queue}</label>
 		<br/>
 		#{/field}
@@ -97,7 +101,7 @@
 	
 	<p>
 		#{field 'pilot'}
-		<label>Pilot dues : </label>
+		<label>Pilot dues</label>
 		<label>${finalcharge?.finalCharge?.pilot}</label>
 		<br/>
 		#{/field}
@@ -105,7 +109,7 @@
 	
 	<p>
 		#{field 'tug'}
-		<label>Tug dues : </label>
+		<label>Tug dues</label>
 		<label>${finalcharge?.finalCharge?.tug}</label>
 		<br/>
 		#{/field}
@@ -113,7 +117,7 @@
 	
 	<p>
 		#{field 'light'}
-		<label>Light dues : </label>
+		<label>Light dues</label>
 		<label>${finalcharge?.finalCharge?.light}</label>
 		<br/>
 		#{/field}
@@ -121,11 +125,35 @@
 	
 	<p>
 		#{field 'gnt'}
-		<label>Government Tax : </label>
+		<label>Government Tax</label>
 		<label>${finalcharge?.finalCharge?.gnt}</label>
 		<br/>
 		#{/field}
 	</p>
+    
+    #{field 'additional'}
+    <label>Additional Charges</label>
+	<div id="crudListTable">
+		<table id="dataTable" border="0">
+        <thead>
+        	<tr>
+				<th>Charges</th>
+				<th>Cost</th>
+			</tr>
+        </thead>	
+	        #{list items:finalcharge?.booking?.additional, as:'additional'}
+			<tr class="item-row">
+				<td>${additional?.name}</td>
+				<td><span class="add-cost">${additional?.cost}</span></td>
+			</tr>
+	        #{/list}
+		<tr>
+            <td class="total-line">Subtotal</td>
+            <td class="total-value"><div id="subtotal">0</div></td>
+        </tr>
+	</table>
+	</div>
+    #{/field}
     
 	<p>
     	<input type="hidden" name="status" value="${finalcharge.status}">

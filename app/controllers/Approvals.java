@@ -12,22 +12,54 @@ import play.cache.Cache;
 import play.modules.morphia.Model.MorphiaQuery;
 import play.mvc.Controller;
 import play.mvc.With;
-import models.Agent;
-import models.Customer;
-import models.Operational;
-import models.Port;
-import models.Vessel;
+import models.*;
 
+@Check("isManager")
 @With(Secure.class)
 public class Approvals extends Controller {
 	
 	public static void index() {
 		MorphiaQuery q1 = Operational.createQuery(); // create a Query
-	    q1.or(q1.criteria("status").contains("New"), q1.criteria("status").contains("Berthing"), 
-	    		q1.criteria("status").contains("Departure"), q1.criteria("status").contains("Final"));
+	    q1.or(q1.criteria("status").equal("Prospect"), q1.criteria("status").equal("New"), q1.criteria("status").equal("Berthing"), 
+	    		q1.criteria("status").equal("Departure"), q1.criteria("status").equal("Final"));
 	    List<Operational> operations = q1.asList();
 	    
 		render(operations);
+	}
+	
+	public static void master() {
+		List<Agent> agents = Agent.filter("isApproved", false).asList();
+	    List<Customer> customers = Customer.filter("isApproved", false).asList();
+	    List<Owner> owners = Owner.filter("isApproved", false).asList();
+	    List<Port> ports = Port.filter("isApproved", false).asList();
+	    List<Vessel> vessels = Vessel.filter("isApproved", false).asList();
+	    
+	    render(agents, customers, owners, ports, vessels);
+	}
+	
+	public static void formAgent(Long id) {
+		Agent agent = Agent.findById(id);
+		render(agent);
+	}
+	
+	public static void formCustomer(Long id) {
+		Customer customer = Customer.findById(id);
+		render(customer);
+	}
+	
+	public static void formOwner(Long id) {
+		Owner owner = Owner.findById(id);
+		render(owner);
+	}
+	
+	public static void formPort(Long id) {
+		Port port = Port.findById(id);
+		render(port);
+	}
+	
+	public static void formVessel(Long id) {
+		Vessel vessel = Vessel.findById(id);
+		render(vessel);
 	}
 	
 	public static void formBooking(Long id) {
@@ -85,7 +117,13 @@ public class Approvals extends Controller {
 	public static void approval(Long id, String status) {
 		Operational operational = Operational.findById(id);
 		System.out.println(status);
-		if(status.equals("New")) {
+		if(status.equals("Prospect")) {
+			if(params.get("approve") != null) {
+				operational.approvalBooking(true);
+			} else {
+				operational.approvalBooking(false);
+			}
+		} else if(status.equals("New")) {
 			if(params.get("approve") != null) {
 				operational.approvalBooking(true);
 			} else {
@@ -112,6 +150,61 @@ public class Approvals extends Controller {
 		}
 		operational.save();
 		index();
+	}
+	
+	public static void approvalAgent(Long id) {
+		Agent agent = Agent.findById(id);
+		if(params.get("approve") != null) {
+			agent.approve(true);
+		} else {
+			agent.approve(false);
+		}
+		agent.save();
+		master();
+	}
+	
+	public static void approvalCustomer(Long id) {
+		Customer customer = Customer.findById(id);
+		if(params.get("approve") != null) {
+			customer.approve(true);
+		} else {
+			customer.approve(false);
+		}
+		customer.save();
+		master();
+	}
+	
+	public static void approvalOwner(Long id) {
+		Owner owner = Owner.findById(id);
+		if(params.get("approve") != null) {
+			owner.approve(true);
+		} else {
+			owner.approve(false);
+		}
+		owner.save();
+		master();
+	}
+	
+	public static void approvalPort(Long id) {
+		Port port = Port.findById(id);
+		if(params.get("approve") != null) {
+			port.approve(true);
+		} else {
+			port.approve(false);
+		}
+		port.save();
+		master();
+	}
+	
+	public static void approvalVessel(Long id) {
+		Vessel vessel = Vessel.findById(id);
+		if(params.get("approve") != null) {
+			vessel.approve(true);
+		} else {
+			vessel.approve(false);
+		}
+		vessel.save();
+		master();
 	}
 
 }

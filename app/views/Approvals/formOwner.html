@@ -1,0 +1,70 @@
+#{extends 'layout.html' /}
+
+<div class="objectForm">
+#{form @approvalOwner(owner?.id)}
+	<h3>Owner detail</h3>
+	
+	<p>
+		#{field 'name'}
+		<label>Name</label>
+		<label>${owner?.name}</label>
+		<br/>
+		#{/field}
+	</p>
+	
+	<p>
+		#{field 'pic'}
+		<label>Person in Charge</label>
+		<label>${owner?.pic}</label>
+		<br/>
+		#{/field}
+	</p>
+	
+	<p>
+		#{field 'pictelephone'}
+		<label>PIC Phone Number</label>
+		<label>${owner?.pictelephone}</label>
+		<br/>
+		#{/field}
+	</p>
+	
+	<p>
+		#{field 'address'}
+		<label>Address</label>
+		<label>${owner?.address}</label>
+		<br/>
+		#{/field}
+	</p>
+	
+	<p>
+        #{field 'telephone'}
+        <label>Telephone Number</label>
+        <label>${owner?.telephone}</label>
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'fax'}
+        <label>Fax Number</label>
+        <label>${owner?.fax}</label>
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'email'}
+        <label>Email Address</label>
+        <label>${owner?.email}</label>
+        #{/field}
+    </p>
+    
+	<p class="crudButtons">
+        <input type="submit" name="approve" value="Approve" />
+		<input type="submit" name="reject" value="Reject" />
+    </p>
+
+#{/form}
+</div>
+
+
+
+

@@ -21,11 +21,11 @@
 				<div style="clear:both"></div>
 				
 				<ul id="menu">
-					<li><a href="/" class="drop">Dashboard</a>
+					<li><a href="#" class="drop">Dashboard</a>
 						<div class="dropdown_1column">
 							<ul>
-								<li><a href="/">Upcoming Vessel</a></li>
-								<li><a href="/monthly">Monthly Report</a></li>		
+								<li><a href="/reports/upcoming">Upcoming Vessel</a></li>
+								<li><a href="/reports/monthly">Monthly Report</a></li>		
 							</ul>
 						</div>
 					</li>
@@ -37,7 +37,7 @@
 							</ul>
 						</div>
 					</li>
-					<li><a href="/crud" class="drop">Master Data</a>
+					<li><a href="#" class="drop">Master Data</a>
 						<div class="dropdown_1column">
 							<ul>
 								<li><a href="/crud/ports">Ports</a></li>
@@ -45,21 +45,25 @@
 								<li><a href="/crud/owners">Owners</a></li>
 								<li><a href="/crud/agents">Agents</a></li>
 								<li><a href="/crud/customers">Customers</a></li>
+								#{secure.check 'isAdmin'}
+									<li><a href="/crud/users">Users</a></li>
+								#{/secure.check}
 							</ul>
 						</div>
 					</li>
+					#{secure.check 'isManager'}
 					<li><a href="#" class="drop">Approval</a>
 						<div class="dropdown_1column">
 							<ul>
-								<li><a href="/approvals">Operational</a></li>
-								<li><a href="#">Master Data</a></li>
+								<li><a href="/approvals/ops">Operational</a></li>
+								<li><a href="/approvals/master">Master Data</a></li>
 							</ul>
 						</div>
 					</li>
+					#{/secure.check}
 					<li class="menu_right no-drop">
 	                    <a href="@{Secure.logout()}">Log out</a>
 	                </li>
-					<li class="menu_right no-drop"><a href="#">Change Password</a></li>
 				</ul>
 				
 				<div style="clear:both"></div>

@@ -1,0 +1,70 @@
+#{extends 'layout.html' /}
+
+<div class="objectForm">
+#{form @approvalCustomer(customer?.id)}
+	<h3>Customer detail</h3>
+	
+	<p>
+		#{field 'name'}
+		<label>Name</label>
+		<label>${customer?.name}</label>
+		<br/>
+		#{/field}
+	</p>
+	
+	<p>
+		#{field 'pic'}
+		<label>Person in Charge</label>
+		<label>${customer?.pic}</label>
+		<br/>
+		#{/field}
+	</p>
+	
+	<p>
+		#{field 'pictelephone'}
+		<label>PIC Phone Number</label>
+		<label>${customer?.pictelephone}</label>
+		<br/>
+		#{/field}
+	</p>
+	
+	<p>
+		#{field 'address'}
+		<label>Address</label>
+		<label>${customer?.address}</label>
+		<br/>
+		#{/field}
+	</p>
+	
+	<p>
+        #{field 'telephone'}
+        <label>Telephone Number</label>
+        <label>${customer?.telephone}</label>
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'fax'}
+        <label>Fax Number</label>
+        <label>${customer?.fax}</label>
+        #{/field}
+    </p>
+	
+	<p>
+        #{field 'email'}
+        <label>Email Address</label>
+        <label>${customer?.email}</label>
+        #{/field}
+    </p>
+    
+	<p class="crudButtons">
+        <input type="submit" name="approve" value="Approve" />
+		<input type="submit" name="reject" value="Reject" />
+    </p>
+
+#{/form}
+</div>
+
+
+
+
