@@ -62,6 +62,19 @@ public class Approvals extends Controller {
 		render(vessel);
 	}
 	
+	public static void formCalculate(Long id) {
+		Operational booking = Cache.get("booking_" + id, Operational.class);
+		if(booking == null) {
+			if (id != null) {
+				booking = Operational.findById(id);
+				render(booking);
+			}
+			render(booking);
+		} else {
+			render(booking);
+		}
+	}
+	
 	public static void formBooking(Long id) {
 		Operational booking = Cache.get("booking_" + id, Operational.class);
 		if(booking == null) {
@@ -119,9 +132,9 @@ public class Approvals extends Controller {
 		System.out.println(status);
 		if(status.equals("Prospect")) {
 			if(params.get("approve") != null) {
-				operational.approvalBooking(true);
+				operational.approvalCalculate(true);
 			} else {
-				operational.approvalBooking(false);
+				operational.approvalCalculate(false);
 			}
 		} else if(status.equals("New")) {
 			if(params.get("approve") != null) {

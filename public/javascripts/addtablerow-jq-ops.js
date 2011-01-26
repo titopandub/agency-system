@@ -36,7 +36,8 @@ $(document).ready(function() {
 					suggestions.push(val.name);
 					vessel.push({
 						name: val.name,
-						grt: val.grt
+						grt: val.grt,
+						owner: val.owner
 					});
 				});
 				add(suggestions);
@@ -47,6 +48,37 @@ $(document).ready(function() {
 			$.each(vessel, function(i, val) {
 				if(val.name == ui.item.label) {
 					$("#grt").val(val.grt);
+					$("#ownerName").val(val.owner.name);
+					$("#ownerPIC").val(val.owner.pic);
+					$("#ownerEmail").val(val.owner.email);
+				}
+			});
+		}
+    });
+	
+	var owner = [];
+    $("#ownerName").autocomplete({
+        source: function(req, add) {
+			$.getJSON("/listOwner", req, function(data) {
+				var suggestions = [];
+				owner = [];
+				$.each(data, function(i, val) {
+					suggestions.push(val.name);
+					owner.push({
+						name: val.name,
+						pic: val.pic,
+						email: val.email
+					});
+				});
+				add(suggestions);
+			});
+		},
+		minLength: 2,
+		select: function(event, ui) {
+			$.each(owner, function(i, val) {
+				if(val.name == ui.item.label) {
+					$("#ownerPIC").val(val.pic);
+					$("#ownerEmail").val(val.email);
 				}
 			});
 		}
@@ -61,7 +93,7 @@ $(document).ready(function() {
     $('#addbutton').click(function() {
         var i = $('.item-row').length;
         var myElement = '<tr class="item-row">';
-        myElement += '<td><div class="delete-wpr"><input type="text" name="additional['+i+'].name" value="" class="add-name" /><a href="javascript:;" class="delete">x</a></td>';
+        myElement += '<td><span class="delete-wpr"><input type="text" name="additional['+i+'].name" value="" class="add-name" /><a href="javascript:;" class="delete">x</a></span></td>';
         myElement += '<td><input type="text" name="additional['+i+'].cost" value="" class="add-cost" /></td></tr>';
         $('.item-row:last').after(myElement);
         if ($(".delete").length > 0) $(".delete").show();

@@ -46,6 +46,13 @@ public class Vessel extends Model {
 	
 	public boolean isApproved;
 	
+	public Vessel(String name, int grt, Owner owner) {
+		this.name = name;
+		this.grt = grt;
+		this.owner = owner;
+		this.isApproved = false;
+	}
+	
 	public Vessel(String name, int grt) {
 		this.name = name;
 		this.grt = grt;

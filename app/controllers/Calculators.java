@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 import models.Additional;
 import models.Operational;
+import models.Owner;
 import models.Port;
 import models.Vessel;
 import play.cache.Cache;
@@ -19,6 +20,12 @@ public class Calculators extends Controller {
 		Pattern regExp = Pattern.compile(term + ".*", Pattern.CASE_INSENSITIVE);
 		List<Vessel> vessels = Vessel.filter("name", regExp).asList();
 		renderJSON(vessels);
+	}
+	
+	public static void listOwner(String term) {
+		Pattern regExp = Pattern.compile(term + ".*", Pattern.CASE_INSENSITIVE);
+		List<Owner> owners = Owner.filter("name", regExp).asList();
+		renderJSON(owners);
 	}
 	
 	public static void form(Long id) {
@@ -38,16 +45,24 @@ public class Calculators extends Controller {
 	}
 	
 	public static void calculate(Long id, String name, int grt, String voyage, Long portId, 
-			Date eta, Date etd, int quay, Double bookTugIn, Double bookTugOut, 
-			String cargo, int cargoWeight, List<Additional> additional) {
+			String ownerName, String ownerPIC, String ownerEmail, Date eta, Date etd, int quay, 
+			Double bookTugIn, Double bookTugOut, String cargo, int cargoWeight, List<Additional> additional) {
 		
 		Port port = Port.findById(portId);
 		Operational booking;
 		Vessel vessel = Vessel.find("byName", name).first();
+		Owner owner = Vessel.find("byName", ownerName).first();
 		
 		if(params.get("calculate") != null) {
-			if(vessel == null) {
+			if(owner == null) {
+				owner = new Owner(ownerName, ownerPIC, ownerEmail);
+				owner.save();
+			}
+			if(vessel == null && ownerName == null) {
 				vessel = new Vessel(name, grt);
+				vessel.save();
+			} else if(vessel == null && ownerName != null) {
+				vessel = new Vessel(name, grt, owner);
 				vessel.save();
 			}
 			if(id != null) {
@@ -75,8 +90,15 @@ public class Calculators extends Controller {
 			Cache.set("booking_" + id, booking, "1mn");
 			form(id);
 		} else if(params.get("save") !=null) {
-			if(vessel == null) {
+			if(owner == null) {
+				owner = new Owner(ownerName, ownerPIC, ownerEmail);
+				owner.save();
+			}
+			if(vessel == null && ownerName == null) {
 				vessel = new Vessel(name, grt);
+				vessel.save();
+			} else if(vessel == null && ownerName != null) {
+				vessel = new Vessel(name, grt, owner);
 				vessel.save();
 			}
 			if(id != null) {

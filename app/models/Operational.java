@@ -208,7 +208,7 @@ public class Operational extends Model {
 	
 	public void approvalCalculate(Boolean approve) {
 		if(approve) {
-			this.status = "New";
+			this.status = "Prospect Approved";
 		} else {
 			this.status = "Prospect Rejected";
 		}

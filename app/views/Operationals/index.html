@@ -20,10 +20,10 @@
 			</thead>
 			#{list items:operations, as:'ops'}
 			    <tr>
-			    	#{if ops.status == "Prospect"}
+			    	#{if ops.status == "Prospect" || ops.status == "Prospect Rejected"}
 			        	<td><a href="@{Calculators.form(ops.id)}">${ops?.id}</a></td>
 			        #{/if}
-			        #{if ops.status == "New" || ops.status == "Booking Rejected"}
+			        #{if ops.status == "New" || ops.status == "Prospect Approved" || ops.status == "Booking Rejected"}
 			        	<td><a href="@{Bookings.form(ops.id)}">${ops?.id}</a></td>
 			        #{/if}
 			        #{if ops.status == "Berthing" || ops.status == "Booking Approved" || ops.status == "Berthing Rejected"}

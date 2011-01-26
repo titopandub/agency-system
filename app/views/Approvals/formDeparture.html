@@ -5,7 +5,7 @@
 	
 	<p>
 		#{field 'vessel'}
-		<label>Vessel</label>
+		<label>Vessel : </label>
 		<label>${departure?.vessel?.name}</label>
 		<br/>
 		#{/field}
@@ -13,7 +13,7 @@
 	
 	<p>
 		#{field 'voyage'}
-		<label>Voyage</label>
+		<label>Voyage : </label>
 		<label>${departure?.voyage}</label>
 		<br/>
 		#{/field}
@@ -21,7 +21,7 @@
 	
 	<p>
 		#{field 'port'}
-		<label>Port</label>
+		<label>Port : </label>
 		<label>${departure?.port?.name}</label>
 		<br/>
 		#{/field}
@@ -29,7 +29,7 @@
 	
 	<p>
 		#{field 'customer'}
-		<label>Customer</label>
+		<label>Customer : </label>
 		<label>${departure?.customer?.name}</label>
 		<br/>
 		#{/field}
@@ -37,7 +37,7 @@
 	
 	<p>
         #{field 'ata'}
-        <label>Actual Time Arrival</label>
+        <label>Actual Time Arrival : </label>
         <label>${departure?.berthing?.ata?.format('yyyy-MM-dd')}</label>
         <br/>
         #{/field}
@@ -45,7 +45,7 @@
 	
 	<p>
         #{field 'atd'}
-        <label>Actual Time Departure</label>
+        <label>Actual Time Departure : </label>
         <label>${departure?.departure?.atd?.format('yyyy-MM-dd')}</label>
         <br/>
         #{/field}
@@ -53,7 +53,7 @@
 	
 	<p>
         #{field 'departTugOut'}
-        <label>Estimate Tug out duration</label>
+        <label>Estimate Tug out duration : </label>
         <label>${departure?.departure?.departTugOut}</label>
         <br/>
         #{/field}
@@ -61,7 +61,7 @@
 	
 	<p>
         #{field 'cargo'}
-        <label>Cargo Name</label>
+        <label>Cargo Name : </label>
         <label>${departure?.departure?.cargo}</label>
         <br/>
         #{/field}
@@ -69,7 +69,7 @@
 	
 	<p>
         #{field 'cargoWeight'}
-        <label>Cargo Weight</label>
+        <label>Cargo Weight : </label>
         <label>${departure?.departure?.cargoWeight}</label>
         <br/>
         #{/field}
@@ -109,7 +109,7 @@
 			</tr>
 			<tr>
 				<td class="total-line">Subtotal</td>
-	            <td class="total-value"><div id="subtotal-port">0</div></td>
+	            <td class="total-value"><span id="subtotal-port">0</span></td>
 			</tr>
 		</table>
 	</div>
@@ -132,7 +132,11 @@
 	        #{/list}
 		<tr>
             <td class="total-line">Subtotal</td>
-            <td class="total-value"><div id="subtotal">0</div></td>
+            <td class="total-value"><span id="subtotal">0</span></td>
+        </tr>
+        <tr>
+        	<td class="total-line">Total</td>
+        	<td class="total-value"><span id="total">0</span></td>
         </tr>
 	</table>
 	</div>
@@ -150,6 +154,8 @@
 #{/form}
 </div>
 
+<!-- JS -->
+<script type="text/javascript" src="@{'/public/javascripts/addtablerow-jq-ops.js'}"></script>
 
 
 

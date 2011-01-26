@@ -20,6 +20,7 @@ POST	/approvals/owner/{id}					Approvals.approvalOwner
 POST	/approvals/port/{id}					Approvals.approvalPort
 POST	/approvals/vessel/{id}					Approvals.approvalVessel
 
+GET		/approvals/calculate/{id}				Approvals.formCalculate
 GET		/approvals/booking/{id}					Approvals.formBooking
 GET		/approvals/berthing/{id}				Approvals.formBerthing
 GET		/approvals/departure/{id}				Approvals.formDeparture
@@ -39,6 +40,7 @@ POST	/ops/calculate/{id}						Calculators.calculate
 GET		/ops/calculate/new						Calculators.form
 POST	/ops/calculate/new						Calculators.calculate
 GET		/listVessel								Calculators.listVessel
+GET		/listOwner								Calculators.listOwner
 
 # Booking
 GET		/ops/bookings/{id}						Bookings.form

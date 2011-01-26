@@ -37,7 +37,7 @@
 	
 	<p>
         #{field 'ata'}
-        <label>Actual Time Arrival :</label>
+        <label>Actual Time Arrival : </label>
         <label>${berthing?.berthing?.ata?.format('yyyy-MM-dd')}</label>
         <br/>
         #{/field}
@@ -45,7 +45,7 @@
 	
 	<p>
         #{field 'etd'}
-        <label>Estimate Time Departure :</label>
+        <label>Estimate Time Departure : </label>
         <label>${berthing?.berthing?.etd?.format('yyyy-MM-dd')}</label>
         <br/>
         #{/field}
@@ -53,7 +53,7 @@
 	
 	<p>
         #{field 'berthTugIn'}
-        <label>Estimate Tug in duration :</label>
+        <label>Estimate Tug in duration : </label>
         <label>${berthing?.berthing?.berthTugIn}</label>
         <br/>
         #{/field}
@@ -61,7 +61,7 @@
 	
 	<p>
         #{field 'cargo'}
-        <label>Cargo Name :</label>
+        <label>Cargo Name : </label>
         <label>${berthing?.berthing?.cargo}</label>
         <br/>
         #{/field}
@@ -69,7 +69,7 @@
 	
 	<p>
         #{field 'cargoWeight'}
-        <label>Cargo Weight :</label>
+        <label>Cargo Weight : </label>
         <label>${berthing?.berthing?.cargoWeight}</label>
         <br/>
         #{/field}
@@ -109,7 +109,7 @@
 			</tr>
 			<tr>
 				<td class="total-line">Subtotal</td>
-	            <td class="total-value"><div id="subtotal-port">0</div></td>
+	            <td class="total-value"><span id="subtotal-port">0</span></td>
 			</tr>
 		</table>
 	</div>
@@ -132,7 +132,11 @@
 	        #{/list}
 		<tr>
             <td class="total-line">Subtotal</td>
-            <td class="total-value"><div id="subtotal">0</div></td>
+            <td class="total-value"><span id="subtotal">0</span></td>
+        </tr>
+        <tr>
+        	<td class="total-line">Total</td>
+        	<td class="total-value"><span id="total">0</span></td>
         </tr>
 	</table>
 	</div>
@@ -149,6 +153,9 @@
 
 #{/form}
 </div>
+
+<!-- JS -->
+<script type="text/javascript" src="@{'/public/javascripts/addtablerow-jq-ops.js'}"></script>
 
 
 

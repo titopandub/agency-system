@@ -21,7 +21,7 @@
 			#{list items:operations, as:'ops'}
 			    <tr>
 			    	#{if ops.status == "Prospect"}
-			        	<td><a href="@{Calculators.form(ops.id)}">${ops?.id}</a></td>
+			        	<td><a href="@{Approvals.formCalculate(ops.id)}">${ops?.id}</a></td>
 			        #{/if}
 			        #{if ops.status == "New" || ops.status == "Booking Rejected"}
 			        	<td><a href="@{Approvals.formBooking(ops.id)}">${ops?.id}</a></td>

@@ -156,7 +156,7 @@
 				</tr>
 				<tr>
 					<td class="total-line">Subtotal</td>
-		            <td class="total-value"><div id="subtotal-port">0</div></td>
+		            <td class="total-value"><span id="subtotal-port">0</span></td>
 				</tr>
 			</table>
 		</div>
@@ -179,34 +179,35 @@
 		        </thead>	
 			        #{list items:booking?.booking?.additional, as:'additional'}
 					<tr class="item-row">
-						<td><div class="delete-wpr"><input type="text" name='additional[${additional_index - 1}].name' value="${additional?.name}" class="${field.errorClass}" /><a href="javascript:;" class="delete">x</a></td>
+						<td><span class="delete-wpr"><input type="text" name='additional[${additional_index - 1}].name' value="${additional?.name}" class="${field.errorClass}" /><a href="javascript:;" class="delete">x</a></span></td>
 						<td><input type="text" name='additional[${additional_index - 1}].cost' value="${additional?.cost}" class="add-cost" /></td>
 					</tr>
 			        #{/list}
 					#{else}
 						#{list items:0..0, as:'i'}
 						<tr class="item-row">
-							<td><div class="delete-wpr"><input type="text" name='additional[${i}].name' value="${additional?.name}" class="add-name" /><a href="javascript:;" class="delete">x</a></td>
+							<td><span class="delete-wpr"><input type="text" name='additional[${i}].name' value="${additional?.name}" class="add-name" /><a href="javascript:;" class="delete">x</a></span></td>
 							<td><input type="text" name='additional[${i}].cost' value="${additional?.cost}" class="add-cost" /></td>
 						</tr>
 						#{/list}
 					#{/else}
 					<tr>
 			            <td class="total-line">Subtotal</td>
-			            <td class="total-value"><div id="subtotal">0</div></td>
+			            <td class="total-value"><span id="subtotal">0</span></td>
 			        </tr>
 			        <tr>
 			        	<td class="total-line">Total</td>
-			        	<td class="total-value"><div id="total">0</div></td>
+			        	<td class="total-value"><span id="total">0</span></td>
 			        </tr>
 				</table>
 		        #{/field} 
 			</div>
 	    </div>
 	</fieldset>
+	<div style="clear:both"></div>
     
 	<div class="buttons">
-		<input type="submit" name="save" value="Save" />
+		<input type="submit" name="save" value="Save and Submit for Approval" />
     </div>
 
 #{/form}
