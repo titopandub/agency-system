@@ -7,6 +7,15 @@ function update_total() {
     $('#subtotal').html(total);
 }
 
+function update_total_approval() {
+    var total_approval = 0;
+    $('.add-cost').each(function(i){
+        price = $(this).html();
+        if (!isNaN(price)) total_approval += Number(price);
+    });
+    $('#subtotal').html(total_approval);
+}
+
 function update_total_port() {
     var total_port = 0;
     $('.port-cost').each(function(i){
@@ -85,8 +94,10 @@ $(document).ready(function() {
     });
 	
 	update_total();
+	update_total_approval();
 	update_total_port();
 	update_grandtotal();
+	
 	
     if ($(".delete").length < 2) $(".delete").hide();
     
@@ -101,6 +112,7 @@ $(document).ready(function() {
     
     $('#calculate').click(function() {
         update_total();
+		update_total_approval();
 		update_total_port();
 		update_grandtotal();
     });

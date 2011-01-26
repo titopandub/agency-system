@@ -48,8 +48,8 @@ public class Approvals extends Controller {
 	}
 	
 	public static void formOwner(Long id) {
-		Owner owner = Owner.findById(id);
-		render(owner);
+		Owner own = Owner.findById(id);
+		render(own);
 	}
 	
 	public static void formPort(Long id) {
