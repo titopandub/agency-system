@@ -142,8 +142,18 @@ public class Operational extends Model {
 		
 		this.booking.harbor = vessel.grt * port.costtariff.harbour * periodHarbor(periodDay);
 		this.booking.queue = vessel.grt * port.costtariff.quay * this.booking.quay;
-		this.booking.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
-				port.costtariff.pilotfix) * 2;
+		
+		if(this.port.costtariff.type.equals("A")) {
+			this.booking.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
+					port.costtariff.pilotfix) * 2;
+		} else if(this.port.costtariff.type.equals("B")) {
+			this.booking.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
+					port.costtariff.pilotfix) * 6;
+		} else {
+			this.booking.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
+					port.costtariff.pilotfix) * 2;
+		}
+		
 		this.booking.light = vessel.grt * port.costtariff.light;
 		this.booking.tug = ((vessel.grt * this.tugvar) + 
 				this.tugfix) * (booking.bookTugIn + booking.bookTugOut);
@@ -160,8 +170,18 @@ public class Operational extends Model {
 		
 		this.berthing.harbor = vessel.grt * port.costtariff.harbour * periodHarbor(periodDay);
 		this.berthing.queue = vessel.grt * port.costtariff.quay * this.berthing.quay;
-		this.berthing.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
-				port.costtariff.pilotfix) * 2;
+		
+		if(this.port.costtariff.type.equals("A")) {
+			this.berthing.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
+					port.costtariff.pilotfix) * 2;
+		} else if(this.port.costtariff.type.equals("B")) {
+			this.berthing.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
+					port.costtariff.pilotfix) * 6;
+		} else {
+			this.berthing.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
+					port.costtariff.pilotfix) * 2;
+		}
+		
 		this.berthing.light = vessel.grt * port.costtariff.light;
 		this.berthing.tug = ((vessel.grt * tugvar) + 
 				tugfix) * (berthing.berthTugIn + booking.bookTugOut);
@@ -178,8 +198,18 @@ public class Operational extends Model {
 		
 		this.departure.harbor = vessel.grt * port.costtariff.harbour * periodHarbor(periodDay);
 		this.departure.queue = vessel.grt * port.costtariff.quay * this.departure.quay;
-		this.departure.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
-				port.costtariff.pilotfix) * 2;
+		
+		if(this.port.costtariff.type.equals("A")) {
+			this.departure.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
+					port.costtariff.pilotfix) * 2;
+		} else if(this.port.costtariff.type.equals("B")) {
+			this.departure.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
+					port.costtariff.pilotfix) * 6;
+		} else {
+			this.departure.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
+					port.costtariff.pilotfix) * 2;
+		}
+		
 		this.departure.light = vessel.grt * port.costtariff.light;
 		this.departure.tug = ((vessel.grt * tugvar) + tugfix) 
 		* (berthing.berthTugIn + departure.departTugOut);
@@ -196,8 +226,18 @@ public class Operational extends Model {
 		
 		this.finalCharge.harbor = vessel.grt * port.costtariff.harbour * periodHarbor(periodDay);
 		this.finalCharge.queue = vessel.grt * port.costtariff.quay * periodDay;
-		this.finalCharge.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
-				port.costtariff.pilotfix) * 2;
+		
+		if(this.port.costtariff.type.equals("A")) {
+			this.finalCharge.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
+					port.costtariff.pilotfix) * 2;
+		} else if(this.port.costtariff.type.equals("B")) {
+			this.finalCharge.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
+					port.costtariff.pilotfix) * 6;
+		} else {
+			this.finalCharge.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
+					port.costtariff.pilotfix) * 2;
+		}
+		
 		this.finalCharge.light = vessel.grt * port.costtariff.light;
 		this.finalCharge.tug = ((vessel.grt * tugvar) + tugfix) 
 		* (finalCharge.actualTugIn + finalCharge.actualTugOut);
