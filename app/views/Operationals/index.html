@@ -35,6 +35,9 @@
 			        #{if ops.status == "Final" || ops.status == "Departure Approved" || ops.status == "Final Rejected"}
 			        	<td><a href="@{FinalCharges.form(ops.id)}">${ops?.id}</a></td>
 			        #{/if}
+			        #{if ops.status == "Final Approved"}
+			        	<td>${ops?.id}</a></td>
+			        #{/if}
 			        <td>${ops?.vessel?.name} ${ops?.voyage}</td>
 			        <td>${ops?.port?.name}</td>
 			        <td>${ops?.status}</td>
@@ -55,6 +58,10 @@
 			        	<td>${ops?.departure?.atd?.format('yyyy-MM-dd')}</td>
 			        #{/if}
 			        #{if ops.status == "Final" || ops.status == "Departure Approved" || ops.status == "Final Rejected"}
+			        	<td>${ops?.berthing?.ata?.format('yyyy-MM-dd')}</td>
+			        	<td>${ops?.departure?.atd?.format('yyyy-MM-dd')}</td>
+			        #{/if}
+			        #{if ops.status == "Final Approved"}
 			        	<td>${ops?.berthing?.ata?.format('yyyy-MM-dd')}</td>
 			        	<td>${ops?.departure?.atd?.format('yyyy-MM-dd')}</td>
 			        #{/if}

@@ -19,15 +19,15 @@ public class Mails extends Mailer {
 		send(receiver);
 	}
 	
-	public static void operationalApproved(User sender, User receiver) {
+	public static void operationalApproved(User sender, String receiver) {
 		setFrom(sender.email);
 		setSubject("Your Operational Activity has been Approved");
-		addRecipient(receiver.email);
+		addRecipient(receiver);
 		send(receiver);
 	}
 	
-	public static void operationalToOwner(User sender, User receiver) {
-		setFrom(sender.email);
+	public static void operationalToOwner(String sender, User receiver) {
+		setFrom(sender);
 		setSubject("Estimate Port Disbursement");
 		addRecipient(receiver.email);
 		send(receiver);

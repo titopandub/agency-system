@@ -94,7 +94,9 @@ $(document).ready(function() {
     });
 	
 	update_total();
-	update_total_approval();
+	if($('.add-cost').html() != 0) {
+		update_total_approval();
+	}
 	update_total_port();
 	update_grandtotal();
 	
@@ -112,7 +114,6 @@ $(document).ready(function() {
     
     $('#calculate').click(function() {
         update_total();
-		update_total_approval();
 		update_total_port();
 		update_grandtotal();
     });
