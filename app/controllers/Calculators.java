@@ -8,6 +8,7 @@ import models.Additional;
 import models.Operational;
 import models.Owner;
 import models.Port;
+import models.User;
 import models.Vessel;
 import play.cache.Cache;
 import play.mvc.Controller;
@@ -125,6 +126,12 @@ public class Calculators extends Controller {
 			booking.status = "Prospect";
 			booking.save();
 			Cache.delete("booking_" + id);
+			User sender = User.find("byUsername", Security.connected()).first();
+			List<User> receivers = User.filter("isManager", true).asList();
+			int i = 0;
+			while(i < receivers.size()) {
+				Mails.operationalApproval(sender, receivers.get(i));
+			}
 			redirect(request.controller + ".form", booking._key());
 		}
 	}

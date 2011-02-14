@@ -17,6 +17,7 @@ import models.Agent;
 import models.Customer;
 import models.Operational;
 import models.Port;
+import models.User;
 import models.Vessel;
 
 @With(Secure.class)
@@ -109,6 +110,12 @@ public class Bookings extends Controller {
 				}
 			}
 			booking.save();
+			User sender = User.find("byUsername", Security.connected()).first();
+			List<User> receivers = User.filter("isManager", true).asList();
+			int i = 0;
+			while(i < receivers.size()) {
+				Mails.operationalApproval(sender, receivers.get(i));
+			}
 			Operationals.index();
 		}
 	}
