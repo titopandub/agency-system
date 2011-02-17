@@ -61,7 +61,8 @@ public class FinalCharges extends Controller {
 			List<User> receivers = User.filter("isManager", true).asList();
 			int j = 0;
 			while(j < receivers.size()) {
-				Mails.operationalApproval(sender, receivers.get(j));
+				Mails.operationalApproval(sender, receivers.get(j), finalcharge);
+				j++;
 			}
 			form(id);
 		}

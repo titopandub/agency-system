@@ -133,7 +133,7 @@ public class Approvals extends Controller {
 		if(status.equals("Prospect")) {
 			if(params.get("approve") != null) {
 				operational.approvalCalculate(true);
-				Mails.operationalToOwner("agency@cosco-ogs.com", operational.vessel.owner.email);
+				Mails.operationalToOwner("agency@cosco-ogs.com", operational.vessel.owner.email, operational);
 			} else {
 				operational.approvalCalculate(false);
 			}

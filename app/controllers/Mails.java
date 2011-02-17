@@ -12,11 +12,11 @@ public class Mails extends Mailer {
 		send(user);
 	}
 	
-	public static void operationalApproval(User sender, User receiver) {
+	public static void operationalApproval(User sender, User receiver, Operational ops) {
 		setFrom(sender.email);
 		setSubject("Approval for Operational Activity");
 		addRecipient(receiver.email);
-		send(receiver);
+		send(receiver, ops);
 	}
 	
 	public static void operationalApproved(User sender, String receiver) {
@@ -26,11 +26,12 @@ public class Mails extends Mailer {
 		send(receiver);
 	}
 	
-	public static void operationalToOwner(String sender, User receiver) {
+	public static void operationalToOwner(String sender, String receiver, Operational operational) {
 		setFrom(sender);
 		setSubject("Estimate Port Disbursement");
-		addRecipient(receiver.email);
-		send(receiver);
+		addRecipient(receiver);
+		addCc("agency@cosco-ogs.com");
+		send(receiver, operational);
 	}
 	
 	public static void operationalRejected(User sender, User receiver) {

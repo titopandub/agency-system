@@ -45,7 +45,7 @@
 			        	<td>${ops?.booking?.eta?.format('yyyy-MM-dd')}</td>
 			        	<td>${ops?.booking?.etd?.format('yyyy-MM-dd')}</td>
 			        #{/if}
-			        #{if ops.status == "New" || ops.status == "Booking Rejected"}
+			        #{if ops.status == "New" || ops.status == "Prospect Approved" || ops.status == "Booking Rejected"}
 			        	<td>${ops?.booking?.eta?.format('yyyy-MM-dd')}</td>
 			        	<td>${ops?.booking?.etd?.format('yyyy-MM-dd')}</td>
 			        #{/if}
@@ -66,8 +66,26 @@
 			        	<td>${ops?.departure?.atd?.format('yyyy-MM-dd')}</td>
 			        #{/if}
 			        <td>${ops?.vessel?.owner?.name}</td>
-			        <td>Cargo</td>
-			        <td>Weight</td>
+			        #{if ops.status == "Prospect"}
+			        	<td>${ops?.booking?.cargo}</td>
+			        	<td>${ops?.booking?.cargoWeight}</td>
+			        #{/if}
+			        #{if ops.status == "New" || ops.status == "Booking Rejected"}
+			        	<td>${ops?.booking?.cargo}</td>
+			        	<td>${ops?.booking?.cargoWeight}</td>
+			        #{/if}
+			        #{if ops.status == "Berthing" || ops.status == "Booking Approved" || ops.status == "Berthing Rejected"}
+			        	<td>${ops?.berthing?.cargo}</td>
+			        	<td>${ops?.berthing?.cargoWeight}</td>
+			        #{/if}
+			        #{if ops.status == "Departure" || ops.status == "Berthing Approved" || ops.status == "Departure Rejected"}
+			        	<td>${ops?.departure?.cargo}</td>
+			        	<td>${ops?.departure?.cargoWeight}</td>
+			        #{/if}
+			        #{if ops.status == "Final" || ops.status == "Departure Approved" || ops.status == "Final Rejected"}
+			        	<td>${ops?.finalCharge?.cargo}</td>
+			        	<td>${ops?.finalCharge?.cargoWeight}</td>
+			        #{/if}
 			        <td>${ops?.subAgent?.name}</td>
 			    </tr>
 			#{/list}

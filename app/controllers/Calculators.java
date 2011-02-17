@@ -52,16 +52,17 @@ public class Calculators extends Controller {
 		Port port = Port.findById(portId);
 		Operational booking;
 		Vessel vessel = Vessel.find("byName", name).first();
-		Owner owner = Vessel.find("byName", ownerName).first();
+		Owner owner = Owner.find("byName", ownerName).first();
 		
 		if(params.get("calculate") != null) {
-			if(owner == null) {
+			if(vessel == null && ownerName == null) {
 				owner = new Owner(ownerName, ownerPIC, ownerEmail);
 				owner.save();
-			}
-			if(vessel == null && ownerName == null) {
-				vessel = new Vessel(name, grt);
+				vessel = new Vessel(name, grt, owner);
 				vessel.save();
+			} else if(vessel != null && owner == null) {
+				owner = new Owner(ownerName, ownerPIC, ownerEmail);
+				owner.save();
 			} else if(vessel == null && ownerName != null) {
 				vessel = new Vessel(name, grt, owner);
 				vessel.save();
@@ -91,13 +92,14 @@ public class Calculators extends Controller {
 			Cache.set("booking_" + id, booking, "1mn");
 			form(id);
 		} else if(params.get("save") !=null) {
-			if(owner == null) {
+			if(vessel == null && ownerName == null) {
 				owner = new Owner(ownerName, ownerPIC, ownerEmail);
 				owner.save();
-			}
-			if(vessel == null && ownerName == null) {
-				vessel = new Vessel(name, grt);
+				vessel = new Vessel(name, grt, owner);
 				vessel.save();
+			} else if(vessel != null && owner == null) {
+				owner = new Owner(ownerName, ownerPIC, ownerEmail);
+				owner.save();
 			} else if(vessel == null && ownerName != null) {
 				vessel = new Vessel(name, grt, owner);
 				vessel.save();
@@ -130,7 +132,8 @@ public class Calculators extends Controller {
 			List<User> receivers = User.filter("isManager", true).asList();
 			int i = 0;
 			while(i < receivers.size()) {
-				Mails.operationalApproval(sender, receivers.get(i));
+				Mails.operationalApproval(sender, receivers.get(i), booking);
+				i++;
 			}
 			redirect(request.controller + ".form", booking._key());
 		}

@@ -1,11 +1,28 @@
 <html>
 <body>
 	Dear ${receiver.fullname},
-	
-	We need your approval for this activity to be recorded in our system. Please check it at (Link).
+	<br/>
+	We need your approval for this activity to be recorded in our system. Please check Booking No.  
+	#{if ops.status == "Prospect"}
+    	<a href="@{Approvals.formCalculate(ops.id)}">${ops?.id}</a>
+    #{/if}
+    #{if ops.status == "New" || ops.status == "Booking Rejected"}
+    	<a href="@{Approvals.formBooking(ops.id)}">${ops?.id}</a>
+    #{/if}
+    #{if ops.status == "Berthing" || ops.status == "Booking Approved" || ops.status == "Berthing Rejected"}
+    	<a href="@{Approvals.formBerthing(ops.id)}">${ops?.id}</a>
+    #{/if}
+    #{if ops.status == "Departure" || ops.status == "Berthing Approved" || ops.status == "Departure Rejected"}
+    	<a href="@{Approvals.formDeparture(ops.id)}">${ops?.id}</a>
+    #{/if}
+    #{if ops.status == "Final" || ops.status == "Departure Approved" || ops.status == "Final Rejected"}
+    	<a href="@{Approvals.formFinal(ops.id)}">${ops?.id}</a>
+    #{/if}.
+	<br/>
 	Thanks.
-	
+	<br/>
 	--------
+	<br/>
 	Agency System
 </body>
 </html>

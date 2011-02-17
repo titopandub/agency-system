@@ -14,18 +14,19 @@
     </style>
 </head>
 <body>
-Dear #{receiver.pic},<br/>
+Dear ${operational.vessel.owner.pic},<br/>
 Herewith quotation from your request : 
+<br/>
 <br/>
 <table>
 	<tr>
-		<td>Vessel :</td><td><strong>KM MT Jade</strong></td>
+		<td><strong>Vessel</strong></td><td>${operational.vessel.name}</td>
 	</tr>
 	<tr>
-		<td>Load :</td><td>MT Coal in Bulk</td>
+		<td><strong>Load</strong></td><td>${operational.booking.cargo}</td>
 	</tr>
 	<tr>
-		<td>GRT :</td><td>42707</td>
+		<td><strong>GRT</strong></td><td>${operational.vessel.grt}</td>
 	</tr>
 </table>
 <br/>
@@ -42,8 +43,8 @@ Herewith quotation from your request :
 	</tr>
 	<tr>
 		<td></td>
-		<td>42707 GRT x 0.084</td>
-		<td>3587.39</td>		
+		<td>${operational.vessel.grt} GRT x ${operational.port.costtariff.harbour}</td>
+		<td>${operational.booking.harbor}</td>		
 	</tr>
 	<tr>
 		<td>2.</td>
@@ -52,8 +53,8 @@ Herewith quotation from your request :
 	</tr>
 	<tr>
 		<td></td>
-		<td>42707 GRT x 0.101 x 2</td>
-		<td>8626.81</td>		
+		<td>${operational.vessel.grt} GRT x ${operational.port.costtariff.quay} x ${operational.booking.quay}</td>
+		<td>${operational.booking.queue}</td>		
 	</tr>
 	<tr>
 		<td>3.</td>
@@ -62,8 +63,8 @@ Herewith quotation from your request :
 	</tr>
 	<tr>
 		<td></td>
-		<td>42707 GRT x 0.084</td>
-		<td>3587.39</td>		
+		<td>((${operational.vessel.grt} GRT x ${operational.port.costtariff.pilotvar}) + ${operational.port.costtariff.pilotfix}) x 2</td>
+		<td>${operational.booking.pilot}</td>		
 	</tr>
 	<tr>
 		<td>4.</td>
@@ -72,18 +73,19 @@ Herewith quotation from your request :
 	</tr>
 	<tr>
 		<td></td>
-		<td>42707 GRT x 0.084</td>
-		<td>3587.39</td>		
+		<td>((${operational.vessel.grt} GRT x ${operational.tugvar}) + ${operational.tugfix}) * (${operational.booking.bookTugIn} + ${operational.booking.bookTugOut})</td>
+		<td>${operational.booking.tug}</td>		
 	</tr>
 	<tr>
 		<td></td>
 		<td>Total</td>
-		<td>33800.76</td>		
+		<td>${operational.booking.gnt * 10}</td>		
 	</tr>
 	<tr>
 		<td>5.</td>
 		<td>Surcharge 10%</td>
-		<td>3380.07</td>		
+		<td>${operational.booking.gnt}</td>
+		#{set subtotal1: operational.booking.harbor + operational.booking.queue + operational.booking.pilot + operational.booking.tug + operational.booking.gnt + operational.booking.light /} 		
 	</tr>
 	<tr>
 		<td>6.</td>
@@ -92,28 +94,27 @@ Herewith quotation from your request :
 	</tr>
 	<tr>
 		<td></td>
-		<td>42707 GRT x 0.034</td>
-		<td>1452.04</td>		
+		<td>${operational.vessel.grt} GRT x ${operational.port.costtariff.light}</td>
+		<td>${operational.booking.light}</td>		
 	</tr>
+	#{set subtotal2: 0 /}
+	#{list items:operational?.booking?.additional, as:'additional'}
 	<tr>
-		<td>7.</td>
-		<td>Our Agency fee (excluding VAT)</td>
-		<td>1500</td>		
+		<td>${additional_index + 6}.</td>
+		<td>${additional?.name}</td>
+		<td>${additional?.cost}</td>
+		#{set subtotal2: subtotal2 + additional.cost /}		
 	</tr>
-	<tr>
-		<td></td>
-		<td>VAT 10%</td>
-		<td>150</td>		
-	</tr>
+    #{/list}
 	<tr>
 		<td></td>
 		<td>Total</td>
-		<td>11288.19</td>		
+		<td>${subtotal2}</td>		
 	</tr>
 	<tr>
 		<td></td>
 		<td>Grand Total</td>
-		<td>45168.94</td>		
+		<td>${subtotal2 + subtotal1}</td>		
 	</tr>
 </table>
 <br/>

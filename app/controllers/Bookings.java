@@ -114,7 +114,8 @@ public class Bookings extends Controller {
 			List<User> receivers = User.filter("isManager", true).asList();
 			int i = 0;
 			while(i < receivers.size()) {
-				Mails.operationalApproval(sender, receivers.get(i));
+				Mails.operationalApproval(sender, receivers.get(i), booking);
+				i++;
 			}
 			Operationals.index();
 		}

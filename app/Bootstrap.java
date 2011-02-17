@@ -18,7 +18,7 @@ import play.test.Fixtures;
 public class Bootstrap extends Job {
 	
 	public void doJob() throws Exception {
-		//MorphiaFixtures.deleteAll();
+		MorphiaFixtures.deleteAll();
 		if(User.count() ==0) {
 			User tito = new User("tito", "nindia", "tito@cosco-ogs.com");
 			tito.isAdmin = true;
@@ -27,13 +27,13 @@ public class Bootstrap extends Job {
 			
 			User mundir = new User("mundir", "mundir", "mundir@cosco-ogs.com");
 			mundir.isAdmin = false;
-			mundir.isManager = true;
+			mundir.isManager = false;
 			mundir.save();
 			
 			User tonny = new User("tonny", "tonny", "tonny@cosco-ogs.com");
 			tonny.save();
 			
-			new Owner("COSCON", "Shanghai", "owner@coscon.com").save();
+			new Owner("COSCON", "Shanghai", "tito@cosco-ogs.com").save();
 	    	Owner coscon = Owner.find("byName", "COSCON").first();
 	    	
 	    	new Vessel("Hu Tuo He", 10100).save();

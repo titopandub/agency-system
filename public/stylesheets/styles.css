@@ -213,7 +213,7 @@ body {
 				display: block;
 				width: 33%;
 				float: left;
-				padding: 5px 15px 0 0;
+				padding: 5px 0 0 0;
 			}
 			#main .container #content form .buttons input {
 				width: auto;
@@ -242,7 +242,7 @@ body {
 				font-size: 70%;
 				color: #888;
 				display: block;
-				margin-left: 25%;
+				margin-left: 33%;
 				margin-top: 5px;
 			}
 		#main .container #content table {
