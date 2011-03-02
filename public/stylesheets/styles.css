@@ -284,6 +284,7 @@ body {
 			}
 			.delete-wpr { position: relative; }
 			.delete { display: block; color: #000; text-decoration: none; position: absolute; background: #EEEEEE; font-weight: bold; padding: 0px 3px; border: 1px solid; top: 0px; left: -17px; font-family: Verdana; font-size: 12px; }
+			.delete-add { display: block; color: #000; text-decoration: none; position: absolute; background: #EEEEEE; font-weight: bold; padding: 0px 3px; border: 1px solid; top: 0px; left: -17px; font-family: Verdana; font-size: 12px; }
 			
 			
 		#main .container #content #crudListAdd a {

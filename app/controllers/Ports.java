@@ -7,6 +7,7 @@ import play.i18n.Messages;
 import play.mvc.Controller;
 import play.mvc.With;
 
+import models.Additional;
 import models.Port;
 import models.Tariff;
 import models.Tug;
@@ -24,7 +25,7 @@ public class Ports extends CRUD {
 	
 	public static void save(Long id, String code, String name, String info,
 			String type, double harbour, double quay, double pilotfix, double pilotvar, 
-			double light, List<Tug> tug) {
+			double light, List<Tug> tug, List<Additional> additional) {
 		Port port;
 		if(id != null) {
 	    	port = Port.findById(id);
@@ -38,6 +39,7 @@ public class Ports extends CRUD {
 			port.costtariff.pilotvar = pilotvar;
 			port.costtariff.light = light;
 			port.costtariff.tug = new ArrayList<Tug>();
+			port.costtariff.additional = new ArrayList<Additional>();
 			
 			int i = 0;
 			while(i < tug.size()) {
@@ -47,11 +49,18 @@ public class Ports extends CRUD {
 						tug.get(i).maximum, tug.get(i).fixed, tug.get(i).var);
 				i++;
 			}
+			i = 0;
+			while(i < additional.size()) {
+				port.costtariff.addAdditional(additional.get(i).name, 
+						additional.get(i).cost);
+				i++;
+			}
 
 		} else {
 			Tariff cost = new Tariff(type, harbour, quay, pilotfix, pilotvar, 
 					light);
 			cost.tug = new ArrayList<Tug>();
+			cost.additional = new ArrayList<Additional>();
 			
 			int i = 0;
 			while(i < tug.size()) {
@@ -59,6 +68,12 @@ public class Ports extends CRUD {
 				if(tug.get(i).maximum == null) tug.get(i).maximum = 0;
 				cost.addTugTariff(tug.get(i).minimum, 
 						tug.get(i).maximum, tug.get(i).fixed, tug.get(i).var);
+				i++;
+			}
+			i = 0;
+			while(i < additional.size()) {
+				cost.addAdditional(additional.get(i).name, 
+						additional.get(i).cost);
 				i++;
 			}
 	    	port = new Port(name, cost);
