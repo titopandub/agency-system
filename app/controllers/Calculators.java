@@ -63,8 +63,13 @@ public class Calculators extends Controller {
 			} else if(vessel != null && owner == null) {
 				owner = new Owner(ownerName, ownerPIC, ownerEmail);
 				owner.save();
+				vessel.owner = owner;
+				vessel.save();
 			} else if(vessel == null && ownerName != null) {
 				vessel = new Vessel(name, grt, owner);
+				vessel.save();
+			} else if(vessel != null && ownerName != null) {
+				vessel.owner = owner;
 				vessel.save();
 			}
 			if(id != null) {
@@ -100,8 +105,13 @@ public class Calculators extends Controller {
 			} else if(vessel != null && owner == null) {
 				owner = new Owner(ownerName, ownerPIC, ownerEmail);
 				owner.save();
+				vessel.owner = owner;
+				vessel.save();
 			} else if(vessel == null && ownerName != null) {
 				vessel = new Vessel(name, grt, owner);
+				vessel.save();
+			} else if(vessel != null && ownerName != null) {
+				vessel.owner = owner;
 				vessel.save();
 			}
 			if(id != null) {

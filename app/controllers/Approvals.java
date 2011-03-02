@@ -164,7 +164,7 @@ public class Approvals extends Controller {
 		}
 		operational.save();
 		User sender = User.find("byUsername", Security.connected()).first();
-		Mails.operationalApproved(sender, "agency@cosco-ogs.com");
+		Mails.operationalApproved(sender, "agency@cosco-ogs.com", operational);
 		index();
 	}
 	

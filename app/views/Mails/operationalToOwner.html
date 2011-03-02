@@ -11,6 +11,10 @@
 	tr, th, td {
 		border: 1px solid #cccccc;
 	}
+	.align-right {
+		text-align: right;
+		padding-right: 10px;
+	}
     </style>
 </head>
 <body>
@@ -19,6 +23,9 @@ Herewith quotation from your request :
 <br/>
 <br/>
 <table>
+	<tr>
+		<td><strong>Port</strong></td><td>${operational.port.name}</td>
+	</tr>
 	<tr>
 		<td><strong>Vessel</strong></td><td>${operational.vessel.name}</td>
 	</tr>
@@ -44,7 +51,7 @@ Herewith quotation from your request :
 	<tr>
 		<td></td>
 		<td>${operational.vessel.grt} GRT x ${operational.port.costtariff.harbour}</td>
-		<td>${operational.booking.harbor}</td>		
+		<td class="align-right">${operational.booking.harbor?.format('##,###.00')}</td>		
 	</tr>
 	<tr>
 		<td>2.</td>
@@ -54,7 +61,7 @@ Herewith quotation from your request :
 	<tr>
 		<td></td>
 		<td>${operational.vessel.grt} GRT x ${operational.port.costtariff.quay} x ${operational.booking.quay}</td>
-		<td>${operational.booking.queue}</td>		
+		<td class="align-right">${operational.booking.queue?.format('##,###.00')}</td>		
 	</tr>
 	<tr>
 		<td>3.</td>
@@ -64,7 +71,7 @@ Herewith quotation from your request :
 	<tr>
 		<td></td>
 		<td>((${operational.vessel.grt} GRT x ${operational.port.costtariff.pilotvar}) + ${operational.port.costtariff.pilotfix}) x 2</td>
-		<td>${operational.booking.pilot}</td>		
+		<td class="align-right">${operational.booking.pilot?.format('##,###.00')}</td>		
 	</tr>
 	<tr>
 		<td>4.</td>
@@ -74,17 +81,17 @@ Herewith quotation from your request :
 	<tr>
 		<td></td>
 		<td>((${operational.vessel.grt} GRT x ${operational.tugvar}) + ${operational.tugfix}) * (${operational.booking.bookTugIn} + ${operational.booking.bookTugOut})</td>
-		<td>${operational.booking.tug}</td>		
+		<td class="align-right">${operational.booking.tug?.format('##,###.00')}</td>		
 	</tr>
 	<tr>
 		<td></td>
 		<td>Total</td>
-		<td>${operational.booking.gnt * 10}</td>		
+		<td class="align-right">${(operational.booking.gnt * 10).format('##,###.00')}</td>		
 	</tr>
 	<tr>
 		<td>5.</td>
 		<td>Surcharge 10%</td>
-		<td>${operational.booking.gnt}</td>
+		<td class="align-right">${operational.booking.gnt?.format('##,###.00')}</td>
 		#{set subtotal1: operational.booking.harbor + operational.booking.queue + operational.booking.pilot + operational.booking.tug + operational.booking.gnt + operational.booking.light /} 		
 	</tr>
 	<tr>
@@ -95,26 +102,29 @@ Herewith quotation from your request :
 	<tr>
 		<td></td>
 		<td>${operational.vessel.grt} GRT x ${operational.port.costtariff.light}</td>
-		<td>${operational.booking.light}</td>		
+		<td class="align-right">${operational.booking.light?.format('##,###.00')}</td>		
 	</tr>
 	#{set subtotal2: 0 /}
 	#{list items:operational?.booking?.additional, as:'additional'}
 	<tr>
 		<td>${additional_index + 6}.</td>
 		<td>${additional?.name}</td>
-		<td>${additional?.cost}</td>
-		#{set subtotal2: subtotal2 + additional.cost /}		
+		<td class="align-right">${additional?.cost?.format('##,###.00')}</td>
+		#{if additional.cost != null}
+			#{subtotal2: subtotal2 + additional.cost /}
+		#{/if}		
 	</tr>
     #{/list}
 	<tr>
 		<td></td>
 		<td>Total</td>
-		<td>${subtotal2}</td>		
+		<td class="align-right">${subtotal2?.format('##,###.00')}</td>		
 	</tr>
 	<tr>
 		<td></td>
 		<td>Grand Total</td>
-		<td>${subtotal2 + subtotal1}</td>		
+		#{set subtotal3: subtotal2 + subtotal1 /}
+		<td class="align-right">${subtotal3.format('##,###.00')}</td>		
 	</tr>
 </table>
 <br/>

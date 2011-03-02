@@ -103,31 +103,31 @@
 				</thead>
 				<tr>
 					<td>Harbour dues</td>
-					<td class="port-cost">${finalcharge?.finalCharge?.harbor}</td>
+					<td class="port-cost align-right">${finalcharge?.finalCharge?.harbor?.format('## ###.00')}</td>
 				</tr>
 				<tr>
 					<td>Quay dues</td>
-					<td class="port-cost">${finalcharge?.finalCharge?.queue}</td>
+					<td class="port-cost align-right">${finalcharge?.finalCharge?.queue?.format('## ###.00')}</td>
 				</tr>
 				<tr>
 					<td>Pilot dues</td>
-					<td class="port-cost">${finalcharge?.finalCharge?.pilot}</td>
+					<td class="port-cost align-right">${finalcharge?.finalCharge?.pilot?.format('## ###.00')}</td>
 				</tr>
 				<tr>
 					<td>Tug dues</td>
-					<td class="port-cost">${finalcharge?.finalCharge?.tug}</td>
+					<td class="port-cost align-right">${finalcharge?.finalCharge?.tug?.format('## ###.00')}</td>
 				</tr>
 				<tr>
 					<td>Light dues</td>
-					<td class="port-cost">${finalcharge?.finalCharge?.light}</td>
+					<td class="port-cost align-right">${finalcharge?.finalCharge?.light?.format('## ###.00')}</td>
 				</tr>
 				<tr>
 					<td>Government Tax</td>
-					<td class="port-cost">${finalcharge?.finalCharge?.gnt}</td>
+					<td class="port-cost align-right">${finalcharge?.finalCharge?.gnt?.format('## ###.00')}</td>
 				</tr>
 				<tr>
 					<td class="total-line">Subtotal</td>
-		            <td class="total-value"><span id="subtotal-port">0</span></td>
+		            <td class="total-value align-right"><span id="subtotal-port">0</span></td>
 				</tr>
 			</table>
 		</div>

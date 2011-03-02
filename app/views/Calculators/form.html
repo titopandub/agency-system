@@ -137,31 +137,31 @@
 				</thead>
 				<tr>
 					<td>Harbour dues</td>
-					<td class="port-cost">${booking?.booking?.harbor}</td>
+					<td class="port-cost align-right">${booking?.booking?.harbor?.format('## ###.00')}</td>
 				</tr>
 				<tr>
 					<td>Quay dues</td>
-					<td class="port-cost">${booking?.booking?.queue}</td>
+					<td class="port-cost align-right">${booking?.booking?.queue?.format('## ###.00')}</td>
 				</tr>
 				<tr>
 					<td>Pilot dues</td>
-					<td class="port-cost">${booking?.booking?.pilot}</td>
+					<td class="port-cost align-right">${booking?.booking?.pilot?.format('## ###.00')}</td>
 				</tr>
 				<tr>
 					<td>Tug dues</td>
-					<td class="port-cost">${booking?.booking?.tug}</td>
+					<td class="port-cost align-right">${booking?.booking?.tug?.format('## ###.00')}</td>
 				</tr>
 				<tr>
 					<td>Light dues</td>
-					<td class="port-cost">${booking?.booking?.light}</td>
+					<td class="port-cost align-right">${booking?.booking?.light?.format('## ###.00')}</td>
 				</tr>
 				<tr>
 					<td>Government Tax</td>
-					<td class="port-cost">${booking?.booking?.gnt}</td>
+					<td class="port-cost align-right">${booking?.booking?.gnt?.format('## ###.00')}</td>
 				</tr>
 				<tr>
 					<td class="total-line">Subtotal</td>
-		            <td class="total-value"><span id="subtotal-port">0</span></td>
+		            <td class="total-value align-right"><span id="subtotal-port">0</span></td>
 				</tr>
 			</table>
 		</div>

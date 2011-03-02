@@ -310,9 +310,11 @@ public class Operational extends Model {
 	}
 	
 	public Integer periodHarbor(int day) {
-		if (day >= 1 && day <= 10) {
+		if (day == 0) {
+			return 0;
+		} else if (day >= 1 && day <= 15) {
 			return 1;
-		} else if (day >= 11 && day <= 20) {
+		} else if (day >= 16 && day <= 30) {
 			return 2;
 		} else {
 			return 2;

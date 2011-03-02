@@ -103,31 +103,31 @@
 				</thead>
 				<tr>
 					<td>Harbour dues</td>
-					<td class="port-cost">${berthing?.berthing?.harbor}</td>
+					<td class="port-cost align-right">${berthing?.berthing?.harbor?.format('## ###.00')}</td>
 				</tr>
 				<tr>
 					<td>Quay dues</td>
-					<td class="port-cost">${berthing?.berthing?.queue}</td>
+					<td class="port-cost align-right">${berthing?.berthing?.queue?.format('## ###.00')}</td>
 				</tr>
 				<tr>
 					<td>Pilot dues</td>
-					<td class="port-cost">${berthing?.berthing?.pilot}</td>
+					<td class="port-cost align-right">${berthing?.berthing?.pilot?.format('## ###.00')}</td>
 				</tr>
 				<tr>
 					<td>Tug dues</td>
-					<td class="port-cost">${berthing?.berthing?.tug}</td>
+					<td class="port-cost align-right">${berthing?.berthing?.tug?.format('## ###.00')}</td>
 				</tr>
 				<tr>
 					<td>Light dues</td>
-					<td class="port-cost">${berthing?.berthing?.light}</td>
+					<td class="port-cost align-right">${berthing?.berthing?.light?.format('## ###.00')}</td>
 				</tr>
 				<tr>
 					<td>Government Tax</td>
-					<td class="port-cost">${berthing?.berthing?.gnt}</td>
+					<td class="port-cost align-right">${berthing?.berthing?.gnt?.format('## ###.00')}</td>
 				</tr>
 				<tr>
 					<td class="total-line">Subtotal</td>
-		            <td class="total-value"><span id="subtotal-port">0</span></td>
+		            <td class="total-value align-right"><span id="subtotal-port">0</span></td>
 				</tr>
 			</table>
 		</div>

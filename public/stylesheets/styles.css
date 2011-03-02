@@ -273,6 +273,10 @@ body {
 				padding-right: 10px;
 				border-bottom: 1px solid #ddd;
 			}
+			#main .container #content table tr .align-right {
+				text-align: right;
+				padding-right: 10px;
+			}
 			#main .container #content table tr td input {
 				padding: 1px;
 				margin: 0px auto;
