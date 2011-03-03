@@ -107,7 +107,7 @@ Herewith quotation from your request :
 	#{set subtotal2: 0 /}
 	#{list items:operational?.booking?.additional, as:'additional'}
 	<tr>
-		<td>${additional_index + 6}.</td>
+		<td>-</td>
 		<td>${additional?.name}</td>
 		<td class="align-right">${additional?.cost?.format('##,###.00')}</td>
 		#{if additional.cost != null}
