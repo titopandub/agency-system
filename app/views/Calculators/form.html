@@ -181,12 +181,18 @@
 						<th>Charges</th>
 						<th>Cost</th>
 					</tr>
-		        </thead>	
-			        #{list items:booking?.booking?.additional, as:'additional'}
-					<tr class="item-row">
-						<td><span class="delete-wpr"><input type="text" name='additional[${additional_index - 1}].name' value="${additional?.name}" class="${field.errorClass}" /><a href="javascript:;" class="delete">x</a></span></td>
-						<td><input type="text" name='additional[${additional_index - 1}].cost' value="${additional?.cost}" class="add-cost" /></td>
+		        </thead>
+		        	#{list items:booking?.port?.costtariff?.additional, as:'additional'}
+		        		<tr>
+						<td><input type="text" name='name' value="${additional?.name}" class="${field.errorClass}" disabled="disabled" /></td>
+						<td><input type="text" name='cost' value="${additional?.cost}" class="add-cost" disabled="disabled" /></td>
 					</tr>
+		        	#{/list}
+			        #{list items:booking?.booking?.additional, as:'additional'}
+						<tr class="item-row">
+							<td><span class="delete-wpr"><input type="text" name='additional[${additional_index - 1}].name' value="${additional?.name}" class="${field.errorClass}" /><a href="javascript:;" class="delete">x</a></span></td>
+							<td><input type="text" name='additional[${additional_index - 1}].cost' value="${additional?.cost}" class="add-cost" /></td>
+						</tr>
 			        #{/list}
 					#{else}
 						#{list items:0..0, as:'i'}

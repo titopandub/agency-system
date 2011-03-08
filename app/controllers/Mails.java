@@ -35,7 +35,7 @@ public class Mails extends Mailer {
 		String subject = "Estimate Port Disbursement for " + operational.port.name;
 		setSubject(subject);
 		addRecipient(receiver);
-		addCc("agency@cosco-ogs.com");
+//		addCc("agency@cosco-ogs.com");
 		send(receiver, operational);
 	}
 	
