@@ -121,13 +121,13 @@
 	            value="${booking?.booking?.cargoWeight}" class="${field.errorClass}" />
 	        #{/field}
 	    </div>
+	    <div class="buttons">
+			<input type="submit" name="calculate" value="Calculate" />
+		</div>
     </fieldset>
 	
 	<fieldset><legend>Charges</legend>
 		<div class="crudField crud_text">
-			<div class="buttons">
-				<input type="submit" name="calculate" value="Calculate" />
-			</div>
 			<table id="charges">
 				<thead>
 					<tr>
@@ -165,6 +165,13 @@
 				</tr>
 			</table>
 		</div>
+		
+		#{field 'info'}
+		<div class="crudField crud_${field.type}">
+		    <label>Other Port Information</label>
+		    <textarea cols="48" rows="5" name="${field.name}" disabled="disabled">${booking?.port?.info}</textarea>
+		</div>
+		#{/field}
 	</fieldset>
 	
 	<fieldset><legend>Additional Charges</legend>

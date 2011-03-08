@@ -203,6 +203,7 @@ body {
 				max-height: 100px;
 			}
 			#main .container #content form textarea {
+				font-family: Arial, Helvetica, sans-serif;
 				width: 300px;
 				max-width: 300px;
 				height: 120px;
