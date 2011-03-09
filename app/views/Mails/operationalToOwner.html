@@ -13,7 +13,6 @@
 	}
 	.align-right {
 		text-align: right;
-		padding-right: 10px;
 	}
     </style>
 </head>
@@ -104,26 +103,22 @@ Herewith quotation from your request :
 		<td>${operational.vessel.grt} GRT x ${operational.port.costtariff.light}</td>
 		<td class="align-right">${operational.booking.light?.format('##,###.00')}</td>		
 	</tr>
-	#{set subtotal2: 0 /}
-	#{list items:operational?.booking?.additional, as:'additional'}
+	#{list items:operational.booking.additional, as:'additional'}
 	<tr>
 		<td>${additional_index + 6}.</td>
 		<td>${additional?.name}</td>
-		<td class="align-right">${additional?.cost?.format('##,###.00')}</td>
-		#{if additional.cost != null}
-			#{subtotal2: subtotal2 + additional.cost /}
-		#{/if}		
+		<td class="align-right">${additional?.cost?.format('##,###.00')}</td>	
 	</tr>
     #{/list}
 	<tr>
 		<td></td>
 		<td>Total</td>
-		<td class="align-right">${subtotal2?.format('##,###.00')}</td>		
+		<td class="align-right">${operational?.booking?.sumAdditional?.format('##,###.00')}</td>		
 	</tr>
 	<tr>
 		<td></td>
 		<td>Grand Total</td>
-		#{set subtotal3: subtotal2 + subtotal1 /}
+		#{set subtotal3: subtotal1 + operational?.booking?.sumAdditional /}
 		<td class="align-right">${subtotal3.format('##,###.00')}</td>		
 	</tr>
 </table>
