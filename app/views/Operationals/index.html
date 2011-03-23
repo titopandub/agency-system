@@ -70,7 +70,7 @@
 			        	<td>${ops?.booking?.cargo}</td>
 			        	<td>${ops?.booking?.cargoWeight}</td>
 			        #{/if}
-			        #{if ops.status == "New" || ops.status == "Booking Rejected"}
+			        #{if ops.status == "New" || ops.status == "Prospect Approved" || ops.status == "Booking Rejected"}
 			        	<td>${ops?.booking?.cargo}</td>
 			        	<td>${ops?.booking?.cargoWeight}</td>
 			        #{/if}
