@@ -32,7 +32,8 @@ public class Mails extends Mailer {
 	
 	public static void operationalToOwner(String sender, String receiver, Operational operational) {
 		setFrom(sender);
-		String subject = "Estimate Port Disbursement for " + operational.port.name;
+		String subject = "Estimate Port Disbursement for " + operational.vessel.name + " " 
+			+ operational.voyage + " at Port " + operational.port.name;
 		setSubject(subject);
 		addRecipient(receiver);
 //		addCc("agency@cosco-ogs.com");

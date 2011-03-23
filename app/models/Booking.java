@@ -30,6 +30,8 @@ public class Booking extends Model {
 	@Embedded
 	public List<Additional> additional;
 	
+	public int sumAdditional;
+	
 	//Calculation
 	public Double harbor;
 	public Double queue;
@@ -54,7 +56,20 @@ public class Booking extends Model {
 	public Booking addAdditional(String name, Double cost) {
 		Additional newAdd = new Additional(name, cost);
         this.additional.add(newAdd);
+        this.sumAdditional = calculateAdditional();
         return this;
+	}
+	
+	private int calculateAdditional() {
+		if(this.additional.get(0).cost != null) {
+			int sum = 0;
+			for(int i = 0; i<this.additional.size(); i++) {
+				sum += this.additional.get(i).cost;
+			}
+			return sum;
+		} else {
+			return 0;
+		}
 	}
 
 }

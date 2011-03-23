@@ -18,7 +18,7 @@ import play.test.Fixtures;
 public class Bootstrap extends Job {
 	
 	public void doJob() throws Exception {
-		MorphiaFixtures.deleteAll();
+		//MorphiaFixtures.deleteAll();
 		if(User.count() ==0) {
 			User tito = new User("tito", "nindia", "tito@cosco-ogs.com");
 			tito.isAdmin = true;

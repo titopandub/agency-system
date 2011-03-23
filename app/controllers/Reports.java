@@ -19,10 +19,15 @@ public class Reports extends Controller {
 	    render(berthings);
 	}
 	
-	public static void monthly() {
-		List<Operational> monthly = Operational.filter("status =", 
-				"Departure").filter("status =", "Final Approved").asList();
-		render(monthly);
+	public static void monthly(Date start, Date end) {
+		if(start == null && end == null) {
+			List<Operational> monthly = Operational.all().asList();
+			render(monthly);
+		} else {
+			List<Operational> monthly = Operational.filter("berthing.ata >", start)
+										.filter("departure.atd <", end).asList();
+			render(monthly, start, end);
+		}
 	}
 
 }
