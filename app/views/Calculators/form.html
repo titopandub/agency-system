@@ -63,6 +63,37 @@
 	            id="ownerEmail"/>
 	        #{/field}
 	    </div>
+	    
+	    <div class="crudField crud_relation">
+	        #{field 'customer'}
+	        <label>Customer</label>
+			#{select 'customerId', items:customers, valueProperty:'id', labelProperty:'name', value:booking?.customer?._id /}
+	        #{/field}
+	    </div>
+		
+		<div class="crudField crud_relation">
+	        #{field 'agent'}
+	        <label>Agent</label>
+			#{select 'agentId', items:agents, valueProperty:'id', labelProperty:'name', value:booking?.agent?._id /}
+	        #{/field}
+	    </div>
+		
+		<div class="crudField crud_text">
+	        #{field 'statusAgent'}
+	        <label>Agent Status</label>
+	        #{select 'statusAgent', value:booking?.statusAgent, id:'select1'}
+				#{option 'General'}General Agent#{/option}
+				#{option 'Protecting'}Protecting Agent#{/option}
+			#{/select}
+			#{/field}
+	    </div>
+		
+		<div class="crudField crud_relation">
+	        #{field 'subAgent'}
+	        <label>Sub agent</label>
+			#{select 'subAgentId', items:agents, valueProperty:'id', labelProperty:'name', value:booking?.subAgent?._id /}
+	        #{/field}
+	    </div>
     </fieldset>
 	
 	<fieldset><legend>Activity Data</legend>
@@ -125,6 +156,7 @@
 			<input type="submit" name="calculate" value="Calculate" />
 		</div>
     </fieldset>
+    <div style="clear:both"></div>
 	
 	<fieldset><legend>Charges</legend>
 		<div class="crudField crud_text">

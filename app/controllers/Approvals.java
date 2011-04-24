@@ -168,6 +168,19 @@ public class Approvals extends Controller {
 		index();
 	}
 	
+	public static void approvalBerthingDeparture(Long id) {
+		Operational operational = Operational.findById(id);
+		if(operational.status.equals("Berthing")) {
+			operational.approvalBerthing(true);
+		} else if(operational.status.equals("Departure")) {
+			operational.approvalDeparture(true);
+		}
+		operational.save();
+		User sender = User.find("byUsername", Security.connected()).first();
+		Mails.operationalApproved(sender, "agency@cosco-ogs.com", operational);
+		redirect("Operationals.index");
+	}
+	
 	public static void approvalAgent(Long id) {
 		Agent agent = Agent.findById(id);
 		if(params.get("approve") != null) {

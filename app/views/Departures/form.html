@@ -182,10 +182,17 @@
 	<div style="clear:both"></div>
     
 	<div class="buttons">
-		<input type="submit" name="save" value="Save and Submit for Approval" />
+		<input type="submit" name="save" value="Save" />
     </div>
 
 #{/form}
+#{if departure?.status == "Departure"}
+	#{form @Approvals.approvalBerthingDeparture(departure?.id)}
+		<div class="crudButtons">
+	        <input type="submit" name="approve" value="Submit for Final Charges" />
+	    </div>
+	#{/form}
+#{/if}
 </div>
 
 <!-- JS -->

@@ -41,9 +41,15 @@ public class Operationals extends Controller {
 //	    q4.or(q4.criteria("status").equal("Final"), q4.criteria("status").contains("Departure Approved"), q4.criteria("status").contains("Final Rejected"));
 //	    List<Operational> finals = q4.asList();
 	    
-	    List<Operational> operations = Operational.find().asList();
+	    List<Operational> operations = Operational.find().order("vessel.name").asList();
 		
 		render(operations);
+	}
+	
+	public static void delete(Long id) {
+		Operational operational = Operational.findById(id);
+		operational.delete();
+		redirect("Operationals.index");
 	}
 
 }

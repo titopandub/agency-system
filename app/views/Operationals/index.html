@@ -16,6 +16,8 @@
 				<th>Cargo</th>
 				<th>Cargo Weight</th>
 				<th>Sub Agent</th>
+				<th>Created By</th>
+				<th>Delete</th>
 			</tr>
 			</thead>
 			#{list items:operations, as:'ops'}
@@ -87,6 +89,14 @@
 			        	<td>${ops?.finalCharge?.cargoWeight}</td>
 			        #{/if}
 			        <td>${ops?.subAgent?.name}</td>
+			        <td>${ops?.createdBy}</td>
+			        <td>
+		        	#{form @Operationals.delete(ops?.id)}
+						<span class="crudDelete">
+							<input type="submit" value="Delete" />
+						</span>
+					#{/form}
+					</td>
 			    </tr>
 			#{/list}
 		</table>

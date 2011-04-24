@@ -5,22 +5,60 @@
 	<table id="crudList">
 		<thead>
 		<tr>
-			<th>Booking Number</th>
-			<th>Vessel</th>
-			<th>Voyage</th>
-			<th>Customer</th>
-			<th>ETA</th>
-			<th>ETD</th>
+			<th>No.</th>
+			<th>Vessel & Voyage</th>
+			<th>Port</th>
+			<th>Status</th>
+			<th>Arrival Date</th>
+			<th>Departure Date</th>
+			<th>Owner</th>
+			<th>Cargo</th>
+			<th>Cargo Weight</th>
+			<th>Sub Agent</th>
+			<th>Created By</th>
 		</tr>
 		</thead>
-		#{list items:berthings, as:'berthing'}
+		#{list items:berthings, as:'ops'}
 		    <tr>
-		        <td><a href="@{Berthings.form(berthing.id)}">${berthing.id}</a></td>
-		        <td><a href="@{Berthings.form(berthing.id)}">${berthing.vessel.name}</a></td>
-		        <td><a href="@{Berthings.form(berthing.id)}">${berthing.voyage}</a></td>
-		        <td><a href="@{Berthings.form(berthing.id)}">${berthing.customer.name}</a></td>
-		        <td>${berthing.booking.eta.format('yyyy-MM-dd')}</td>
-		        <td>${berthing.booking.etd.format('yyyy-MM-dd')}</td>
+		        #{if ops.status == "Prospect" || ops.status == "Prospect Rejected"}
+			        	<td>${ops?.id}</td>
+			        #{/if}
+			        #{if ops.status == "New" || ops.status == "Prospect Approved" || ops.status == "Booking Rejected"}
+			        	<td>${ops?.id}</td>
+			        #{/if}
+			        #{if ops.status == "Berthing" || ops.status == "Booking Approved" || ops.status == "Berthing Rejected"}
+			        	<td>${ops?.id}</td>
+			        #{/if}
+			        <td>${ops?.vessel?.name} ${ops?.voyage}</td>
+			        <td>${ops?.port?.name}</td>
+			        <td>${ops?.status}</td>
+			        #{if ops.status == "Prospect"}
+			        	<td>${ops?.booking?.eta?.format('yyyy-MM-dd')}</td>
+			        	<td>${ops?.booking?.etd?.format('yyyy-MM-dd')}</td>
+			        #{/if}
+			        #{if ops.status == "New" || ops.status == "Prospect Approved" || ops.status == "Booking Rejected"}
+			        	<td>${ops?.booking?.eta?.format('yyyy-MM-dd')}</td>
+			        	<td>${ops?.booking?.etd?.format('yyyy-MM-dd')}</td>
+			        #{/if}
+			        #{if ops.status == "Berthing" || ops.status == "Booking Approved" || ops.status == "Berthing Rejected"}
+			        	<td>${ops?.berthing?.ata?.format('yyyy-MM-dd')}</td>
+			        	<td>${ops?.berthing?.etd?.format('yyyy-MM-dd')}</td>
+			        #{/if}
+			        <td>${ops?.vessel?.owner?.name}</td>
+			        #{if ops.status == "Prospect"}
+			        	<td>${ops?.booking?.cargo}</td>
+			        	<td>${ops?.booking?.cargoWeight}</td>
+			        #{/if}
+			        #{if ops.status == "New" || ops.status == "Prospect Approved" || ops.status == "Booking Rejected"}
+			        	<td>${ops?.booking?.cargo}</td>
+			        	<td>${ops?.booking?.cargoWeight}</td>
+			        #{/if}
+			        #{if ops.status == "Berthing" || ops.status == "Booking Approved" || ops.status == "Berthing Rejected"}
+			        	<td>${ops?.berthing?.cargo}</td>
+			        	<td>${ops?.berthing?.cargoWeight}</td>
+			        #{/if}
+			        <td>${ops?.subAgent?.name}</td>
+			        <td>${ops?.createdBy}</td>
 		    </tr>
 		#{/list}
 	</table>

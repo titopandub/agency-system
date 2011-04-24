@@ -56,6 +56,8 @@ public class Operational extends Model {
 	public Double tugfix;
 	public Double tugvar;
 	
+	public String createdBy;
+	
 	public Operational(Vessel vessel, Port port) {
 		this.vessel = vessel;
 		this.port = port;
@@ -280,7 +282,7 @@ public class Operational extends Model {
 	
 	public void approvalCalculate(Boolean approve) {
 		if(approve) {
-			this.status = "Prospect Approved";
+			this.status = "Booking Approved";
 		} else {
 			this.status = "Prospect Rejected";
 		}

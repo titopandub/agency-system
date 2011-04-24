@@ -12,7 +12,8 @@ public class Application extends Controller {
 
     public static void index() {
     	MorphiaQuery q2 = Operational.find(); // create a Query
-	    q2.or(q2.criteria("status").contains("Berthing"), 
+	    q2.or(q2.criteria("status").contains("Prospect"),
+	    		q2.criteria("status").contains("Berthing"), 
 	    		q2.criteria("status").contains("Booking Approved"), 
 	    		q2.criteria("status").contains("Berthing Rejected"));
 	    List<Operational> berthings = q2.asList();

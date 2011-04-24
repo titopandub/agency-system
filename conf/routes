@@ -14,6 +14,7 @@ GET     /reports/monthly						Reports.monthly
 GET		/approvals/ops							Approvals.index
 GET		/approvals/master						Approvals.master
 POST	/approvals/{id}							Approvals.approval
+POST	/approvals/inout/{id}					Approvals.approvalBerthingDeparture
 POST	/approvals/agent/{id}					Approvals.approvalAgent
 POST	/approvals/customer/{id}				Approvals.approvalCustomer
 POST	/approvals/owner/{id}					Approvals.approvalOwner
@@ -33,12 +34,14 @@ GET		/approvals/vessel/{id}					Approvals.formVessel
 
 # Operational
 GET		/ops/?									Operationals.index
+POST	/ops/delete/{id}						Operationals.delete
 
 # Calculator
 GET		/ops/calculate/{id}						Calculators.form
 POST	/ops/calculate/{id}						Calculators.calculate
 GET		/ops/calculate/new						Calculators.form
 POST	/ops/calculate/new						Calculators.calculate
+POST	/ops/calculate/delete/{id}				Calculators.delete
 GET		/listVessel								Calculators.listVessel
 GET		/listOwner								Calculators.listOwner
 
