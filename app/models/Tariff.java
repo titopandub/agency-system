@@ -27,8 +27,10 @@ public class Tariff extends Model {
 	
 	public double light;
 	
+	public double service;
+	
 	public Tariff(String type, double harbour, double quay, double pilotfix, 
-			double pilotvar, double light) {
+			double pilotvar, double light, double service) {
 		this.type = type;
 		this.harbour = harbour;
 		this.quay = quay;
@@ -37,10 +39,11 @@ public class Tariff extends Model {
 		this.tug = new ArrayList<Tug>();
 		this.additional = new ArrayList<Additional>();
 		this.light = light;
+		this.service = service;
 	}
 	
 	public Tariff(String type, double harbour, double quay, double pilotfix, 
-			double pilotvar, List<Tug> tug, double light) {
+			double pilotvar, List<Tug> tug, double light, double service) {
 		this.type = type;
 		this.harbour = harbour;
 		this.quay = quay;
@@ -48,10 +51,12 @@ public class Tariff extends Model {
 		this.pilotvar = pilotvar;
 		this.tug = tug;
 		this.light = light;
+		this.service = service;
 	}
 	
 	public Tariff(String type, double harbour, double quay, double pilotfix, 
-			double pilotvar, List<Tug> tug, List<Additional> additional, double light) {
+			double pilotvar, List<Tug> tug, List<Additional> additional, double light, 
+			double service) {
 		this.type = type;
 		this.harbour = harbour;
 		this.quay = quay;
@@ -60,6 +65,7 @@ public class Tariff extends Model {
 		this.tug = tug;
 		this.additional = additional;
 		this.light = light;
+		this.service = service;
 	}
 	
 	public Tariff addTugTariff(int minimum, int maximum, double fixed, double var) {

@@ -50,7 +50,7 @@ public class BasicTest extends UnitTest {
     	assertEquals("COSCON", owner.name);
     	
     	
-    	Tariff cost = new Tariff("A", 0.3, 0.3, 50.0, 0.3, 0.2);
+    	Tariff cost = new Tariff("A", 0.3, 0.3, 50.0, 0.3, 0.2, 0.16);
     	cost.addTugTariff(1, 3500, 145.0, 0.004);
     	cost.addTugTariff(3501, 8000, 375.0, 0.004);
     	cost.addTugTariff(8001, 14000, 570.0, 0.004);

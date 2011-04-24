@@ -33,6 +33,7 @@ public class Departure extends Model {
 	public Double tugvar;
 	public Double tug;
 	public Double gnt;
+	public Double service;
 	
 	public Departure(Date atd, int quay, Double departTugOut,
 			String cargo, int cargoWeight) {

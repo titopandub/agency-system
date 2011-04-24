@@ -146,13 +146,21 @@ public class Operational extends Model {
 		if(this.port.costtariff.type.equals("A")) {
 			this.booking.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
 					port.costtariff.pilotfix) * 2;
+			this.booking.service = (double) 0;
 		} else if(this.port.costtariff.type.equals("B")) {
 			this.booking.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
 					port.costtariff.pilotfix) * 6;
+			this.booking.service = (double) 0;
+		} else if(this.port.costtariff.type.equals("D")) {
+			this.booking.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
+					port.costtariff.pilotfix) * 2;
+			this.booking.service = vessel.grt * port.costtariff.service *
+					this.booking.quay;
 		} else {
 			this.booking.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
 					port.costtariff.pilotfix) * 2;
-		}
+			this.booking.service = (double) 0;
+		} 
 		
 		this.booking.light = vessel.grt * port.costtariff.light;
 		this.booking.tug = ((vessel.grt * this.tugvar) + 
@@ -174,13 +182,21 @@ public class Operational extends Model {
 		if(this.port.costtariff.type.equals("A")) {
 			this.berthing.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
 					port.costtariff.pilotfix) * 2;
+			this.berthing.service = (double) 0;
 		} else if(this.port.costtariff.type.equals("B")) {
 			this.berthing.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
 					port.costtariff.pilotfix) * 6;
+			this.berthing.service = (double) 0;
+		} else if(this.port.costtariff.type.equals("D")) {
+			this.berthing.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
+					port.costtariff.pilotfix) * 2;
+			this.berthing.service = vessel.grt * port.costtariff.service *
+					this.booking.quay;
 		} else {
 			this.berthing.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
 					port.costtariff.pilotfix) * 2;
-		}
+			this.berthing.service = (double) 0;
+		} 
 		
 		this.berthing.light = vessel.grt * port.costtariff.light;
 		this.berthing.tug = ((vessel.grt * tugvar) + 
@@ -202,12 +218,20 @@ public class Operational extends Model {
 		if(this.port.costtariff.type.equals("A")) {
 			this.departure.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
 					port.costtariff.pilotfix) * 2;
+			this.departure.service = (double) 0;
 		} else if(this.port.costtariff.type.equals("B")) {
 			this.departure.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
 					port.costtariff.pilotfix) * 6;
+			this.departure.service = (double) 0;
+		} else if(this.port.costtariff.type.equals("D")) {
+			this.departure.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
+					port.costtariff.pilotfix) * 2;
+			this.departure.service = vessel.grt * port.costtariff.service *
+					this.booking.quay;
 		} else {
 			this.departure.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
 					port.costtariff.pilotfix) * 2;
+			this.departure.service = (double) 0;
 		}
 		
 		this.departure.light = vessel.grt * port.costtariff.light;
@@ -230,12 +254,20 @@ public class Operational extends Model {
 		if(this.port.costtariff.type.equals("A")) {
 			this.finalCharge.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
 					port.costtariff.pilotfix) * 2;
+			this.finalCharge.service = (double) 0;
 		} else if(this.port.costtariff.type.equals("B")) {
 			this.finalCharge.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
 					port.costtariff.pilotfix) * 6;
+			this.finalCharge.service = (double) 0;
+		} else if(this.port.costtariff.type.equals("D")) {
+			this.finalCharge.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
+					port.costtariff.pilotfix) * 2;
+			this.finalCharge.service = vessel.grt * port.costtariff.service *
+					this.booking.quay;
 		} else {
 			this.finalCharge.pilot = ((vessel.grt * port.costtariff.pilotvar) + 
 					port.costtariff.pilotfix) * 2;
+			this.finalCharge.service = (double) 0;
 		}
 		
 		this.finalCharge.light = vessel.grt * port.costtariff.light;

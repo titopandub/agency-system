@@ -33,6 +33,7 @@ public class Berthing extends Model {
 	public Double light;
 	public Double tug;
 	public Double gnt;
+	public Double service;
 	
 	public Berthing(Date ata, Date etd, int quay, Double berthTugIn,
 			String cargo, int cargoWeight) {

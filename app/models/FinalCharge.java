@@ -30,6 +30,7 @@ public class FinalCharge extends Model {
 	public Double tugvar;
 	public Double tug;
 	public Double gnt;
+	public Double service;
 	
 	public FinalCharge(Double actualTugIn, Double actualTugOut,
 			String cargo, int cargoWeight) {
@@ -44,5 +45,4 @@ public class FinalCharge extends Model {
         this.additional.add(newAdd);
         return this;
 	}
-
 }

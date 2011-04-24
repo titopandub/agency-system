@@ -35,6 +35,7 @@
         #{select 'type', value:port?.costtariff?.type, id:'select1'}
 			#{option 'A'}A#{/option}
 			#{option 'B'}B#{/option}
+			#{option 'D'}D#{/option}
 		#{/select}
     </div>
     #{/field}
@@ -77,6 +78,14 @@
         <label>Light Tariff</label>
         <input type="text" name="${field.name}" 
             value="${port?.costtariff?.light}" class="${field.errorClass}" />
+    </div>
+    #{/field}
+    
+    #{field 'service'}
+	<div class="crudField crud_${field.type}">
+        <label>Port Service Tariff</label>
+        <input type="text" name="${field.name}" 
+            value="${port?.costtariff?.service}" class="${field.errorClass}" />
     </div>
     #{/field}
     

@@ -39,6 +39,7 @@ public class Booking extends Model {
 	public Double light;
 	public Double tug;
 	public Double gnt;
+	public Double service;
 	
 	
 	public Booking(Date eta, Date etd, int quay, Double bookTugIn, 
