@@ -23,6 +23,7 @@
 	#{/form}
 	<table id="crudList">
 		<thead>
+		<tr>
 			<th>Booking Number</th>
 			<th>Vessel & Voyage</th>
 			<th>Port</th>
@@ -30,9 +31,11 @@
 			<th>Departure Date</th>
 			<th>Owner</th>
 			<th>Cargo</th>
+			<th>Cargo Weight</th>
 			<th>Agent</th>
 			<th>Sub Agent</th>
 			<th>OGS Status</th>
+		</tr>
 		</thead>
 		#{list items:monthly, as:'month'}
 		    <tr>
@@ -43,6 +46,7 @@
 		        <td>${month?.departure?.atd?.format('yyyy-MM-dd')}</td>
 		        <td>${month?.vessel?.owner?.name}</td>
 		        <td>${month?.finalCharge?.cargo}</td>
+		        <td>${month?.finalCharge?.cargoWeight}</td>
 		        <td>${month?.agent}</td>
 		        <td>${month?.subAgent}</td>
 		        <td>${month?.statusAgent}</td>
