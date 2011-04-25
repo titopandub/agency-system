@@ -30,6 +30,7 @@ public class Berthing extends Model {
 	public Double harbor;
 	public Double queue;
 	public Double pilot;
+	public Double specialpilot;
 	public Double light;
 	public Double tug;
 	public Double gnt;

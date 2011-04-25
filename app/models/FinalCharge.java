@@ -25,6 +25,7 @@ public class FinalCharge extends Model {
 	public Double harbor;
 	public Double queue;
 	public Double pilot;
+	public Double specialpilot;
 	public Double light;
 	public Double tugfix;
 	public Double tugvar;

@@ -74,6 +74,16 @@ Herewith quotation from your request :
 	</tr>
 	<tr>
 		<td>4.</td>
+		<td>Pilotage berthing/unberthing</td>
+		<td></td>		
+	</tr>
+	<tr>
+		<td></td>
+		<td>((${operational.vessel.grt} GRT x ${operational.port.costtariff.pilotvar}) + ${operational.port.costtariff.pilotfix}) x 2 x 75%</td>
+		<td class="align-right">${operational.booking.specialpilot?.format('##,###.00')}</td>		
+	</tr>
+	<tr>
+		<td>5.</td>
 		<td>Tug Assist for berth/unberth</td>
 		<td></td>		
 	</tr>
@@ -83,18 +93,30 @@ Herewith quotation from your request :
 		<td class="align-right">${operational.booking.tug?.format('##,###.00')}</td>		
 	</tr>
 	<tr>
+		<td>6.</td>
+		<td>Port Service (Wharf)</td>
+		<td></td>		
+	</tr>
+	<tr>
+		<td></td>
+		<td>${operational.vessel.grt} GRT x ${operational.port.costtariff.service} x ${operational.booking.quay}</td>
+		<td class="align-right">${operational.booking.service?.format('##,###.00')}</td>		
+	</tr>
+	<tr>
 		<td></td>
 		<td>Total</td>
 		<td class="align-right">${(operational.booking.gnt * 10).format('##,###.00')}</td>		
 	</tr>
 	<tr>
-		<td>5.</td>
+		<td>7.</td>
 		<td>Surcharge 10%</td>
 		<td class="align-right">${operational.booking.gnt?.format('##,###.00')}</td>
-		#{set subtotal1: operational.booking.harbor + operational.booking.queue + operational.booking.pilot + operational.booking.tug + operational.booking.gnt + operational.booking.light /} 		
+		#{set subtotal1: operational.booking.harbor + operational.booking.queue + operational.booking.pilot + 
+		operational.booking.tug + operational.booking.gnt + operational.booking.light + operational.booking.service +
+		operational.booking.specialpilot /} 		
 	</tr>
 	<tr>
-		<td>6.</td>
+		<td>8.</td>
 		<td>Light dues</td>
 		<td></td>		
 	</tr>
@@ -105,7 +127,7 @@ Herewith quotation from your request :
 	</tr>
 	#{list items:operational.booking.additional, as:'additional'}
 	<tr>
-		<td>${additional_index - 6}</td>
+		<td>${additional_index - 8}</td>
 		<td>${additional?.name}</td>
 		<td class="align-right">${additional?.cost?.format('##,###.00')}</td>	
 	</tr>
