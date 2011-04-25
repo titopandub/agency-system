@@ -27,6 +27,7 @@
 			<th>Booking Number</th>
 			<th>Vessel & Voyage</th>
 			<th>Port</th>
+			<th>Status</th>
 			<th>Arrival Date</th>
 			<th>Departure Date</th>
 			<th>Owner</th>
@@ -42,6 +43,7 @@
 		        <td>${month?.id}</td>
 		        <td>${month?.vessel?.name} ${month?.voyage}</td>
 		        <td>${month?.port?.name}</td>
+		        <td>${month?.status}</td>
 		        <td>${month?.berthing?.ata?.format('yyyy-MM-dd')}</td>
 		        <td>${month?.departure?.atd?.format('yyyy-MM-dd')}</td>
 		        <td>${month?.vessel?.owner?.name}</td>

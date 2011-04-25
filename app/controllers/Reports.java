@@ -11,7 +11,7 @@ import play.mvc.Controller;
 public class Reports extends Controller {
 	
 	public static void upcoming() {		
-		MorphiaQuery q2 = Operational.find(); // create a Query
+		MorphiaQuery q2 = Operational.find().order("vessel.name"); // create a Query
 	    q2.or(q2.criteria("status").contains("Prospect"),
 	    		q2.criteria("status").contains("Berthing"), 
 	    		q2.criteria("status").contains("Booking Approved"), 
@@ -22,11 +22,12 @@ public class Reports extends Controller {
 	
 	public static void monthly(Date start, Date end) {
 		if(start == null && end == null) {
-			List<Operational> monthly = Operational.all().asList();
+			List<Operational> monthly = Operational.all().order("vessel.name").asList();
 			render(monthly);
 		} else {
 			List<Operational> monthly = Operational.filter("berthing.ata >", start)
-										.filter("departure.atd <", end).asList();
+										.filter("departure.atd <", end).order("vessel.name")
+										.asList();
 			render(monthly, start, end);
 		}
 	}

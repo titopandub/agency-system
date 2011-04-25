@@ -32,7 +32,7 @@
 			        <td>${ops?.vessel?.name} ${ops?.voyage}</td>
 			        <td>${ops?.port?.name}</td>
 			        <td>${ops?.status}</td>
-			        #{if ops.status == "Prospect"}
+			        #{if ops.status == "Prospect" || ops.status == "Prospect Rejected"}
 			        	<td>${ops?.booking?.eta?.format('yyyy-MM-dd')}</td>
 			        	<td>${ops?.booking?.etd?.format('yyyy-MM-dd')}</td>
 			        #{/if}
@@ -45,7 +45,7 @@
 			        	<td>${ops?.berthing?.etd?.format('yyyy-MM-dd')}</td>
 			        #{/if}
 			        <td>${ops?.vessel?.owner?.name}</td>
-			        #{if ops.status == "Prospect"}
+			        #{if ops.status == "Prospect" || ops.status == "Prospect Rejected"}
 			        	<td>${ops?.booking?.cargo}</td>
 			        	<td>${ops?.booking?.cargoWeight}</td>
 			        #{/if}

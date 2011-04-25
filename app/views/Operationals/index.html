@@ -34,16 +34,13 @@
 			        #{if ops.status == "Departure" || ops.status == "Berthing Approved" || ops.status == "Departure Rejected"}
 			        	<td><a href="@{Departures.form(ops.id)}">${ops?.id}</a></td>
 			        #{/if}
-			        #{if ops.status == "Final" || ops.status == "Departure Approved" || ops.status == "Final Rejected"}
+			        #{if ops.status == "Final" || ops.status == "Departure Approved" || ops.status == "Final Rejected" || ops.status == "Final Approved"}
 			        	<td><a href="@{FinalCharges.form(ops.id)}">${ops?.id}</a></td>
-			        #{/if}
-			        #{if ops.status == "Final Approved"}
-			        	<td>${ops?.id}</a></td>
 			        #{/if}
 			        <td>${ops?.vessel?.name} ${ops?.voyage}</td>
 			        <td>${ops?.port?.name}</td>
 			        <td>${ops?.status}</td>
-			        #{if ops.status == "Prospect"}
+			        #{if ops.status == "Prospect" || ops.status == "Prospect Rejected"}
 			        	<td>${ops?.booking?.eta?.format('yyyy-MM-dd')}</td>
 			        	<td>${ops?.booking?.etd?.format('yyyy-MM-dd')}</td>
 			        #{/if}
@@ -68,7 +65,7 @@
 			        	<td>${ops?.departure?.atd?.format('yyyy-MM-dd')}</td>
 			        #{/if}
 			        <td>${ops?.vessel?.owner?.name}</td>
-			        #{if ops.status == "Prospect"}
+			        #{if ops.status == "Prospect" || ops.status == "Prospect Rejected"}
 			        	<td>${ops?.booking?.cargo}</td>
 			        	<td>${ops?.booking?.cargoWeight}</td>
 			        #{/if}
@@ -84,7 +81,7 @@
 			        	<td>${ops?.departure?.cargo}</td>
 			        	<td>${ops?.departure?.cargoWeight}</td>
 			        #{/if}
-			        #{if ops.status == "Final" || ops.status == "Departure Approved" || ops.status == "Final Rejected"}
+			        #{if ops.status == "Final" || ops.status == "Departure Approved" || ops.status == "Final Rejected" || ops.status == "Final Approved"}
 			        	<td>${ops?.finalCharge?.cargo}</td>
 			        	<td>${ops?.finalCharge?.cargoWeight}</td>
 			        #{/if}
