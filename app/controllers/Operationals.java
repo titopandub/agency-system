@@ -57,8 +57,8 @@ public class Operationals extends Controller {
 	    		q2.criteria("status").contains("Departure"),
 	    		q2.criteria("status").contains("Departure Approved"),
 	    		q2.criteria("status").contains("Departure Rejected"),
-	    		q2.criteria("status").contains("Final"),
-	    		q2.criteria("status").contains("Final Rejected"));
+	    		q2.criteria("status").equal("Final"),
+	    		q2.criteria("status").equal("Final Rejected"));
 	    List<Operational> operations = q2.asList();
 	    render(operations);
 	}

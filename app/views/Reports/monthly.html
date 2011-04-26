@@ -36,6 +36,7 @@
 			<th>Agent</th>
 			<th>Sub Agent</th>
 			<th>OGS Status</th>
+			<th>Created By</th>
 		</tr>
 		</thead>
 		#{list items:monthly, as:'month'}
@@ -57,6 +58,7 @@
 		        <td>${month?.agent}</td>
 		        <td>${month?.subAgent}</td>
 		        <td>${month?.statusAgent}</td>
+		        <td>${month?.createdBy}</td>
 		    </tr>
 		#{/list}
 	</table>

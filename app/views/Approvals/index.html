@@ -16,6 +16,7 @@
 				<th>Cargo</th>
 				<th>Cargo Weight</th>
 				<th>Sub Agent</th>
+				<th>Created By</th>
 			</tr>
 			</thead>
 			#{list items:operations, as:'ops'}
@@ -80,6 +81,7 @@
 			        	<td>${ops?.finalCharge?.cargoWeight}</td>
 			        #{/if}
 			        <td>${ops?.subAgent?.name}</td>
+			        <td>${ops?.createdBy}</td>
 			    </tr>
 			#{/list}
 		</table>

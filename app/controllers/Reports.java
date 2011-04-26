@@ -13,7 +13,7 @@ public class Reports extends Controller {
 	public static void upcoming() {		
 		MorphiaQuery q2 = Operational.find().order("vessel.name"); // create a Query
 	    q2.or(q2.criteria("status").contains("Prospect"),
-	    		q2.criteria("status").contains("Berthing"), 
+	    		q2.criteria("status").equal("Berthing"), 
 	    		q2.criteria("status").contains("Booking Approved"), 
 	    		q2.criteria("status").contains("Berthing Rejected"));
 	    List<Operational> berthings = q2.asList();
