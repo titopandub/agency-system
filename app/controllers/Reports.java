@@ -25,8 +25,9 @@ public class Reports extends Controller {
 			List<Operational> monthly = Operational.all().order("vessel.name").asList();
 			render(monthly);
 		} else {
-			List<Operational> monthly = Operational.filter("berthing.ata >", start)
-										.filter("departure.atd <", end).order("vessel.name")
+			List<Operational> monthly = Operational.filter("departure.atd >", start)
+										.filter("departure.atd <", end)
+										.order("departure.atd, vessel.name")
 										.asList();
 			render(monthly, start, end);
 		}

@@ -40,7 +40,12 @@
 		</thead>
 		#{list items:monthly, as:'month'}
 		    <tr>
-		        <td>${month?.id}</td>
+		    	#{if month.status == "Final Approved"}
+		        	<td><a href="@{FinalCharges.form(month.id)}">${month?.id}</a></td>
+		        #{/if}
+		        #{else}
+				    <td>${month?.id}</td>
+				#{/else}
 		        <td>${month?.vessel?.name} ${month?.voyage}</td>
 		        <td>${month?.port?.name}</td>
 		        <td>${month?.status}</td>

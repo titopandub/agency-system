@@ -41,9 +41,26 @@ public class Operationals extends Controller {
 //	    q4.or(q4.criteria("status").equal("Final"), q4.criteria("status").contains("Departure Approved"), q4.criteria("status").contains("Final Rejected"));
 //	    List<Operational> finals = q4.asList();
 	    
-	    List<Operational> operations = Operational.find().order("vessel.name").asList();
-		
-		render(operations);
+//	    List<Operational> operations = Operational.find().order("vessel.name").asList();
+//		
+//		render(operations);
+		MorphiaQuery q2 = Operational.find().order("vessel.name"); // create a Query
+	    q2.or(q2.criteria("status").contains("Prospect"),
+	    		q2.criteria("status").contains("Prospect Approved"), 
+	    		q2.criteria("status").contains("Prospect Rejected"), 
+	    		q2.criteria("status").contains("Booking"),
+	    		q2.criteria("status").contains("Booking Approved"), 
+	    		q2.criteria("status").contains("Booking Rejected"), 
+	    		q2.criteria("status").contains("Berthing"),
+	    		q2.criteria("status").contains("Berthing Approved"), 
+	    		q2.criteria("status").contains("Berthing Rejected"),
+	    		q2.criteria("status").contains("Departure"),
+	    		q2.criteria("status").contains("Departure Approved"),
+	    		q2.criteria("status").contains("Departure Rejected"),
+	    		q2.criteria("status").contains("Final"),
+	    		q2.criteria("status").contains("Final Rejected"));
+	    List<Operational> operations = q2.asList();
+	    render(operations);
 	}
 	
 	public static void delete(Long id) {
